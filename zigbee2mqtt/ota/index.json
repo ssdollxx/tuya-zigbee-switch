@@ -1,5 +1,13 @@
 [
     {
-        "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/1141-d3a3-01033001-tlc_switch.zigbee"
+        "fileName": "1141-d3a3-01033001-tlc_switch.zigbee",
+        "fileVersion": 16986113,
+        "fileSize": 167154,
+        "originalUrl": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/1141-d3a3-01033001-tlc_switch.zigbee",
+        "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/1141-d3a3-01033001-tlc_switch.zigbee",
+        "imageType": 54179,
+        "manufacturerCode": 4417,
+        "sha512": "46f1c99daec92b21ca26a16de3c807dad9bf6df98364ffc069cb8e77de524971080af2d68951f40d4158c4e9152f5573dcc1a9d357eabc88d0952a7f72730066",
+        "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
     }
 ]

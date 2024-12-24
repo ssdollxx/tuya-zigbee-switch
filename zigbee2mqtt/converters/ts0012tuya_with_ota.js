@@ -24,13 +24,7 @@ const definitions = [
             tuya.whitelabel('AVATTO', 'LZWSM16-2', '2 gang switch module - (without neutral)', ['_TZ3000_kpatq5pq', '_TZ3000_ljhbw1c9']),
         ],
         extend: [
-            tuya.modernExtend.tuyaOnOff({switchType: true, endpoints: ['left', 'right']}),
-            numeric({
-                name: "image_type",
-                cluster: "genOta",
-                attribute: { ID: 0x0008, type: 0x21 }, // uint16
-                description: "Image type",
-            })
+            tuya.modernExtend.tuyaOnOff({switchType: true, endpoints: ['left', 'right']})
         ],
         endpoint: (device) => {
             return {left: 1, right: 2};
