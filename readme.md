@@ -27,10 +27,10 @@ make
 ```
 
 ## Flashing device
+`
+**Seems like OTA FLASH is broken now, removed link**
 
-Firmware can be [flashed via OTA](./docs/ota_flash.md)
-
-To flash via wire, I suggest using pvvx's [webflasher](https://pvvx.github.io/ATC_MiThermometer/USBCOMFlashTx.html).
+To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 
 
 ## Acknowledgements

@@ -1,5 +1,7 @@
 # How to Flash TS0012 via OTA  
 
+**PLEASE AVOID FLASHING VIA OTA UNTIL https://github.com/romasku/tuya-zigbee-switch/issues/1 resolved**
+
 **IMPORTANT**  
 This process may brick your device, as it has not been extensively tested. Be prepared to use a hardware flasher to restore your device if needed. Although it worked fine for me, I want to warn you about the potential risks.  
 
