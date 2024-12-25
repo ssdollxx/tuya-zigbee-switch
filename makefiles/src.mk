@@ -9,6 +9,12 @@ OUT_DIR += /$(SRC_DIR) \
 /$(SRC_DIR)/zigbee
 
 OBJS += \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash.o \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash_drv.o \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/cstartup_8258.o \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/hw_drv.o \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/adc_drv.o \
+$(BUILD_PATH)/$(SRC_DIR)/patch_sdk/random.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/general_commands.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/basic_cluster.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/switch_cluster.o \

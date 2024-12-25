@@ -175,7 +175,7 @@ secondary-outputs: $(BIN_FILE) $(OTA_FILE) $(LST_FILE) sizedummy
 
 # SDK & Tools download targets
 
-SDK_VERSION := 3.7.1.2
+SDK_VERSION := 3.6.8.6
 
 sdk:
 	mkdir -p $(SDK_DIR)
