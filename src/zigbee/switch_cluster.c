@@ -3,10 +3,13 @@
 #include "endpoint.h"
 #include "switch_cluster.h"
 #include "cluster_common.h"
+#include "general.h"
 #include "relay_cluster.h"
 #include "custom_zcl/zcl_onoff_configuration.h"
 #include "zcl_include.h"
 #include "base_components/relay.h"
+
+#define MULTI_PRESS_CNT_TO_RESET 5
 
 
 extern zigbee_relay_cluster *relay_clusters[2];
@@ -15,6 +18,7 @@ extern zigbee_relay_cluster *relay_clusters[2];
 void switch_cluster_on_button_press(zigbee_switch_cluster *cluster);
 void switch_cluster_on_button_release(zigbee_switch_cluster *cluster);
 void switch_cluster_on_button_long_press(zigbee_switch_cluster *cluster);
+void switch_cluster_on_button_multi_press(zigbee_switch_cluster *cluster, u8 press_count);
 
 zigbee_switch_cluster *switch_cluster_by_endpoint[10];
 
@@ -39,6 +43,7 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
     cluster->button->on_press = (ev_button_callback_t)switch_cluster_on_button_press;
     cluster->button->on_release = (ev_button_callback_t)switch_cluster_on_button_release;
     cluster->button->on_long_press = (ev_button_callback_t)switch_cluster_on_button_long_press;
+    cluster->button->on_multi_press = (ev_button_multi_press_callback_t)switch_cluster_on_button_multi_press;
     cluster->button->callback_param = cluster;
 
     SETUP_ATTR(0,  ZCL_ATTRID_ONOFF_CONFIGURATION_SWITCH_TYPE, 			 ZCL_DATA_TYPE_ENUM8,    ACCESS_CONTROL_READ,                         cluster->mode);
@@ -182,6 +187,12 @@ void switch_cluster_on_button_long_press(zigbee_switch_cluster *cluster) {
     }
 
     // TODO: support reporting
+}
+
+void switch_cluster_on_button_multi_press(zigbee_switch_cluster *cluster, u8 press_count) {		
+    if (press_count > MULTI_PRESS_CNT_TO_RESET) {
+        factoryReset();
+    } 
 }
 
 

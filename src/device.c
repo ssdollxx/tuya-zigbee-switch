@@ -25,6 +25,7 @@
 #include "zigbee/basic_cluster.h"
 #include "zigbee/relay_cluster.h"
 #include "zigbee/switch_cluster.h"
+#include "zigbee/general.h"
 
 #include "zigbee/endpoint_cfg.h"
 #include "custom_zcl/zcl_onoff_configuration.h"
@@ -144,9 +145,7 @@ zigbee_switch_cluster switch2_cluster = {
 
 
 void onResetClicked(void *_) {
-	zb_factoryReset();
-	tl_bdbReset2FN();
-	zb_resetDevice();
+	factoryReset();
 }
 
 

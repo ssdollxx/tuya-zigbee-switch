@@ -17,15 +17,18 @@ relay_t relay2 = {
 };
 
 button_t button_on_board = {
-	.long_press_duration_ms = 2000
+	.long_press_duration_ms = 2000,
+	.multi_press_duration_ms = 800,
 };
 
 button_t button_s1  = {
 	.long_press_duration_ms = 2000,
+	.multi_press_duration_ms = 800,
 };
 
 button_t button_s2 = {
 	.long_press_duration_ms = 2000,
+	.multi_press_duration_ms = 800,
 };
 
 button_t *buttons[] = {
