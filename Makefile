@@ -149,6 +149,13 @@ $(OTA_FILE): $(BIN_FILE)
 	@$(PYTHON) $(HELPERS_PATH)/zigbee_ota.py $(BIN_FILE) -p $(BIN_PATH) -n $(PROJECT_NAME)
 	@echo ' '
 
+z2m_index: $(OTA_FILE)
+	@echo 'Updating z2m index'
+	@echo ' '
+	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*\.zigbee"))
+	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) > zigbee2mqtt/ota/index.json
+	@echo ' '
+
 sizedummy: $(ELF_FILE)
 	@$(PYTHON) $(HELPERS_PATH)/TlsrMemInfo.py -t $(TC32_PATH)/tc32-elf-nm $(ELF_FILE)
 	@echo ' '
@@ -169,7 +176,7 @@ clean:
 
 
 
-secondary-outputs: $(BIN_FILE) $(OTA_FILE) $(LST_FILE) sizedummy
+secondary-outputs: $(BIN_FILE) $(OTA_FILE) $(LST_FILE) z2m_index sizedummy 
 
 
 
