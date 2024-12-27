@@ -16,7 +16,7 @@ The main driver for this project was the following factory firmware bug: if one 
 - Long press for momentary switches
 - Router mode (TS0012 is no neutral switch so factory firmware works as end device)
 - Super fast reaction time (compared to the factory firmware)
-- 5 quick presses to reset device
+- 5 quick presses to reset the device
 
 ## Building
 

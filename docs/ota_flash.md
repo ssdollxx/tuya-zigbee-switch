@@ -39,10 +39,8 @@ Restart zigbee2mqtt. Now TS0012 should appear in the OTA tab. Click "Check for n
 
 ### Step 5: Rejoin the Device  
 
-Once the device is flashed, force delete the old device from zigbee2mqtt and open your network by pressing "Permit join". The device should automatically rejoin.  
-
-If you miss the moment when the OTA update finishes and the device doesn't rejoin (there is a timeout for join retries), try pressing the reset button on the device for more than two seconds.  
+Once the device is flashed, force delete the old device from zigbee2mqtt and open your network by pressing "Permit join". Then reset the device it by pressing any switch 5 times in a row fast. The device should automatically rejoin.  
 
 ---
 
-Hopefully, you now have a working device! 😊  
+Hopefully, you now have a working device with custom firmware! 😊  
