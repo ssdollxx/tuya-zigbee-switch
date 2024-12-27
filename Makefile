@@ -170,9 +170,9 @@ $(OTA_FILE): $(BIN_FILE)
 z2m_index: $(FROM_TUYA_OTA_FILE) $(OTA_FILE)
 	@echo 'Updating z2m index'
 	@echo ' '
-	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD)-from_tuya.zigbee"))
+	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD).zigbee"))
 	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) $(Z2M_INDEX_FILE)
-	@$(eval OTA_FROM_TUYA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD).zigbee"))
+	@$(eval OTA_FROM_TUYA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD)-from_tuya.zigbee"))
 	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_FROM_TUYA_REAL_FILE) $(Z2M_INDEX_FILE) --board $(BOARD)
 	@echo ' '
 
@@ -191,6 +191,7 @@ endif
 
 clean:
 	@$(RM) $(FLASH_IMAGE) $(ELFS) $(OBJS) $(LST) sizedummy $(ELF_FILE) $(BIN_FILE) $(LST_FILE)
+	@$(RM) $(BIN_DIR)/*.zigbee
 	@echo 'Clean ...'
 	@echo ' '
 

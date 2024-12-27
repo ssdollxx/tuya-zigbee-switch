@@ -16,6 +16,7 @@ The main driver for this project was the following factory firmware bug: if one 
 - Long press for momentary switches
 - Router mode (TS0012 is no neutral switch so factory firmware works as end device)
 - Super fast reaction time (compared to the factory firmware)
+- 5 quick presses to reset device
 
 ## Building
 
@@ -31,6 +32,13 @@ make
 Firmware can be [flashed via OTA](./docs/ota_flash.md)
 
 To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
+
+## Changelog
+
+### v1.0.2
+
+- Added way to reset the device by pressing any switch button 5 times in a row 
+- Fixed support for ON_OFF, OFF_ON actions
 
 
 ## Acknowledgements

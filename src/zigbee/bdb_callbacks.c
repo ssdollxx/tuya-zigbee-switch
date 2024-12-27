@@ -204,6 +204,7 @@ void device_leaveCnfHandler(nlme_leave_cnf_t *pLeaveCnf)
 		if(deviceRejoinBackoffTimerEvt){
 			TL_ZB_TIMER_CANCEL(&deviceRejoinBackoffTimerEvt);
 		}
+		SYSTEM_RESET();
     }
 }
 

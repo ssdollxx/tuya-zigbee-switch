@@ -10,6 +10,7 @@ BOARD_TO_MANUFACTURER_NAMES = {
         '_TZ3000_kpatq5pq',
         '_TZ3000_ljhbw1c9',
         '_TZ3000_4zf0crgo',
+        'Tuya-CUSTOM'
     ]
 }
 
