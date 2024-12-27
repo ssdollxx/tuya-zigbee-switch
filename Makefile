@@ -1,5 +1,7 @@
 PROJECT_NAME = tlc_switch
 
+BOARD = TS0012
+VERSION = 2
 
 SDK_DIR := sdk
 TOOLCHAIN_DIR := toolchain
@@ -16,6 +18,13 @@ TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
 
 LIBS := -ldrivers_8258 -lzb_router
 
+# Board and version defines
+
+ifeq ($(BOARD), TS0012)
+	BOARD_DEF := -DBOARD=0x01
+endif
+
+VERSION_DEF := -DSTACK_BUILD=$(VERSION)
 
 # Make vars
 
@@ -93,7 +102,7 @@ INCLUDE_PATHS := -I$(SRC_PATH) -I$(SRC_PATH)/includes -I$(SRC_PATH)/common  -I$(
 -I$(SDK_PATH)/zigbee/zcl \
 -I$(SDK_PATH)/zigbee/zdo
 
-GCC_FLAGS += $(TEL_CHIP)
+GCC_FLAGS += $(TEL_CHIP) $(BOARD_DEF) $(VERSION_DEF)
 
 LS_INCLUDE := -L$(SDK_PATH)/platform/lib -L$(SDK_PATH)/zigbee/lib/tc32 -L$(SDK_PATH)/proj -L$(SDK_PATH)/platform -L$(BUILD_PATH)
 
@@ -107,10 +116,11 @@ LS_FLAGS := $(SRC_PATH)/boot.link
 -include makefiles/zigbee.mk
 
 
-LST_FILE := $(BUILD_PATH)/$(PROJECT_NAME).lst
-BIN_FILE := $(BIN_PATH)/$(PROJECT_NAME)$(VERSION_BIN).bin
-OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME).zigbee
-ELF_FILE := $(BUILD_PATH)/$(PROJECT_NAME).elf
+LST_FILE := $(BUILD_PATH)/$(PROJECT_NAME)-$(BOARD).lst
+BIN_FILE := $(BIN_PATH)/$(PROJECT_NAME)-$(BOARD).bin
+OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME)-$(BOARD).zigbee
+FROM_TUYA_OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME)-$(BOARD)-from_tuya.zigbee
+ELF_FILE := $(BUILD_PATH)/$(PROJECT_NAME)-$(BOARD).elf
 
 
 # Building project targets
@@ -143,17 +153,23 @@ $(BIN_FILE): $(ELF_FILE)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+$(FROM_TUYA_OTA_FILE): $(BIN_FILE)
+	@echo 'Create OTA image to convert from stock firmware'
+	@echo ' '
+	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FROM_TUYA_OTA_FILE) --manufacturer_id 4417 --image_type 54179 --file_version 0xFFFFFFFF
+	@echo ' '
+
 $(OTA_FILE): $(BIN_FILE)
 	@echo 'Create OTA image'
 	@echo ' '
 	@$(PYTHON) $(HELPERS_PATH)/zigbee_ota.py $(BIN_FILE) -p $(BIN_PATH) -n $(PROJECT_NAME)
 	@echo ' '
 
-z2m_index: $(OTA_FILE)
+z2m_index: $(FROM_TUYA_OTA_FILE)
 	@echo 'Updating z2m index'
 	@echo ' '
-	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*\.zigbee"))
-	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) > zigbee2mqtt/ota/index.json
+	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*\from_tuya.zigbee"))
+	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) --board $(BOARD) > zigbee2mqtt/ota/index.json
 	@echo ' '
 
 sizedummy: $(ELF_FILE)
