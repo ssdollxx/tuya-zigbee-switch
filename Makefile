@@ -122,6 +122,8 @@ OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME)-$(BOARD).zigbee
 FROM_TUYA_OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME)-$(BOARD)-from_tuya.zigbee
 ELF_FILE := $(BUILD_PATH)/$(PROJECT_NAME)-$(BOARD).elf
 
+Z2M_INDEX_FILE := zigbee2mqtt/ota/index.json
+
 
 # Building project targets
 
@@ -156,20 +158,22 @@ $(BIN_FILE): $(ELF_FILE)
 $(FROM_TUYA_OTA_FILE): $(BIN_FILE)
 	@echo 'Create OTA image to convert from stock firmware'
 	@echo ' '
-	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FROM_TUYA_OTA_FILE) --manufacturer_id 4417 --image_type 54179 --file_version 0xFFFFFFFF
+	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FROM_TUYA_OTA_FILE) --header_string "Telink Zigbee OTA" --manufacturer_id 4417 --image_type 54179 --file_version 0xFFFFFFFF
 	@echo ' '
 
 $(OTA_FILE): $(BIN_FILE)
 	@echo 'Create OTA image'
 	@echo ' '
-	@$(PYTHON) $(HELPERS_PATH)/zigbee_ota.py $(BIN_FILE) -p $(BIN_PATH) -n $(PROJECT_NAME)
+	@$(PYTHON) $(HELPERS_PATH)/zigbee_ota.py $(BIN_FILE) -p $(BIN_PATH) -n $(PROJECT_NAME)-$(BOARD)
 	@echo ' '
 
-z2m_index: $(FROM_TUYA_OTA_FILE)
+z2m_index: $(FROM_TUYA_OTA_FILE) $(OTA_FILE)
 	@echo 'Updating z2m index'
 	@echo ' '
-	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*\from_tuya.zigbee"))
-	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) --board $(BOARD) > zigbee2mqtt/ota/index.json
+	@$(eval OTA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD)-from_tuya.zigbee"))
+	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) $(Z2M_INDEX_FILE)
+	@$(eval OTA_FROM_TUYA_REAL_FILE := $(shell find bin/ -maxdepth 1 -type f -regex ".*$(BOARD).zigbee"))
+	@$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_FROM_TUYA_REAL_FILE) $(Z2M_INDEX_FILE) --board $(BOARD)
 	@echo ' '
 
 sizedummy: $(ELF_FILE)

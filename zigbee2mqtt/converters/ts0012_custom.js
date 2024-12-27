@@ -10,6 +10,18 @@ const constants = require("zigbee-herdsman-converters/lib/constants");
 const ota = require("zigbee-herdsman-converters/lib/ota");
 
 const romasku = {
+    switchAction: (name, endpointName) =>
+        enumLookup({
+            name,
+            endpointName,
+            lookup: { on_off: 0, off_on: 1, toggle: 2 },
+            cluster: "genOnOffSwitchCfg",
+            attribute: { ID: 0x0010, type: 0x30 }, // Enum8
+            description: `Select how switch should work:
+            - on_off: When switch physically moved to position 1 it always generates ON command, and when moved to position 2 it generates OFF command
+            - off_on: Same as on_off, but positions are swapped
+            - toggle: Generate TOGGLE command for any press of physicall switch`,
+        }),
     switchMode: (name, endpointName) =>
         enumLookup({
             name,
@@ -58,10 +70,12 @@ const definitions = [
             onOff({ powerOnBehavior: false, endpointNames: ["left", "right"] }),
             commandsOnOff({ endpointNames: ["1", "2"] }),
             romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action", "1"),
             romasku.relayMode("switch_1_relay_mode", "1"),
             romasku.relayIndex("switch_1_relay_index", "1"),
             romasku.longPressDuration("switch_1_long_press_duration", "1"),
             romasku.switchMode("switch_2_mode", "2"),
+            romasku.switchAction("switch_2_action", "2"),
             romasku.relayMode("switch_2_relay_mode", "2"),
             romasku.relayIndex("switch_2_relay_index", "2"),
             romasku.longPressDuration("switch_2_long_press_duration", "2"),

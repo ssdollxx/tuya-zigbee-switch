@@ -136,10 +136,10 @@ void switch_cluster_on_button_release(zigbee_switch_cluster *cluster) {
 		if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_RISE) {
             switch(cluster->action){
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_ONOFF:
-                    relay_on(relay_cluster->relay);
+                    relay_off(relay_cluster->relay);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_OFFON:
-                    relay_off(relay_cluster->relay);
+                    relay_on(relay_cluster->relay);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_TOGGLE:
                     relay_toggle(relay_cluster->relay);

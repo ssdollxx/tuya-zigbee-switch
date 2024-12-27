@@ -255,7 +255,7 @@ void user_init(bool isRetention)
 			g_bdbCommissionSetting.linkKey.tcLinkKey.key = g_baseAppCtx.tcLinkKey.key;
 		}
 		/* Set default reporting configuration */
-		u32 reportableChange = 0;
+		u32 reportableChange = 1;
         bdb_defaultReportingCfg(
 			relay1_endpoint.index,
 			HA_PROFILE_ID,
