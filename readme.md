@@ -41,6 +41,12 @@ To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 - Fixed support for ON_OFF, OFF_ON actions
 
 
+### v1.0.3
+
+- Added support of statup behaviour: ON, OFF, TOGGLE, PREVIOUS
+- Added support of button actions: 'released', 'press', 'long_press'. This is only useful for momentary (doorbell-like) switches.
+
+
 ## Acknowledgements
 
 - https://github.com/pvvx/ZigbeeTLc (firmware for telink based ATC) as this was base for this project
