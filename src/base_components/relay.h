@@ -3,10 +3,15 @@
 
 #include "types.h"
 
+typedef void (*ev_relay_callback_t)(void*, u8);
+
+
 typedef struct{
     u32 pin;
     u8 on_high;
     u8 on;
+    ev_relay_callback_t on_change;
+    void *callback_param;
 } relay_t;
 
 

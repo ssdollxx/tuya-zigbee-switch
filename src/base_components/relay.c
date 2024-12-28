@@ -12,6 +12,9 @@ void relay_on(relay_t *relay) {
     printf("drv_gpio_write %d %d \r\n", relay->pin, relay->on_high);
     drv_gpio_write(relay->pin, relay->on_high);
     relay->on = 1;
+    if (relay->on_change != NULL) {
+        relay->on_change(relay->callback_param, 1);
+    }
 }
 
 void relay_off(relay_t *relay) {
@@ -19,6 +22,9 @@ void relay_off(relay_t *relay) {
     printf("drv_gpio_write %d %d \r\n", relay->pin, !relay->on_high);
     drv_gpio_write(relay->pin, !relay->on_high);
     relay->on = 0;
+    if (relay->on_change != NULL) {
+        relay->on_change(relay->callback_param, 0);
+    }
 }
 
 void relay_toggle(relay_t *relay) {

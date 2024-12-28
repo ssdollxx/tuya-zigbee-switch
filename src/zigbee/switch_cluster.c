@@ -8,6 +8,7 @@
 #include "custom_zcl/zcl_onoff_configuration.h"
 #include "zcl_include.h"
 #include "base_components/relay.h"
+#include "configs/nv_slots_cfg.h"
 
 #define MULTI_PRESS_CNT_TO_RESET 5
 
@@ -200,8 +201,6 @@ void switch_cluster_on_write_attr(zigbee_switch_cluster *cluster) {
     switch_cluster_store_attrs_to_nv(cluster);
 }
 
-
-#define NV_ITEM_ZCL_SWITCH_CONFIG(endpoint)       (NV_ITEM_APP_GP_TRANS_TABLE + endpoint)    // endpoint starts from 1, see sdk/proj/drivers/drv_nv.h
 
 
 zigbee_switch_cluster_config nv_config_buffer;

@@ -67,7 +67,7 @@ const definitions = [
         description: "Custom switch (romasku)",
         extend: [
             deviceEndpoints({ endpoints: { 1: 1, 2: 2, "left": 3, "right": 4 } }),
-            onOff({ powerOnBehavior: false, endpointNames: ["left", "right"] }),
+            onOff({ endpointNames: ["left", "right"] }),
             commandsOnOff({ endpointNames: ["1", "2"] }),
             romasku.switchMode("switch_1_mode", "1"),
             romasku.switchAction("switch_1_action", "1"),

@@ -10,13 +10,17 @@
 
 typedef struct {
     u8 endpoint;
-    zclAttrInfo_t attr_infos[1];
+    u8 startup_mode;
+    zclAttrInfo_t attr_infos[2];
     relay_t *relay;
 } zigbee_relay_cluster;
 
 void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoint *endpoint);
 
 void relay_cluster_report(zigbee_relay_cluster *cluster);
+
+
+void relay_cluster_callback_attr_write_trampoline(u8 clusterId);
 
 #endif
 
