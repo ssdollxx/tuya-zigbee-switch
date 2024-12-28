@@ -1,7 +1,7 @@
 PROJECT_NAME = tlc_switch
 
 BOARD = TS0012
-VERSION = 2
+VERSION = 3
 
 SDK_DIR := sdk
 TOOLCHAIN_DIR := toolchain

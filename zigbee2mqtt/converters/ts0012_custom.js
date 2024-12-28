@@ -57,6 +57,16 @@ const romasku = {
             attribute: { ID: 0xff03, type: 0x21 }, // uint16
             description: "What duration is considerd to be long press",
         }),
+    pressAction: (name, endpointName) =>
+        enumLookup({
+            name,
+            endpointName,
+            access: "STATE_GET",
+            lookup: { released: 0, press: 1, long_press: 2 },
+            cluster: "genMultistateInput",
+            attribute: "presentValue",
+            description: "Action of the switch: 'released' or 'press' or 'long_press'",
+        }),
 };
 
 const definitions = [
@@ -69,11 +79,13 @@ const definitions = [
             deviceEndpoints({ endpoints: { 1: 1, 2: 2, "left": 3, "right": 4 } }),
             onOff({ endpointNames: ["left", "right"] }),
             commandsOnOff({ endpointNames: ["1", "2"] }),
+            romasku.pressAction("switch_1_action", "1"),
             romasku.switchMode("switch_1_mode", "1"),
             romasku.switchAction("switch_1_action", "1"),
             romasku.relayMode("switch_1_relay_mode", "1"),
             romasku.relayIndex("switch_1_relay_index", "1"),
             romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.pressAction("switch_2_action", "2"),
             romasku.switchMode("switch_2_mode", "2"),
             romasku.switchAction("switch_2_action", "2"),
             romasku.relayMode("switch_2_relay_mode", "2"),
@@ -82,6 +94,8 @@ const definitions = [
         ],
         meta: { multiEndpoint: true },
         configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ["genMultistateInput"]);
             const endpoint3 = device.getEndpoint(3);
             await reporting.onOff(endpoint3, {
                 min: 0,

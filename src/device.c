@@ -29,6 +29,7 @@
 
 #include "zigbee/endpoint_cfg.h"
 #include "custom_zcl/zcl_onoff_configuration.h"
+#include "custom_zcl/zcl_multistate_input.h"
 
 
 /**********************************************************************

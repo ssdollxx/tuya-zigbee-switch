@@ -23,6 +23,7 @@ $(BUILD_PATH)/$(SRC_DIR)/zigbee/endpoint.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/bdb_callbacks.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/general.o \
 $(BUILD_PATH)/$(SRC_DIR)/custom_zcl/zcl_onoff_configuration.o \
+$(BUILD_PATH)/$(SRC_DIR)/custom_zcl/zcl_multistate_input.o \
 $(BUILD_PATH)/$(SRC_DIR)/device.o \
 $(BUILD_PATH)/$(SRC_DIR)/main.o \
 $(BUILD_PATH)/$(SRC_DIR)/ext_ota.o \

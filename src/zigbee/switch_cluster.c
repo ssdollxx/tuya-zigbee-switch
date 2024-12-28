@@ -6,11 +6,20 @@
 #include "general.h"
 #include "relay_cluster.h"
 #include "custom_zcl/zcl_onoff_configuration.h"
+#include "custom_zcl/zcl_multistate_input.h"
 #include "zcl_include.h"
 #include "base_components/relay.h"
 #include "configs/nv_slots_cfg.h"
 
 #define MULTI_PRESS_CNT_TO_RESET 5
+
+const u8 multistate_out_of_service = 0;
+const u8 multistate_flags = 0;
+const u16 multistate_num_of_states = 3;
+
+#define MUTLISTATE_NOT_PRESSED 0
+#define MUTLISTATE_PRESS       1
+#define MUTLISTATE_LONG_PRESS  2
 
 
 extern zigbee_relay_cluster *relay_clusters[2];
@@ -26,6 +35,8 @@ zigbee_switch_cluster *switch_cluster_by_endpoint[10];
 void switch_cluster_store_attrs_to_nv(zigbee_switch_cluster *cluster);
 void switch_cluster_load_attrs_from_nv(zigbee_switch_cluster *cluster);
 void switch_cluster_on_write_attr(zigbee_switch_cluster *cluster);
+
+void switch_cluster_report_action(zigbee_switch_cluster *cluster);
 
 
 status_t switch_cluster_callback_trampoline(zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload) {	
@@ -54,6 +65,18 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
     SETUP_ATTR(4,  ZCL_ATTRID_ONOFF_CONFIGURATION_SWITCH_RELAY_INDEX, 	 ZCL_DATA_TYPE_UINT8,    ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,  cluster->relay_index);
     SETUP_ATTR(5,  ZCL_ATTRID_ONOFF_CONFIGURATION_SWITCH_LONG_PRESS_DUR, ZCL_DATA_TYPE_UINT16,   ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,  cluster->button->long_press_duration_ms);
 
+
+    // Configuration
+    zigbee_endpoint_add_cluster(endpoint, 1, ZCL_CLUSTER_GEN_ON_OFF_SWITCH_CONFIG);
+    zcl_specClusterInfo_t *info_conf = zigbee_endpoint_reserve_info(endpoint);
+    info_conf->clusterId = ZCL_CLUSTER_GEN_ON_OFF_SWITCH_CONFIG;
+    info_conf->manuCode = MANUFACTURER_CODE_NONE;
+    info_conf->attrNum = 6;
+    info_conf->attrTbl = cluster->attr_infos;
+    info_conf->clusterRegisterFunc = zcl_onoff_configuration_register;
+    info_conf->clusterAppCb = switch_cluster_callback_trampoline;
+
+    // Output ON OFF to bind to other devices
     zigbee_endpoint_add_cluster(endpoint, 0, ZCL_CLUSTER_GEN_ON_OFF);
     zcl_specClusterInfo_t *info = zigbee_endpoint_reserve_info(endpoint);
     info->clusterId = ZCL_CLUSTER_GEN_ON_OFF;
@@ -63,14 +86,20 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
     info->clusterRegisterFunc = zcl_onOff_register;
     info->clusterAppCb = switch_cluster_callback_trampoline;
 
-    zigbee_endpoint_add_cluster(endpoint, 1, ZCL_CLUSTER_GEN_ON_OFF_SWITCH_CONFIG);
-    zcl_specClusterInfo_t *info_conf = zigbee_endpoint_reserve_info(endpoint);
-    info_conf->clusterId = ZCL_CLUSTER_GEN_ON_OFF_SWITCH_CONFIG;
-    info_conf->manuCode = MANUFACTURER_CODE_NONE;
-    info_conf->attrNum = 6;
-    info_conf->attrTbl = cluster->attr_infos;
-    info_conf->clusterRegisterFunc = zcl_onoff_configuration_register;
-    info_conf->clusterAppCb = switch_cluster_callback_trampoline;
+    SETUP_ATTR_FOR_TABLE(cluster->multistate_attr_infos, 0,  ZCL_ATTRID_MULTISTATE_INPUT_NUMBER_OF_STATES, 	ZCL_DATA_TYPE_UINT16,    ACCESS_CONTROL_READ,  multistate_num_of_states);
+    SETUP_ATTR_FOR_TABLE(cluster->multistate_attr_infos, 1,  ZCL_ATTRID_MULTISTATE_INPUT_OUT_OF_SERVICE, 	ZCL_DATA_TYPE_BOOLEAN,   ACCESS_CONTROL_READ,  multistate_out_of_service); 
+    SETUP_ATTR_FOR_TABLE(cluster->multistate_attr_infos, 2,  ZCL_ATTRID_MULTISTATE_INPUT_PRESENT_VALUE, 	ZCL_DATA_TYPE_UINT16,    ACCESS_CONTROL_READ | ACCESS_CONTROL_REPORTABLE,  cluster->multistate_state);
+    SETUP_ATTR_FOR_TABLE(cluster->multistate_attr_infos, 3,  ZCL_ATTRID_MULTISTATE_INPUT_STATUS_FLAGS, 		ZCL_DATA_TYPE_BITMAP8,   ACCESS_CONTROL_READ,  multistate_flags);
+
+    // Output
+    zigbee_endpoint_add_cluster(endpoint, 1, ZCL_CLUSTER_GEN_MULTISTATE_INPUT_BASIC);
+    zcl_specClusterInfo_t *info_multistate = zigbee_endpoint_reserve_info(endpoint);
+    info_multistate->clusterId = ZCL_CLUSTER_GEN_MULTISTATE_INPUT_BASIC;
+    info_multistate->manuCode = MANUFACTURER_CODE_NONE;
+    info_multistate->attrNum = 4;
+    info_multistate->attrTbl = cluster->multistate_attr_infos;
+    info_multistate->clusterRegisterFunc = zcl_multistate_input_register;
+    info_multistate->clusterAppCb = NULL;
 }
 
 
@@ -80,6 +109,9 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {
     zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
 
 	printf("Relay addr used %d\r\n", relay_cluster);
+
+    cluster->multistate_state = MUTLISTATE_PRESS;
+    switch_cluster_report_action(cluster);
 
 	if (
         cluster->mode == ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_TOGGLE 
@@ -131,6 +163,9 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {
 void switch_cluster_on_button_release(zigbee_switch_cluster *cluster) {		
     zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
 
+    cluster->multistate_state = MUTLISTATE_NOT_PRESSED;
+    switch_cluster_report_action(cluster);
+
 	if (
         cluster->mode == ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_TOGGLE
     ) {
@@ -174,6 +209,9 @@ void switch_cluster_on_button_release(zigbee_switch_cluster *cluster) {
 
 
 void switch_cluster_on_button_long_press(zigbee_switch_cluster *cluster) {		
+    cluster->multistate_state = MUTLISTATE_LONG_PRESS;
+    switch_cluster_report_action(cluster);
+
     if (
         cluster->mode != ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_MOMENTARY
     ) {
@@ -227,4 +265,23 @@ void switch_cluster_load_attrs_from_nv(zigbee_switch_cluster *cluster) {
     cluster->relay_index = nv_config_buffer.relay_index;
     cluster->relay_mode = nv_config_buffer.relay_mode;
     cluster->button->long_press_duration_ms = nv_config_buffer.button_long_press_duration;
+}
+
+
+void switch_cluster_report_action(zigbee_switch_cluster *cluster)
+{	
+    if(zb_isDeviceJoinedNwk()){
+		printf("Send Report\r\n");
+
+        epInfo_t dstEpInfo;
+        TL_SETSTRUCTCONTENT(dstEpInfo, 0);
+
+        dstEpInfo.profileId = HA_PROFILE_ID;
+        dstEpInfo.dstAddrMode = APS_DSTADDR_EP_NOTPRESETNT;
+        
+    	zclAttrInfo_t *pAttrEntry;
+    	pAttrEntry = zcl_findAttribute(cluster->endpoint, ZCL_CLUSTER_GEN_MULTISTATE_INPUT_BASIC, ZCL_ATTRID_MULTISTATE_INPUT_PRESENT_VALUE);
+    	zcl_sendReportCmd(cluster->endpoint, &dstEpInfo,  TRUE, ZCL_FRAME_SERVER_CLIENT_DIR,
+    			ZCL_CLUSTER_GEN_MULTISTATE_INPUT_BASIC, pAttrEntry->id, pAttrEntry->type, pAttrEntry->data);
+    }
 }
