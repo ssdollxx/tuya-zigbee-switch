@@ -55,6 +55,7 @@ void app_chk_report(u16 uptime_sec) {
 				}
 				if(flg_chk_attr) {
 					// report pAttrEntry
+
 					if(zcl_analogDataType(pAttrEntry->type)) {
 						if(reportableChangeValueChk(pAttrEntry->type, pAttrEntry->data, pEntry->prevData, pEntry->reportableChange)) {
 							flg_report = true;
@@ -68,19 +69,11 @@ void app_chk_report(u16 uptime_sec) {
 					}
 				}
 				if(flg_report) {
-					printf("Sending report for %d %d \r\n", pEntry->clusterID, pEntry->attrID);
+					printf("Sending report for %d %d %d \r\n", pEntry->endPoint, pEntry->clusterID, pEntry->attrID);
 					pEntry->minIntCnt = pEntry->minInterval;
 					pEntry->maxIntCnt = pEntry->maxInterval;
 				
-					epInfo_t dstEpInfo;
-					TL_SETSTRUCTCONTENT(dstEpInfo, 0);
-
-					dstEpInfo.profileId = HA_PROFILE_ID;
-					dstEpInfo.dstAddrMode = APS_DSTADDR_EP_NOTPRESETNT;
-					
-					pAttrEntry = zcl_findAttribute(pEntry->endPoint, pEntry->clusterID, pEntry->attrID);
-					zcl_sendReportCmd(pEntry->endPoint, &dstEpInfo,  TRUE, ZCL_FRAME_SERVER_CLIENT_DIR,
-							ZCL_CLUSTER_GEN_ON_OFF, pAttrEntry->id, pAttrEntry->type, pAttrEntry->data);
+					reportAttr(pEntry);
 				}
 			}
 		}
