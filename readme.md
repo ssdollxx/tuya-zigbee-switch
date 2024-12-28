@@ -47,6 +47,11 @@ To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 - Added support of button actions: 'released', 'press', 'long_press'. This is only useful for momentary (doorbell-like) switches.
 
 
+### v1.0.4
+
+- Fixed bug that caused report to be sent every second
+
+
 ## Acknowledgements
 
 - https://github.com/pvvx/ZigbeeTLc (firmware for telink based ATC) as this was base for this project
