@@ -161,8 +161,6 @@ void onResetClicked(void *_) {
  */
 void user_app_init(void)
 {
-	printf("User app init\r\n");
-	printf("Hello OTA world - 4!\r\n");
 	led_init(&led);
 
 	button_on_board.long_press_duration_ms = 3500; // 3.5 seconds
@@ -173,8 +171,6 @@ void user_app_init(void)
     /* Initialize ZCL layer */
 	/* Register Incoming ZCL Foundation command/response messages */
 	zcl_init(device_zclProcessIncomingMsg);
-
-	printf("Configuring endpoints\r\n");
 
 	zigbee_endpoint_init(&main_endpoint);
 	zigbee_endpoint_init(&switch2_endpoint);
@@ -188,8 +184,6 @@ void user_app_init(void)
 	relay_cluster_add_to_endpoint(&relay2_cluster, &relay2_endpoint);
 
 	zigbee_endpoint_add_cluster(&main_endpoint, 0, ZCL_CLUSTER_OTA);
-
-	printf("Registering endpoints\r\n");
 
 	zigbee_endpoint_register_self(&main_endpoint);
 	zigbee_endpoint_register_self(&switch2_endpoint);
@@ -245,8 +239,6 @@ void user_init(bool isRetention)
 
 		/* Initialize user application */
 		user_app_init();
-
-		printf("User app init done\r\n");
 
 		/* User's Task */
 		ev_on_poll(EV_POLL_IDLE, app_task);

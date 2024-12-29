@@ -54,13 +54,10 @@ status_t relay_cluster_callback_trampoline(zclIncomingAddrInfo_t *pAddrInfo, u8 
 status_t relay_cluster_callback(zigbee_relay_cluster *cluster, zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload)
 {	
     if(cmdId == ZCL_CMD_ONOFF_ON){
-		printf("ON\r\n");
 		relay_on(cluster->relay);
 	} else if(cmdId == ZCL_CMD_ONOFF_OFF){
-		printf("OFF\r\n");
 		relay_off(cluster->relay);
 	} else if(cmdId == ZCL_CMD_ONOFF_TOGGLE){
-		printf("TOGGLE\r\n");
 		relay_toggle(cluster->relay);
 	} else {
 		printf("Unknown command: %d\r\n", cmdId);
@@ -73,8 +70,6 @@ status_t relay_cluster_callback(zigbee_relay_cluster *cluster, zclIncomingAddrIn
 void relay_cluster_report(zigbee_relay_cluster *cluster)
 {	
     if(zb_isDeviceJoinedNwk()){
-		printf("Send Report\r\n");
-
         epInfo_t dstEpInfo;
         TL_SETSTRUCTCONTENT(dstEpInfo, 0);
 

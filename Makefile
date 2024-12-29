@@ -1,7 +1,7 @@
 PROJECT_NAME = tlc_switch
 
 BOARD = TS0012_END_DEVICE
-VERSION = 4
+VERSION = 5
 
 SDK_DIR := sdk
 TOOLCHAIN_DIR := toolchain
@@ -218,7 +218,7 @@ endif
 
 clean:
 	@$(RM) $(FLASH_IMAGE) $(ELFS) $(OBJS) $(LST) sizedummy $(ELF_FILE) $(BIN_FILE) $(LST_FILE)
-	@$(RM) $(BIN_DIR)/*.zigbee
+	@$(RM) $(BIN_PATH)/*.zigbee
 	@echo 'Clean ...'
 	@echo ' '
 

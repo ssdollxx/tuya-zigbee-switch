@@ -104,11 +104,9 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
 
 
 void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {		
-    printf("switch_cluster_on_button_press for endpoint %d\r\n", cluster->endpoint);
 
     zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
 
-	printf("Relay addr used %d\r\n", relay_cluster);
 
     cluster->multistate_state = MUTLISTATE_PRESS;
     switch_cluster_report_action(cluster);
@@ -120,18 +118,12 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {
 		if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_RISE) {
             switch(cluster->action){
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_ONOFF:
-                    printf("Action ONOFF\r\n");
-                    printf("Relay endpoint %d\r\n", relay_cluster->endpoint);
                     relay_on(relay_cluster->relay);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_OFFON:
-                    printf("Action OFFON\r\n");
-                    printf("Relay endpoint %d\r\n", relay_cluster->endpoint);
                     relay_off(relay_cluster->relay);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_TOGGLE:
-                    printf("Action TOGGLE\r\n");
-                    printf("Relay endpoint %d\r\n", relay_cluster->endpoint);
                     relay_toggle(relay_cluster->relay);
                     break;
             }
@@ -271,8 +263,6 @@ void switch_cluster_load_attrs_from_nv(zigbee_switch_cluster *cluster) {
 void switch_cluster_report_action(zigbee_switch_cluster *cluster)
 {	
     if(zb_isDeviceJoinedNwk()){
-		printf("Send Report\r\n");
-
         epInfo_t dstEpInfo;
         TL_SETSTRUCTCONTENT(dstEpInfo, 0);
 

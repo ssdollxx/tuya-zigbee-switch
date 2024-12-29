@@ -37,21 +37,25 @@ To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 
 ## Changelog
 
-### v1.0.2
+### v1.0.5
 
-- Added way to reset the device by pressing any switch button 5 times in a row 
-- Fixed support for ON_OFF, OFF_ON actions
-
-
-### v1.0.3
-
-- Added support of statup behaviour: ON, OFF, TOGGLE, PREVIOUS
-- Added support of button actions: 'released', 'press', 'long_press'. This is only useful for momentary (doorbell-like) switches.
-
+- Keep status LED on when device is connected
+- Add separate firmwares for of End Device/Router
+- Improve device boot time significantly by removing unnecessary logs 
 
 ### v1.0.4
 
-- Fixed bug that caused report to be sent every second
+- Fix bug that caused report to be sent every second
+
+### v1.0.3
+
+- Add support of statup behaviour: ON, OFF, TOGGLE, PREVIOUS
+- Add support of button actions: 'released', 'press', 'long_press'. This is only useful for momentary (doorbell-like) switches.
+
+### v1.0.2
+
+- Add way to reset the device by pressing any switch button 5 times in a row 
+- Fix support for ON_OFF, OFF_ON actions
 
 
 ## Acknowledgements
