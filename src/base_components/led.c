@@ -21,16 +21,17 @@ void led_update(led_t *led){
             led->on = 0;
             drv_gpio_write(led->pin, !led->on_high);
             led->blink_switch_counter = led->blink_time_off;
-        } else {
-            led->on = 1;
-            drv_gpio_write(led->pin, led->on_high);
-            led->blink_switch_counter = led->blink_time_on;
             if (led->blink_times_left != LED_BLINK_FOREVER) {
                 led->blink_times_left--;
                 if (led->blink_times_left == 0) {
                     return;
                 }
             }
+        } else {
+            led->on = 1;
+            drv_gpio_write(led->pin, led->on_high);
+            led->blink_switch_counter = led->blink_time_on;
+           
         }
     }
     led->blink_switch_counter -= time_carry;

@@ -205,12 +205,13 @@ void app_task(void)
 	millis_update();
 	periferals_update();
 	if(bdb_isIdle()) {
-		// report handler
 		if(zb_isDeviceJoinedNwk()) {
+			led_on(&led);
 			if (zb_isDeviceFactoryNew()) {
 				zb_deviceFactoryNewSet(false);
 			}
 
+			// report handler
 			if(g_baseAppCtx.lastReportCheckSec != seconds()) {
 				app_chk_report(seconds() - g_baseAppCtx.lastReportCheckSec);
 				g_baseAppCtx.lastReportCheckSec = seconds();
