@@ -1,0 +1,20 @@
+[
+  {
+    "fileName": "1141-aa01-ffffffff-tlc_switch-forced.zigbee",
+    "fileVersion": 4294967295,
+    "fileSize": 163682,
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0012/1141-aa01-ffffffff-tlc_switch-forced.zigbee",
+    "imageType": 43521,
+    "manufacturerCode": 4417,
+    "sha512": "36008110d493477ef9dac6cdbcb97e13c34fb5947d6163647f2fa1f1b7e5b95adfe1d6e7caaa5877b3739497a29ad8fad0010e36c3ebffeadc218e58642f73bd",
+    "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "manufacturerName": [
+      "_TZ3000_jl7qyupf",
+      "_TZ3000_nPGIPl5D",
+      "_TZ3000_kpatq5pq",
+      "_TZ3000_ljhbw1c9",
+      "_TZ3000_4zf0crgo",
+      "Tuya-CUSTOM"
+    ]
+  }
+]

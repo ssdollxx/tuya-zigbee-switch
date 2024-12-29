@@ -1,7 +1,5 @@
 # How to Flash TS0012 via OTA  
 
-**PLEASE AVOID FLASHING VIA OTA UNTIL https://github.com/romasku/tuya-zigbee-switch/issues/1 resolved**
-
 **IMPORTANT**  
 This process may brick your device, as it has not been extensively tested. Be prepared to use a hardware flasher to restore your device if needed. Although it worked fine for me, I want to warn you about the potential risks.  
 
@@ -10,7 +8,12 @@ To follow these instructions, you need **zigbee2mqtt** installed. If you're usin
 ### Step 1: Download the Necessary Files  
 - [Converter for the original device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/converters/ts0012tuya_with_ota.js)  
 - [Converter for custom firmware](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/converters/ts0012_custom.js)  
-- [Custom index of OTA updates](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index.json)  
+
+- Custom index of OTA updates:
+  * [If you want device to be Router](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_TS0012.json)  
+  * [If you want device to be End Device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_TS0012_END_DEVICE.json)  
+
+Router device responds faster to requests, can increase Zigbee network strengs, but can be unstable as TS0012 is no neutral device and router firwmare consumes more power. You can try both options, but it requires [special OTA update](./change_device_type.md) to change type. 
 
 Place all three files in your zigbee2mqtt data folder.  
 
@@ -23,8 +26,10 @@ external_converters:
   - ts0012_custom.js
   - ts0012tuya_with_ota.js
 ota:
-  zigbee_ota_override_index_location: index.json
+  zigbee_ota_override_index_location: !NAME_OF_DOWNLOADED_INDEX_FILE!
 ```
+
+Replace `!NAME_OF_DOWNLOADED_INDEX_FILE!` with the name of the index file you downloaded (either `index_TS0012.json` or `index_TS0012_END_DEVICE.json`).
 
 ### Step 3: Verify the Configuration  
 

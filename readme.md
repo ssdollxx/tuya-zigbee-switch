@@ -31,6 +31,8 @@ make
 
 Firmware can be [flashed via OTA](./docs/ota_flash.md)
 
+To switch between End Device and Router follow [this guide](./docs/change_device_type.md)
+
 To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 
 ## Changelog
