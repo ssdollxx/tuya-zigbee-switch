@@ -8,7 +8,8 @@ OUT_DIR += /$(SRC_DIR) \
 /$(SRC_DIR)/custom_zcl \
 /$(SRC_DIR)/zigbee \
 /$(SRC_DIR)/boards/ts0001 \
-/$(SRC_DIR)/boards/ts0012 
+/$(SRC_DIR)/boards/ts0012 \
+/$(SRC_DIR)/boards/ts0002
 
 OBJS += \
 $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash.o \
@@ -53,6 +54,11 @@ ifeq ($(BOARD), TS0001)
 		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0001/device_init.o 
 endif
 
+ifeq ($(BOARD), TS0002)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0002/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0002/device_init.o 
+endif
 
 $(BUILD_PATH)/$(SRC_DIR)/%.o: $(PROJECT_PATH)/$(SRC_DIR)/%.c
 	@echo 'Building file: $<'

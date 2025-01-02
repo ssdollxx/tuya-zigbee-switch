@@ -25,7 +25,23 @@ BOARD_TO_MANUFACTURER_NAMES = {
     "TS0001": [
         '_TZ3000_skueekg3',
         'Tuya-TS0001-custom',
-    ]
+    ],
+    "TS0002": [
+        '_TZ3000_01gpyda5',
+        '_TZ3000_bvrlqyj7',
+        '_TZ3000_7ed9cqgi',
+        '_TZ3000_zmy4lslw',
+        '_TZ3000_ruxexjfz',
+        '_TZ3000_4xfqlgqo',
+        '_TZ3000_hojntt34',
+        '_TZ3000_eei0ubpy',
+        '_TZ3000_qaa59zqd',
+        '_TZ3000_lmlsduws',
+        '_TZ3000_lugaswf8',
+        '_TZ3000_fbjdkph9',
+        'Tuya-TS0002-custom',
+    ],
+    
 }
 
 

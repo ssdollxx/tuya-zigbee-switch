@@ -40,6 +40,7 @@
 /* Board ID */
 #define BOARD_TS0012            0x01
 #define BOARD_TS0001            0x02
+#define BOARD_TS0002            0x03
 
 
 /* Board define */

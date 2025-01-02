@@ -59,6 +59,8 @@ extern "C" {
 	#include "boards/ts0001/board_cfg.h"
 #elif BOARD == BOARD_TS0012
 	#include "boards/ts0012/board_cfg.h"
+#elif BOARD == BOARD_TS0002
+	#include "boards/ts0002/board_cfg.h"
 #endif
 
 #ifndef ZIGBEE_TUYA_OTA
