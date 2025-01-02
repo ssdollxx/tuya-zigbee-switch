@@ -5,20 +5,26 @@ from pathlib import Path
 
 BOARD_TO_MANUFACTURER_NAMES = {
     "TS0012": [
-         '_TZ3000_jl7qyupf',
+        '_TZ3000_jl7qyupf',
         '_TZ3000_nPGIPl5D',
         '_TZ3000_kpatq5pq',
         '_TZ3000_ljhbw1c9',
         '_TZ3000_4zf0crgo',
-        'Tuya-CUSTOM'
+        'Tuya-CUSTOM',
+        'Tuya-TS0012-custom',
     ],
     "TS0012_END_DEVICE": [
-         '_TZ3000_jl7qyupf',
+        '_TZ3000_jl7qyupf',
         '_TZ3000_nPGIPl5D',
         '_TZ3000_kpatq5pq',
         '_TZ3000_ljhbw1c9',
         '_TZ3000_4zf0crgo',
-        'Tuya-CUSTOM'
+        'Tuya-CUSTOM',
+        'Tuya-TS0012-custom',
+    ],
+    "TS0001": [
+        '_TZ3000_skueekg3',
+        'Tuya-TS0001-custom',
     ]
 }
 

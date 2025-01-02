@@ -6,7 +6,9 @@ OUT_DIR += /$(SRC_DIR) \
 /$(SRC_DIR)/zigbee/clusters \
 /$(SRC_DIR)/zigbee/endpoints\
 /$(SRC_DIR)/custom_zcl \
-/$(SRC_DIR)/zigbee
+/$(SRC_DIR)/zigbee \
+/$(SRC_DIR)/boards/ts0001 \
+/$(SRC_DIR)/boards/ts0012 
 
 OBJS += \
 $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash.o \
@@ -28,11 +30,28 @@ $(BUILD_PATH)/$(SRC_DIR)/device.o \
 $(BUILD_PATH)/$(SRC_DIR)/main.o \
 $(BUILD_PATH)/$(SRC_DIR)/ext_ota.o \
 $(BUILD_PATH)/$(SRC_DIR)/reporting.o \
-$(BUILD_PATH)/$(SRC_DIR)/peripherals.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/button.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/led.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/millis.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/relay.o
+
+ifeq ($(BOARD), TS0012)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/device_init.o 
+endif
+
+ifeq ($(BOARD), TS0012_END_DEVICE)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/device_init.o 
+endif
+
+ifeq ($(BOARD), TS0001)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0001/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0001/device_init.o 
+endif
 
 
 $(BUILD_PATH)/$(SRC_DIR)/%.o: $(PROJECT_PATH)/$(SRC_DIR)/%.c

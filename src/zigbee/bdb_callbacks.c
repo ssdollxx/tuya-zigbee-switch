@@ -5,7 +5,7 @@
 #include "ota.h"
 #include "device.h"
 
-#include "peripherals.h"
+#include "boards/common_peripherals.h"
 
 void device_bdbInitCb(u8 status, u8 joinedNetwork);
 void device_bdbCommissioningCb(u8 status, void *arg);

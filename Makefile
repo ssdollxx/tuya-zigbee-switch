@@ -1,6 +1,6 @@
 PROJECT_NAME = tlc_switch
 
-BOARD = TS0012_END_DEVICE
+BOARD ?= TS0001
 VERSION = 5
 
 SDK_DIR := sdk
@@ -24,14 +24,39 @@ ifeq ($(BOARD), TS0012)
 	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
 	LIBS := -ldrivers_8258 -lzb_router
 
+	DEVICE_TYPE := router
+
 	BOARD_DEF := -DBOARD=0x01
+
+	FROM_TUYA_MANUFACTURER_ID := 4417
+	FROM_TUYA_IMAGE_TYPE := 54179
+	FIRMWARE_IMAGE_TYPE := 43521
 endif
 
 ifeq ($(BOARD), TS0012_END_DEVICE)
 	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1
 	LIBS := -ldrivers_8258 -lzb_ed
 
+	DEVICE_TYPE := end_device
+
 	BOARD_DEF := -DBOARD=0x01
+
+	FROM_TUYA_MANUFACTURER_ID := 4417
+	FROM_TUYA_IMAGE_TYPE := 54179
+	FIRMWARE_IMAGE_TYPE := 43521
+endif
+
+ifeq ($(BOARD), TS0001)
+	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
+	LIBS := -ldrivers_8258 -lzb_router
+
+	DEVICE_TYPE := router
+
+	BOARD_DEF := -DBOARD=0x02
+
+	FROM_TUYA_MANUFACTURER_ID := 4107
+	FROM_TUYA_IMAGE_TYPE := 524
+	FIRMWARE_IMAGE_TYPE := 43522
 endif
 
 VERSION_DEF := -DSTACK_BUILD=$(VERSION)
@@ -133,9 +158,9 @@ FROM_TUYA_OTA_FILE := $(BIN_PATH)/$(PROJECT_NAME)-from_tuya.zigbee
 FORCE_OTA_FILE:= $(BIN_PATH)/$(PROJECT_NAME)-forced.zigbee
 ELF_FILE := $(BUILD_PATH)/$(PROJECT_NAME)-$(BOARD).elf
 
-Z2M_INDEX_FILE := zigbee2mqtt/ota/index_$(BOARD).json
+Z2M_INDEX_FILE := zigbee2mqtt/ota/index_$(DEVICE_TYPE).json
 
-Z2M_FORCE_INDEX_FILE := zigbee2mqtt/ota/index_$(BOARD)-FORCE.json
+Z2M_FORCE_INDEX_FILE := zigbee2mqtt/ota/index_$(DEVICE_TYPE)-FORCE.json
 
 
 # Building project targets
@@ -171,13 +196,13 @@ $(BIN_FILE): $(ELF_FILE)
 $(FROM_TUYA_OTA_FILE): $(BIN_FILE)
 	@echo 'Create OTA image to convert from stock firmware'
 	@echo ' '
-	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FROM_TUYA_OTA_FILE) --header_string "Telink Zigbee OTA" --manufacturer_id 4417 --image_type 54179 --file_version 0xFFFFFFFF
+	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FROM_TUYA_OTA_FILE) --header_string "Telink Zigbee OTA" --manufacturer_id $(FROM_TUYA_MANUFACTURER_ID) --image_type $(FROM_TUYA_IMAGE_TYPE) --file_version 0xFFFFFFFF
 	@echo ' '
 
 $(FORCE_OTA_FILE): $(BIN_FILE)
 	@echo 'Create OTA image to convert from stock firmware'
 	@echo ' '
-	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FORCE_OTA_FILE) --header_string "Telink Zigbee OTA" --manufacturer_id 4417 --image_type 43521 --file_version 0xFFFFFFFF
+	@$(PYTHON) $(HELPERS_PATH)/zb_bin_ota.py $(BIN_FILE) $(FORCE_OTA_FILE) --header_string "Telink Zigbee OTA" --manufacturer_id 4417 --image_type $(FIRMWARE_IMAGE_TYPE) --file_version 0xFFFFFFFF
 	@echo ' '
 
 $(OTA_FILE): $(BIN_FILE)
@@ -221,6 +246,10 @@ clean:
 	@$(RM) $(BIN_PATH)/*.zigbee
 	@echo 'Clean ...'
 	@echo ' '
+
+
+clean_z2m_index:
+	@$(RM) zigbee2mqtt/ota/*
 
 
 

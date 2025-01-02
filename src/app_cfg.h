@@ -55,7 +55,11 @@ extern "C" {
 #define SENSOR_CHT8305	2
 #define SENSOR_SHT30	3
 
-#include "configs/board_cfg.h"
+#if BOARD == BOARD_TS0001
+	#include "boards/ts0001/board_cfg.h"
+#elif BOARD == BOARD_TS0012
+	#include "boards/ts0012/board_cfg.h"
+#endif
 
 #ifndef ZIGBEE_TUYA_OTA
 #define ZIGBEE_TUYA_OTA 	0

@@ -6,8 +6,8 @@ This guide explains how to change a device's type between **Router** and **End D
 
 To flash the device, you'll need a special OTA update that can be applied to the latest firmware version. To register it in Zigbee2MQTT, download the appropriate index file:
 
-  - [To make device a Router](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_TS0012-FORCE.json)  
-  - [To make device an End Device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_TS0012_END_DEVICE-FORCE.json)  
+  - [To make device a Router](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_router-FORCE.json)  
+  - [To make device an End Device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_end_device-FORCE.json)  
 
 Then, update the end of the `configuration.yaml` file in Zigbee2MQTT as follows:
 

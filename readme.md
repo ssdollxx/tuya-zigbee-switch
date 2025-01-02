@@ -2,9 +2,10 @@
 
 A custom firmware for Tuya telink based switch module. Code is based on pvvx's [ZigbeeTLc](https://github.com/pvvx/ZigbeeTLc) firmware, huge thanks!
 
-## Supported device
+## Supported devices
 
-Currently only [TS0012](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
+- [Tuya WHD02](https://www.zigbee2mqtt.io/devices/WHD02.html) is supported. Tested only for `_TZ3000_skueekg3`. 
+- [TS0012](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 
 ## Why?
 

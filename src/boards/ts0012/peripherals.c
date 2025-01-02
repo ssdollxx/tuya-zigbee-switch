@@ -1,4 +1,5 @@
 #include "peripherals.h"
+#include "board_cfg.h"
 #include "tl_common.h"
 
 led_t led = {

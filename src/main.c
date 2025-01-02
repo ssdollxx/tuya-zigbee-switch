@@ -36,6 +36,9 @@ extern void user_init(bool isRetention);
 _attribute_ram_code_sec_
 #endif
 int main(void){
+	startup_state_e state = drv_platform_init();
+
+
 #if ZIGBEE_TUYA_OTA
 	if(*(u32 *)(0x08008) == 0x544c4e4b) {
 		//clock_init(SYS_CLK_24M_Crystal);
@@ -43,7 +46,6 @@ int main(void){
 	}
 #endif
     // g_zb_txPowerSet = RF_TX_POWER_DEF; // RF_POWER_INDEX_P1p99dBm; mac_phy.c
-	startup_state_e state = drv_platform_init();
 
 	u8 isRetention = (state == SYSTEM_DEEP_RETENTION) ? 1 : 0;
 

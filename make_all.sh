@@ -1,0 +1,4 @@
+#!/bin/sh
+BOARD=TS0001 make clean && BOARD=TS0001 make
+BOARD=TS0012 make clean && BOARD=TS0012 make
+BOARD=TS0012_END_DEVICE make clean && BOARD=TS0012_END_DEVICE make

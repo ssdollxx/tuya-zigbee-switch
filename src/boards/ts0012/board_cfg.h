@@ -14,6 +14,10 @@
 extern "C" {
 #endif
 
+
+#define ZCL_MANUFACTURER    "Tuya-TS0012-custom"
+#define ZCL_MODEL   "TS0012-custom"
+
 #define RF_TX_POWER_DEF RF_POWER_P10p46dBm
 
 
@@ -93,6 +97,10 @@ enum{
 // Enable tuya ota
 
 #define ZIGBEE_TUYA_OTA 	1
+
+
+#define SWITCH_CLUSTERS 2
+#define RELAY_CLUSTERS 2
 
 
 /* Disable C linkage for C++ Compilers: */

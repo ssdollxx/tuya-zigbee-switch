@@ -38,7 +38,28 @@ const definitions = [
             device.save();
         },
         ota: ota.zigbeeOTA,
-    }
+    },
+    {
+        fingerprint: [
+            {modelID: 'TS0001', manufacturerName: '_TZ3000_skueekg3'},
+        ],
+        model: 'WHD02',
+        vendor: 'Tuya',
+        whiteLabel: [
+            {vendor: 'Tuya', model: 'iHSW02'},
+            {vendor: 'Aubess', model: 'TMZ02'},
+            tuya.whitelabel('Tuya', 'QS-zigbee-S08-16A-RF', 'Wall switch module', ['_TZ3000_dlhhrhs8']),
+        ],
+        description: 'Wall switch module',
+        extend: [tuya.modernExtend.tuyaOnOff({switchType: true, onOffCountdown: true})],
+        configure: async (device, coordinatorEndpoint) => {
+            await tuya.configureMagicPacket(device, coordinatorEndpoint);
+            const endpoint = device.getEndpoint(1);
+            await reporting.bind(endpoint, coordinatorEndpoint, ['genOnOff']);
+            await reporting.onOff(endpoint);
+        },
+        ota: ota.zigbeeOTA,
+    },
 ];
 
 module.exports = definitions;
