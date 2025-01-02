@@ -127,7 +127,6 @@ const definitions = [
             romasku.switchMode("switch_mode", "1"),
             romasku.switchAction("switch_action", "1"),
             romasku.relayMode("switch_relay_mode", "1"),
-            romasku.relayIndex("switch_relay_index", "1"),
             romasku.longPressDuration("switch_long_press_duration", "1"),
         ],
         meta: { multiEndpoint: true },
