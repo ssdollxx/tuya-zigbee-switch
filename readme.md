@@ -41,7 +41,7 @@ To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
 ### v1.0.5
 
 - Keep status LED on when device is connected
-- Add separate firmwares for of End Device/Router
+- Add separate firmwares for End Device/Router
 - Improve device boot time significantly by removing unnecessary logs 
 
 ### v1.0.4
