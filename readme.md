@@ -30,11 +30,11 @@ make
 
 ## Flashing device
 
-Firmware can be [flashed via OTA](./docs/ota_flash.md)
+Firmware can be [flashed via OTA](./docs/ota_flash.md). If you still use zigbee2mqtt 1.x, use [this guide](./docs/ota_flash_z2m_v1.md)
 
 To switch between End Device and Router follow [this guide](./docs/change_device_type.md)
 
-To flash via wire, follow [the instruction](./docs/ts0012_flashing_via_wire.md)
+To flash via wire, follow [this guide](./docs/ts0012_flashing_via_wire.md)
 
 ## Changelog
 

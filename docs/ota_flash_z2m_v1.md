@@ -15,13 +15,16 @@ To follow these instructions, you need **zigbee2mqtt** installed. If you're usin
 
 Router device responds faster to requests, can increase Zigbee network strengs, but can be unstable as no neutral device and router firwmare consumes more power. You can try both options, but it requires [special OTA update](./change_device_type.md) to change type. 
 
-Place index file in your zigbee2mqtt data folder, and into `external_converters` subfolder. If `external_converters` folder doesn't exists, create it.
+Place all three files in your zigbee2mqtt data folder.  
 
 ### Step 2: Update the Configuration  
 
 Add the following code to the `configuration.yaml` file of zigbee2mqtt:  
 
 ```yaml
+external_converters:
+  - switch_custom.js
+  - tuya_with_ota.js
 ota:
   zigbee_ota_override_index_location: !NAME_OF_DOWNLOADED_INDEX_FILE!
 ```
@@ -32,7 +35,7 @@ Replace `!NAME_OF_DOWNLOADED_INDEX_FILE!` with the name of the index file you do
 
 If everything is set up correctly, you should see something similar to this:  
 
-![screen_ota_config](screen_ota_config_v2.png)  
+![screen_ota_config](screen_ota_config.png)  
 
 ### Step 4: Flash via OTA
 

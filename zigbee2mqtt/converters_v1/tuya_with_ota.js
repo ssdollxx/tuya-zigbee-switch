@@ -37,7 +37,7 @@ const definitions = [
             device.powerSource = 'Mains (single phase)';
             device.save();
         },
-        ota: true,
+        ota: ota.zigbeeOTA,
     },
     {
         fingerprint: [
@@ -58,7 +58,7 @@ const definitions = [
             await reporting.bind(endpoint, coordinatorEndpoint, ['genOnOff']);
             await reporting.onOff(endpoint);
         },
-        ota: true,
+        ota: ota.zigbeeOTA,
     },
     {
         // TS0002 model with only on/off capability
@@ -97,7 +97,7 @@ const definitions = [
             await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ['genOnOff']);
             await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ['genOnOff']);
         },
-        ota: true,
+        ota: ota.zigbeeOTA,
     },
 ];
 
