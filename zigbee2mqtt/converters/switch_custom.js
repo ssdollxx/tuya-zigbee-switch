@@ -112,7 +112,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeOTA,
+        ota: true,
     },
     {
         zigbeeModel: ['TS0001-custom'],
@@ -139,7 +139,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeOTA,
+        ota: true,
     },
     {
         zigbeeModel: [
@@ -182,7 +182,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeOTA,
+        ota: true,
     },
 ];
 
