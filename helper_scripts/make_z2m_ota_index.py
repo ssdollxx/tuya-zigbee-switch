@@ -3,7 +3,20 @@ import hashlib
 import json
 from pathlib import Path
 
+
 BOARD_TO_MANUFACTURER_NAMES = {
+    "TS0011": [
+        '_TZ3000_qmi1cfuq',
+        '_TZ3000_txpirhfq',
+        '_TZ3000_ji4araar',
+        'Tuya-TS0011-custom',
+    ],
+    "TS0011_END_DEVICE": [
+        '_TZ3000_qmi1cfuq',
+        '_TZ3000_txpirhfq',
+        '_TZ3000_ji4araar',
+        'Tuya-TS0011-custom',
+    ],
     "TS0012": [
         '_TZ3000_jl7qyupf',
         '_TZ3000_nPGIPl5D',

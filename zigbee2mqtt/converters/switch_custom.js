@@ -185,6 +185,33 @@ const definitions = [
         },
         ota: true,
     },
+    {
+        zigbeeModel: ['TS0011-custom'],
+        model: 'TS0011-custom',
+        vendor: 'Tuya-custom',
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: { 1: 1, "relay": 2} }),
+            onOff({ endpointNames: ["relay"] }),
+            commandsOnOff({ endpointNames: ["1"] }),
+            romasku.pressAction("switch_press_action", "1"),
+            romasku.switchMode("switch_mode", "1"),
+            romasku.switchAction("switch_action_mode", "1"),
+            romasku.relayMode("switch_relay_mode", "1"),
+            romasku.longPressDuration("switch_long_press_duration", "1"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint2 = device.getEndpoint(2);
+            await reporting.onOff(endpoint2, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: true,
+    },
 ];
 
 module.exports = definitions;

@@ -9,7 +9,8 @@ OUT_DIR += /$(SRC_DIR) \
 /$(SRC_DIR)/zigbee \
 /$(SRC_DIR)/boards/ts0001 \
 /$(SRC_DIR)/boards/ts0012 \
-/$(SRC_DIR)/boards/ts0002
+/$(SRC_DIR)/boards/ts0002 \
+/$(SRC_DIR)/boards/ts0011
 
 OBJS += \
 $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash.o \
@@ -46,6 +47,18 @@ ifeq ($(BOARD), TS0012_END_DEVICE)
 	OBJS += \
 		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/peripherals.o \
 		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/device_init.o 
+endif
+
+ifeq ($(BOARD), TS0011)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/device_init.o 
+endif
+
+ifeq ($(BOARD), TS0011_END_DEVICE)
+	OBJS += \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/peripherals.o \
+		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/device_init.o 
 endif
 
 ifeq ($(BOARD), TS0001)

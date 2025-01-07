@@ -99,6 +99,29 @@ const definitions = [
         },
         ota: ota.zigbeeOTA,
     },
+    {
+        fingerprint: [
+            {modelID: 'TS0011', manufacturerName: '_TZ3000_qmi1cfuq'},
+            {modelID: 'TS0011', manufacturerName: '_TZ3000_txpirhfq'},
+            {modelID: 'TS0011', manufacturerName: '_TZ3000_ji4araar'},
+        ],
+        model: 'TS0011_switch_module',
+        vendor: 'Tuya',
+        description: '1 gang switch module - (without neutral)',
+        extend: [tuya.modernExtend.tuyaOnOff({switchType: true})],
+        whiteLabel: [
+            {vendor: 'AVATTO', model: '1gang N-ZLWSM01'},
+            {vendor: 'SMATRUL', model: 'TMZ02L-16A-W'},
+            {vendor: 'Aubess', model: 'TMZ02L-16A-B'},
+        ],
+        configure: async (device, coordinatorEndpoint) => {
+            await tuya.configureMagicPacket(device, coordinatorEndpoint);
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ['genOnOff']);
+            device.powerSource = 'Mains (single phase)';
+            device.save();
+        },
+        ota: ota.zigbeeOTA,
+    },
 ];
 
 module.exports = definitions;

@@ -41,6 +41,7 @@
 #define BOARD_TS0012            0x01
 #define BOARD_TS0001            0x02
 #define BOARD_TS0002            0x03
+#define BOARD_TS0011            0x04
 
 
 /* Board define */
