@@ -16,7 +16,7 @@ const romasku = {
             endpointName,
             lookup: { on_off: 0, off_on: 1, toggle: 2 },
             cluster: "genOnOffSwitchCfg",
-            attribute: { ID: 0x0010, type: 0x30 }, // Enum8
+            attribute: "switchActions", // Enum8
             description: `Select how switch should work:
             - on_off: When switch physically moved to position 1 it always generates ON command, and when moved to position 2 it generates OFF command
             - off_on: Same as on_off, but positions are swapped
@@ -56,6 +56,8 @@ const romasku = {
             cluster: "genOnOffSwitchCfg",
             attribute: { ID: 0xff03, type: 0x21 }, // uint16
             description: "What duration is considerd to be long press",
+            valueMin: 0,
+            valueMax: 5000,
         }),
     pressAction: (name, endpointName) =>
         enumLookup({
@@ -84,13 +86,13 @@ const definitions = [
             commandsOnOff({ endpointNames: ["1", "2"] }),
             romasku.pressAction("switch_1_press_action", "1"),
             romasku.switchMode("switch_1_mode", "1"),
-            romasku.switchAction("switch_1_action", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
             romasku.relayMode("switch_1_relay_mode", "1"),
             romasku.relayIndex("switch_1_relay_index", "1"),
             romasku.longPressDuration("switch_1_long_press_duration", "1"),
             romasku.pressAction("switch_2_press_action", "2"),
             romasku.switchMode("switch_2_mode", "2"),
-            romasku.switchAction("switch_2_action", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
             romasku.relayMode("switch_2_relay_mode", "2"),
             romasku.relayIndex("switch_2_relay_index", "2"),
             romasku.longPressDuration("switch_2_long_press_duration", "2"),
@@ -125,7 +127,7 @@ const definitions = [
             commandsOnOff({ endpointNames: ["1"] }),
             romasku.pressAction("switch_press_action", "1"),
             romasku.switchMode("switch_mode", "1"),
-            romasku.switchAction("switch_action", "1"),
+            romasku.switchAction("switch_action_mode", "1"),
             romasku.relayMode("switch_relay_mode", "1"),
             romasku.longPressDuration("switch_long_press_duration", "1"),
         ],
@@ -154,13 +156,13 @@ const definitions = [
             commandsOnOff({ endpointNames: ["1", "2"] }),
             romasku.pressAction("switch_1_press_action", "1"),
             romasku.switchMode("switch_1_mode", "1"),
-            romasku.switchAction("switch_1_action", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
             romasku.relayMode("switch_1_relay_mode", "1"),
             romasku.relayIndex("switch_1_relay_index", "1"),
             romasku.longPressDuration("switch_1_long_press_duration", "1"),
             romasku.pressAction("switch_2_press_action", "2"),
             romasku.switchMode("switch_2_mode", "2"),
-            romasku.switchAction("switch_2_action", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
             romasku.relayMode("switch_2_relay_mode", "2"),
             romasku.relayIndex("switch_2_relay_index", "2"),
             romasku.longPressDuration("switch_2_long_press_duration", "2"),
