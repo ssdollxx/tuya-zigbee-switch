@@ -52,7 +52,6 @@ TS0002:
     - _TZ3000_01gpyda5
     - _TZ3000_bvrlqyj7
     - _TZ3000_7ed9cqgi
-    - _TZ3000_zmy4lslw
     - _TZ3000_ruxexjfz
     - _TZ3000_4xfqlgqo
     - _TZ3000_hojntt34
@@ -85,4 +84,23 @@ TS0011_END_DEVICE:
     - _TZ3000_qmi1cfuq
     - _TZ3000_txpirhfq
     - _TZ3000_ji4araar
-
+TS0001:
+  name: TS0001-custom
+  config_str: Tuya-TS0001-custom;TS0001-custom;BD2u;LC0;SB4u;RC2;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43521
+  tuya_converter_model: TS0001_switch_module
+  tuya_manufacturer_names:
+      - _TZ3000_tqlv4ug4
+TS0002_2:
+  name: TS0002-custom
+  config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC0;SB4u;RC2;SB5u;RC3;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43521
+  tuya_converter_model: TS0002_basic
+  tuya_manufacturer_names:
+      - _TZ3000_zmy4lslw
