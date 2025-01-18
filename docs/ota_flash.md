@@ -15,7 +15,7 @@ To follow these instructions, you need **zigbee2mqtt** installed. If you're usin
 
 Router device responds faster to requests, can increase Zigbee network strengs, but can be unstable as no neutral device and router firwmare consumes more power. You can try both options, but it requires [special OTA update](./change_device_type.md) to change type. 
 
-Place index file in your zigbee2mqtt data folder, and into `external_converters` subfolder. If `external_converters` folder doesn't exists, create it.
+Place index file in your zigbee2mqtt data folder, and converters into `external_converters` subfolder. If `external_converters` folder doesn't exists, create it.
 
 ### Step 2: Update the Configuration  
 

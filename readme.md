@@ -7,6 +7,9 @@ A custom firmware for Tuya telink based switch module. Code is based on pvvx's [
 - [Tuya WHD02](https://www.zigbee2mqtt.io/devices/WHD02.html) is supported. Tested only for `_TZ3000_skueekg3`. 
 - [TS0012](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 
+
+If you device is not supported, by it some Tuya switch module, please check [porting guide](./docs/porting_to_new_device.md).
+
 ## Why?
 
 The main driver for this project was the following factory firmware bug: if one button is pressed, the device ignores clicks to other buttons for ~0.5 seconds. The most frustrating consequence is that pressing both buttons at the same time turns only one relay on.
@@ -37,6 +40,10 @@ To switch between End Device and Router follow [this guide](./docs/change_device
 To flash via wire, follow [this guide](./docs/ts0012_flashing_via_wire.md)
 
 ## Changelog
+
+### v1.0.6
+
+- Add way to change device pinout on the fly, to allow easier porting of firmware 
 
 ### v1.0.5
 
