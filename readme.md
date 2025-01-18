@@ -7,8 +7,8 @@ A custom firmware for Tuya telink based switch module. Code is based on pvvx's [
 Note that rebranded version may have different internals and may not work. "Zigbee Manufacturer" is more reliable identifier of device.
 
 - [Tuya WHD02](https://www.zigbee2mqtt.io/devices/WHD02.html) is supported. Tested only for `_TZ3000_skueekg3`. 
-- [TS0001](https://www.zigbee2mqtt.io/devices/TS0001_switch_module.html) is supported.  Should work for `_TZ3000_tqlv4ug4`.
-- [TS0002](https://www.zigbee2mqtt.io/devices/TS0001_switch_module.html) is supported. Note that it may not work for some rebrands. Should work for `_TZ3000_zmy4lslw`.   
+- [TS0001](https://www.zigbee2mqtt.io/devices/TS0001_switch_module.html) is supported. Should work for `_TZ3000_tqlv4ug4`.
+- [TS0002](https://www.zigbee2mqtt.io/devices/TS0001_switch_module.html) is supported. Should work for `_TZ3000_zmy4lslw`.   
 - [TS0011](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 - [TS0012](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 
