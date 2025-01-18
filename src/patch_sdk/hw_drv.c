@@ -109,7 +109,9 @@ startup_state_e drv_platform_init(void)
 	
 	// gpio_init(TRUE);
 
+	#if UART_PRINTF_MODE
 	DEBUG_TX_PIN_INIT();
+	#endif
 
 	/* Get calibration info to improve performance */
 	if(state != SYSTEM_DEEP_RETENTION){

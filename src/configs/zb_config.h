@@ -74,7 +74,7 @@
 //Integer value representing the number of scan attempts to make before
 //the NWK layer decides which ZigBee coordinator or router to associate with.
 //This attribute has default value of 5 and valid values between 1 and 255.
-#define	ZDO_NWK_SCAN_ATTEMPTS						1
+#define	ZDO_NWK_SCAN_ATTEMPTS						5
 
 //Integer value representing the time duration between each NWK discovery attempt described by :Config_NWK_Scan_Attempts.
 //This attribute has a default value 0xc35 (100 milliseconds) and valid values between 1 and 65535 milliseconds.
@@ -87,11 +87,11 @@
 #define	ZDO_MAX_PARENT_THRESHOLD_RETRY				5
 
 //Contents of the rejoin interval in seconds
-#define ZDO_REJOIN_TIMES							5 // =5
-#define	ZDO_REJOIN_DURATION							0  // =6
-#define ZDO_REJOIN_BACKOFF_TIME						45 // =30
-#define ZDO_MAX_REJOIN_BACKOFF_TIME					180 // =90
-#define ZDO_REJOIN_BACKOFF_ITERATION				0  // =8
+#define ZDO_REJOIN_TIMES							5
+#define	ZDO_REJOIN_DURATION							6
+#define ZDO_REJOIN_BACKOFF_TIME						30
+#define ZDO_MAX_REJOIN_BACKOFF_TIME					90
+#define ZDO_REJOIN_BACKOFF_ITERATION				8
 
 /******************************************************************************************************************************/
 
@@ -143,6 +143,6 @@
 #endif
 
 //default TX power idx.
-#define ZB_DEFAULT_TX_POWER_IDX					0/* idx = 0, means MAX TX power. */
+#define ZB_DEFAULT_TX_POWER_IDX					RF_POWER_INDEX_P10p46dBm/* idx = 0, means MAX TX power. */
 
 #endif	/* ZB_CONFIG_H */
