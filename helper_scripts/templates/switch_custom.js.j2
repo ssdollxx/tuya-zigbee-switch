@@ -107,8 +107,10 @@ const romasku = {
                         } 
                     } else if (part[0] == 'L' || part[0] == 'R') {
                         validatePin(part.slice(1,3));
+                    } else if(part[0] == 'I') {
+                        ; // TODO: write validatetion
                     } else {
-                        throw new Error(`Invalid entry ${part}. Should start with one of B, R, L, S`);
+                        throw new Error(`Invalid entry ${part}. Should start with one of B, R, L, S, I`);
                     }
                 }
             }

@@ -3,13 +3,13 @@
 #include "zigbee/relay_cluster.h"
 #include "zigbee/switch_cluster.h"
 #include "zigbee/general.h"
-
+#include "ota.h"
 
 #include "base_components/led.h"
-
 #include "chip_8258/gpio.h"
-
 #include "config_nv.h"
+
+extern ota_preamble_t baseEndpoint_otaInfo;
 
 led_t status_led = {
     .on_high = 1
@@ -37,6 +37,7 @@ zigbee_endpoint endpoints[10];
 void reset_to_default_config();
 GPIO_PinTypeDef parsePin(const char * pin_str);
 GPIO_PullTypeDef parsePullUpDown(const char * pull_str);
+u32 parseInt(const char *s);
 char *seekUntil(char* cursor, char needle);
 char *extractNextEntry(char **cursor);
 void init_gpio_input(GPIO_PinTypeDef pin, GPIO_PullTypeDef pull);
@@ -72,13 +73,9 @@ void parse_config() {
     
     char* entry;
     for( entry = extractNextEntry(&cursor); *entry != '\0'; entry = extractNextEntry(&cursor)) {
-    
-        GPIO_PinTypeDef pin = parsePin(entry + 1);
-
-        printf("Role: %c, pin: %d\r\n", entry[0], pin);
-        printf("Buttons cnt %d, relay cnt %d\r\n", buttons_cnt, relays_cnt);
  
         if (entry[0] == 'B') {
+            GPIO_PinTypeDef pin = parsePin(entry + 1);
             GPIO_PullTypeDef pull = parsePullUpDown(entry + 3);
             init_gpio_input(pin, pull);
 
@@ -89,11 +86,13 @@ void parse_config() {
             buttons_cnt++;
         }
         if (entry[0] == 'L') {
+            GPIO_PinTypeDef pin = parsePin(entry + 1);
             init_gpio_output(pin);
             status_led.pin = pin;
 	        led_init(&status_led);
         }
         if (entry[0] == 'S') {
+            GPIO_PinTypeDef pin = parsePin(entry + 1);
             GPIO_PullTypeDef pull = parsePullUpDown(entry + 3);
             init_gpio_input(pin, pull);
 
@@ -110,7 +109,8 @@ void parse_config() {
             buttons_cnt++;
             switch_clusters_cnt++;
         }
-         if (entry[0] == 'R') {
+        if (entry[0] == 'R') {
+            GPIO_PinTypeDef pin = parsePin(entry + 1);
             init_gpio_output(pin);
 
             relays[relays_cnt].pin = pin;
@@ -120,6 +120,10 @@ void parse_config() {
 
             relays_cnt++;
             relay_clusters_cnt++;
+        }
+        if (entry[0] == 'I') {
+            u32 image_type = parseInt(entry + 1);
+            baseEndpoint_otaInfo.imageType = image_type;
         }
     }
 
@@ -281,4 +285,12 @@ char *extractNextEntry(char **cursor) {
     char* res = *cursor;
     *cursor = end + 1;
     return res;
+}
+
+u32 parseInt(const char *s)
+{
+	u32 n=0;
+	while ('0' <= *s && *s <= '9')
+		n = 10*n + (*s++ - '0');
+	return n;
 }

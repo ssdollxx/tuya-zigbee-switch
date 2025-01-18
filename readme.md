@@ -12,7 +12,7 @@ Note that rebranded version may have different internals and may not work. "Zigb
 - [TS0011](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 - [TS0012](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) is supported. 
 
-If you device is not supported, by it some Tuya switch module, please check [porting guide](./docs/porting_to_new_device.md).
+If you device is not supported, but it is some Tuya switch module, please check [the porting guide](./docs/porting_to_new_device.md).
 
 ## Why?
 
