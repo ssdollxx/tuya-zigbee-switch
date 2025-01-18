@@ -90,7 +90,7 @@ TS0001:
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
-  firmware_image_type: 43521
+  firmware_image_type: 43525
   tuya_converter_model: TS0001_switch_module
   tuya_manufacturer_names:
       - _TZ3000_tqlv4ug4
@@ -100,7 +100,7 @@ TS0002_2:
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
-  firmware_image_type: 43521
+  firmware_image_type: 43526
   tuya_converter_model: TS0002_basic
   tuya_manufacturer_names:
       - _TZ3000_zmy4lslw
