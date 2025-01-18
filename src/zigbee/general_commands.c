@@ -1,6 +1,7 @@
 
 #include "tl_common.h"
 #include "zcl_include.h"
+#include "zigbee/basic_cluster.h"
 #include "zigbee/relay_cluster.h"
 #include "zigbee/switch_cluster.h"
 
@@ -27,6 +28,9 @@ void device_zclWriteReqCmd(u8 endpoint, u16 clusterId, zclWriteCmd_t *pWriteReqC
 	}
 	if (clusterId == ZCL_CLUSTER_GEN_ON_OFF) {
 		relay_cluster_callback_attr_write_trampoline(endpoint);
+	}
+	if (clusterId == ZCL_CLUSTER_GEN_BASIC) {
+		basic_cluster_callback_attr_write_trampoline(endpoint);
 	}
 }
 

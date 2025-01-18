@@ -10,7 +10,8 @@ OUT_DIR += /$(SRC_DIR) \
 /$(SRC_DIR)/boards/ts0001 \
 /$(SRC_DIR)/boards/ts0012 \
 /$(SRC_DIR)/boards/ts0002 \
-/$(SRC_DIR)/boards/ts0011
+/$(SRC_DIR)/boards/ts0011 \
+/$(SRC_DIR)/device_config
 
 OBJS += \
 $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/flash.o \
@@ -35,43 +36,9 @@ $(BUILD_PATH)/$(SRC_DIR)/reporting.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/button.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/led.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/millis.o \
-$(BUILD_PATH)/$(SRC_DIR)/base_components/relay.o
-
-ifeq ($(BOARD), TS0012)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/device_init.o 
-endif
-
-ifeq ($(BOARD), TS0012_END_DEVICE)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0012/device_init.o 
-endif
-
-ifeq ($(BOARD), TS0011)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/device_init.o 
-endif
-
-ifeq ($(BOARD), TS0011_END_DEVICE)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0011/device_init.o 
-endif
-
-ifeq ($(BOARD), TS0001)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0001/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0001/device_init.o 
-endif
-
-ifeq ($(BOARD), TS0002)
-	OBJS += \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0002/peripherals.o \
-		$(BUILD_PATH)/$(SRC_DIR)/boards/ts0002/device_init.o 
-endif
+$(BUILD_PATH)/$(SRC_DIR)/base_components/relay.o \
+$(BUILD_PATH)/$(SRC_DIR)/device_config/config_parser.o \
+$(BUILD_PATH)/$(SRC_DIR)/device_config/config_nv.o
 
 $(BUILD_PATH)/$(SRC_DIR)/%.o: $(PROJECT_PATH)/$(SRC_DIR)/%.c
 	@echo 'Building file: $<'

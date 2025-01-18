@@ -2,6 +2,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import yaml
 
 
 BOARD_TO_MANUFACTURER_NAMES = {
@@ -58,7 +59,7 @@ BOARD_TO_MANUFACTURER_NAMES = {
 }
 
 
-def make_ota_index_entry(file: Path, base_url: str, board: str | None) -> dict[str, str | int]:
+def make_ota_index_entry(file: Path, base_url: str, manufacturer_names: list[str] | None) -> dict[str, str | int]:
     data = file.read_bytes()
     res = {
         "fileName": file.name,
@@ -71,8 +72,8 @@ def make_ota_index_entry(file: Path, base_url: str, board: str | None) -> dict[s
         "sha512": hashlib.sha512(data).hexdigest(),
         "otaHeaderString": data[20:52].decode('unicode_escape'), 
     }
-    if board and board in BOARD_TO_MANUFACTURER_NAMES:
-        res["manufacturerName"] = BOARD_TO_MANUFACTURER_NAMES[board]
+    if manufacturer_names:
+        res["manufacturerName"] = manufacturer_names
     return res
 
 
@@ -83,14 +84,29 @@ if __name__ == "__main__":
     parser.add_argument("index_file", type=str, help="OTA index.json file")
     parser.add_argument("--base-url", required=False, help="Base url to use", 
                         default="https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main")
+    parser.add_argument(
+        "--db_file", metavar="INPUT", type=str, help="File with device db"
+    )
     parser.add_argument("--board", required=False, help="Used to select manufacturerName list to avoid flashing wrong devices")
+  
 
     args = parser.parse_args()
+
+    db_str = Path(args.db_file).read_text()
+    db = yaml.safe_load(db_str)
+
+    manufacturer_names = []
+    device = db.get(args.board)
+    if device:
+        manufacturer_names.extend(device["tuya_manufacturer_names"])
+        manufacturer_names.append(
+            device["config_str"].split(";")[0]
+        )
 
     entry = make_ota_index_entry(
         file=Path(args.filename),
         base_url=args.base_url,
-        board=args.board,
+        manufacturer_names=manufacturer_names,
     )
     index_file = Path(args.index_file)
     if index_file.exists():

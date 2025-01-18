@@ -1,0 +1,284 @@
+#include "zigbee/endpoint.h"
+#include "zigbee/basic_cluster.h"
+#include "zigbee/relay_cluster.h"
+#include "zigbee/switch_cluster.h"
+#include "zigbee/general.h"
+
+
+#include "base_components/led.h"
+
+#include "chip_8258/gpio.h"
+
+#include "config_nv.h"
+
+led_t status_led = {
+    .on_high = 1
+};
+
+button_t buttons[5];
+u8 buttons_cnt = 0;
+
+relay_t relays[5];
+u8 relays_cnt = 0;
+
+zigbee_basic_cluster basic_cluster = {
+	.deviceEnable = 1,
+};
+
+zigbee_switch_cluster switch_clusters[4];
+u8 switch_clusters_cnt = 0;
+
+zigbee_relay_cluster relay_clusters[4];
+u8 relay_clusters_cnt = 0;
+
+zigbee_endpoint endpoints[10];
+
+
+void reset_to_default_config();
+GPIO_PinTypeDef parsePin(const char * pin_str);
+GPIO_PullTypeDef parsePullUpDown(const char * pull_str);
+char *seekUntil(char* cursor, char needle);
+char *extractNextEntry(char **cursor);
+void init_gpio_input(GPIO_PinTypeDef pin, GPIO_PullTypeDef pull);
+void init_gpio_output(GPIO_PinTypeDef pin);
+
+
+
+void onResetClicked(void *_) {
+	factoryReset();
+}
+
+
+void parse_config() {
+    device_config_read_from_nv();
+    char* cursor = config.data;
+    
+    const char* zb_manufacturer = extractNextEntry(&cursor);
+
+    basic_cluster.manuName[0] = strlen(zb_manufacturer);
+    if (basic_cluster.manuName[0] > 31) {
+        printf("Manufacturer too big\r\n");
+        reset_to_default_config();
+    }
+    memcpy(basic_cluster.manuName + 1, zb_manufacturer,  basic_cluster.manuName[0]);
+ 
+    const char* zb_model =extractNextEntry(&cursor);
+    basic_cluster.modelId[0] = strlen(zb_model);
+    if (basic_cluster.modelId[0] > 31) {
+        printf("Model too big\r\n");
+        reset_to_default_config();
+    }
+    memcpy(basic_cluster.modelId + 1, zb_model,  basic_cluster.modelId[0]);
+    
+    char* entry;
+    for( entry = extractNextEntry(&cursor); *entry != '\0'; entry = extractNextEntry(&cursor)) {
+    
+        GPIO_PinTypeDef pin = parsePin(entry + 1);
+
+        printf("Role: %c, pin: %d\r\n", entry[0], pin);
+        printf("Buttons cnt %d, relay cnt %d\r\n", buttons_cnt, relays_cnt);
+ 
+        if (entry[0] == 'B') {
+            GPIO_PullTypeDef pull = parsePullUpDown(entry + 3);
+            init_gpio_input(pin, pull);
+
+            buttons[buttons_cnt].pin = pin;
+            buttons[buttons_cnt].long_press_duration_ms = 2000;
+            buttons[buttons_cnt].multi_press_duration_ms = 800;
+            buttons[buttons_cnt].on_long_press = onResetClicked;
+            buttons_cnt++;
+        }
+        if (entry[0] == 'L') {
+            init_gpio_output(pin);
+            status_led.pin = pin;
+	        led_init(&status_led);
+        }
+        if (entry[0] == 'S') {
+            GPIO_PullTypeDef pull = parsePullUpDown(entry + 3);
+            init_gpio_input(pin, pull);
+
+            buttons[buttons_cnt].pin = pin;
+            buttons[buttons_cnt].long_press_duration_ms = 2000;
+            buttons[buttons_cnt].multi_press_duration_ms = 800;
+
+            switch_clusters[switch_clusters_cnt].mode = ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_TOGGLE;
+            switch_clusters[switch_clusters_cnt].action = ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_TOGGLE;
+            switch_clusters[switch_clusters_cnt].relay_mode = ZCL_ONOFF_CONFIGURATION_RELAY_MODE_RISE;
+            switch_clusters[switch_clusters_cnt].relay_index = switch_clusters_cnt + 1;
+            switch_clusters[switch_clusters_cnt].button = &buttons[buttons_cnt];
+
+            buttons_cnt++;
+            switch_clusters_cnt++;
+        }
+         if (entry[0] == 'R') {
+            init_gpio_output(pin);
+
+            relays[relays_cnt].pin = pin;
+            relays[relays_cnt].on_high = 1;
+
+            relay_clusters[relay_clusters_cnt].relay = &relays[relays_cnt];
+
+            relays_cnt++;
+            relay_clusters_cnt++;
+        }
+    }
+
+    u8 total_endpoints = switch_clusters_cnt + relay_clusters_cnt;
+
+    for (int index = 0; index < total_endpoints; index++) {
+        endpoints[index].index = index + 1;
+        zigbee_endpoint_init(&endpoints[index]);
+    }
+
+    basic_cluster_add_to_endpoint(&basic_cluster, &endpoints[0]);
+    zigbee_endpoint_add_cluster(&endpoints[0], 0, ZCL_CLUSTER_OTA);
+
+    for (int index =0; index < switch_clusters_cnt; index++) {
+        switch_cluster_add_to_endpoint(&switch_clusters[index], &endpoints[index]);
+    }
+    for (int index =0; index < relay_clusters_cnt; index++) {
+        relay_cluster_add_to_endpoint(&relay_clusters[index], &endpoints[switch_clusters_cnt + index]);
+    }
+
+    for (int index = 0; index < total_endpoints; index++) {
+        zigbee_endpoint_register_self(&endpoints[index]);
+    }
+    cursor--;
+    while (cursor != config.data) {
+        cursor--;
+        if (*cursor == '\0') *cursor = ';';
+    }
+}
+
+
+void periferals_update() {
+    // printf("periferals_update\r\n");
+    led_update(&status_led);
+    for (int index = 0; index < buttons_cnt; index++) {
+        btn_update(&buttons[index]);
+    }
+}
+
+void init_reporting() {
+    u32 reportableChange = 1;
+    for (int index = 0; index < relay_clusters_cnt; index++) {
+        bdb_defaultReportingCfg(
+            switch_clusters_cnt + index + 1,
+            HA_PROFILE_ID,
+            ZCL_CLUSTER_GEN_ON_OFF,
+            ZCL_ATTRID_ONOFF,
+            0,
+            60,
+            (u8 *)&reportableChange
+        );
+    }
+}
+
+
+// Helper functions
+
+void init_gpio_input(GPIO_PinTypeDef pin, GPIO_PullTypeDef pull) {
+    gpio_set_func(pin, AS_GPIO);
+    gpio_set_input_en(pin, 1);
+    gpio_set_output_en(pin, 0);
+    gpio_setup_up_down_resistor(pin, pull);
+}
+
+void init_gpio_output(GPIO_PinTypeDef pin) {
+    gpio_set_func(pin, AS_GPIO);
+    gpio_set_input_en(pin, 0);
+    gpio_set_output_en(pin, 1);
+}
+
+
+__attribute__((noreturn)) void reset_to_default_config() {
+    printf("RESET reset_to_default_config\r\n");
+    device_config_remove_from_nv();
+    zb_resetDevice();
+    while (1) {;}
+}
+
+GPIO_PinTypeDef parsePin(const char * pin_str) {
+    if (pin_str[0] == 'A') {
+        if (pin_str[1] == '0') return GPIO_PA0;
+        if (pin_str[1] == '1') return GPIO_PA1;
+        if (pin_str[1] == '2') return GPIO_PA2;
+        if (pin_str[1] == '3') return GPIO_PA3;
+        if (pin_str[1] == '4') return GPIO_PA4;
+        if (pin_str[1] == '5') return GPIO_PA5;
+        if (pin_str[1] == '6') return GPIO_PA6;
+        if (pin_str[1] == '7') return GPIO_PA7;
+    }
+    if (pin_str[0] == 'B') {
+        if (pin_str[1] == '0') return GPIO_PB0;
+        if (pin_str[1] == '1') return GPIO_PB1;
+        if (pin_str[1] == '2') return GPIO_PB2;
+        if (pin_str[1] == '3') return GPIO_PB3;
+        if (pin_str[1] == '4') return GPIO_PB4;
+        if (pin_str[1] == '5') return GPIO_PB5;
+        if (pin_str[1] == '6') return GPIO_PB6;
+        if (pin_str[1] == '7') return GPIO_PB7;
+    }
+    if (pin_str[0] == 'C') {
+        if (pin_str[1] == '0') return GPIO_PC0;
+        if (pin_str[1] == '1') return GPIO_PC1;
+        if (pin_str[1] == '2') return GPIO_PC2;
+        if (pin_str[1] == '3') return GPIO_PC3;
+        if (pin_str[1] == '4') return GPIO_PC4;
+        if (pin_str[1] == '5') return GPIO_PC5;
+        if (pin_str[1] == '6') return GPIO_PC6;
+        if (pin_str[1] == '7') return GPIO_PC7;
+    }
+    if (pin_str[0] == 'D') {
+        if (pin_str[1] == '0') return GPIO_PD0;
+        if (pin_str[1] == '1') return GPIO_PD1;
+        if (pin_str[1] == '2') return GPIO_PD2;
+        if (pin_str[1] == '3') return GPIO_PD3;
+        if (pin_str[1] == '4') return GPIO_PD4;
+        if (pin_str[1] == '5') return GPIO_PD5;
+        if (pin_str[1] == '6') return GPIO_PD6;
+        if (pin_str[1] == '7') return GPIO_PD7;
+    }
+      if (pin_str[0] == 'E') {
+        if (pin_str[1] == '0') return GPIO_PE0;
+        if (pin_str[1] == '1') return GPIO_PE1;
+        if (pin_str[1] == '2') return GPIO_PE2;
+        if (pin_str[1] == '3') return GPIO_PE3;
+    }
+    printf("Failed to parse ping: %s\r\n", pin_str);
+    reset_to_default_config();
+}
+
+
+GPIO_PullTypeDef parsePullUpDown(const char * pull_str) {
+    if (pull_str[0] == 'u') {
+        return PM_PIN_PULLUP_10K;
+    }
+    if (pull_str[0] == 'U') {
+        return PM_PIN_PULLUP_1M;
+    }
+    if (pull_str[0] == 'd') {
+        return PM_PIN_PULLDOWN_100K;
+    }
+    if (pull_str[0] == 'f') {
+        return PM_PIN_UP_DOWN_FLOAT;
+    }
+
+    printf("Failed to parse pull: %c\r\n", pull_str[0]);
+    reset_to_default_config();
+}
+
+char *seekUntil(char* cursor, char needle) {
+    while (*cursor != needle && *cursor != '\0') {
+        cursor++;
+    }
+    return cursor;
+}
+
+char *extractNextEntry(char **cursor) {
+    char* end = seekUntil(*cursor, ';');
+    *end = '\0';
+    char* res = *cursor;
+    *cursor = end + 1;
+    return res;
+}

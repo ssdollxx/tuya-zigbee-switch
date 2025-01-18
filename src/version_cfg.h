@@ -65,7 +65,9 @@
  * Refer to ZCL OTA specification for details.
  */
 #define MANUFACTURER_CODE_TELINK           	0x1141	// Telink ID
-#define	IMAGE_TYPE							(FIRMWARE_TYPE_PREFIX << 8) | BOARD    // 0xD3A3  // For tuya
+#ifndef IMAGE_TYPE
+#define IMAGE_TYPE                          43521
+#endif
 #define	FILE_VERSION					  	((APP_RELEASE << 24) | (APP_BUILD << 16) | (STACK_RELEASE << 8) | STACK_BUILD)
 
 /* Pre-compiled link configuration. */

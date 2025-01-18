@@ -8,17 +8,13 @@
 #include "bdb.h"
 #include "ota.h"
 #include "device.h"
-#if ZBHCI_EN
-#include "zbhci.h"
-#endif
 
 #include "chip_8258/timer.h"
 #include "ext_ota.h"
 #include "reporting.h"
 
 #include "base_components/millis.h"
-#include "boards/common_peripherals.h"
-#include "boards/device_init.h"
+#include "device_config/device_config.h"
 
 #include "zigbee/general_commands.h"
 #include "zigbee/bdb_callbacks.h"
@@ -98,12 +94,6 @@ void stack_init(void)
 }
 
 
-
-void onResetClicked(void *_) {
-	factoryReset();
-}
-
-
 /*********************************************************************
  * @fn      user_app_init
  *
@@ -115,21 +105,17 @@ void onResetClicked(void *_) {
  */
 void user_app_init(void)
 {
-	led_init(&led);
-
-	button_on_board.long_press_duration_ms = 3500; // 3.5 seconds
-	button_on_board.on_long_press = onResetClicked;
-
 	af_powerDescPowerModeUpdate(POWER_MODE_RECEIVER_COMES_WHEN_STIMULATED);
 
     /* Initialize ZCL layer */
 	/* Register Incoming ZCL Foundation command/response messages */
 	zcl_init(device_zclProcessIncomingMsg);
 
-	init_zcl_endpoints();
+	printf("Before load_config\r\n");
 
-    ota_init(OTA_TYPE_CLIENT, (af_simple_descriptor_t *)&main_endpoint.simple_description, &baseEndpoint_otaInfo, &baseEndpoint_otaCb);
+	parse_config();
 
+    ota_init(OTA_TYPE_CLIENT, (af_simple_descriptor_t *)&endpoints[0].simple_description, &baseEndpoint_otaInfo, &baseEndpoint_otaCb);
 }
 
 void app_task(void)
@@ -138,7 +124,7 @@ void app_task(void)
 	periferals_update();
 	if(bdb_isIdle()) {
 		if(zb_isDeviceJoinedNwk()) {
-			led_on(&led);
+			led_on(&status_led);
 			if (zb_isDeviceFactoryNew()) {
 				zb_deviceFactoryNewSet(false);
 			}
@@ -149,8 +135,8 @@ void app_task(void)
 				g_baseAppCtx.lastReportCheckSec = seconds();
 			}
 		} else { // Device not Joined
-			if (led.blink_times_left != LED_BLINK_FOREVER) {
-				led_blink(&led, 500, 500, LED_BLINK_FOREVER);
+			if (status_led.blink_times_left != LED_BLINK_FOREVER) {
+				led_blink(&status_led, 500, 500, LED_BLINK_FOREVER);
 			}
 		}
 	}	
@@ -191,7 +177,7 @@ void user_init(bool isRetention)
 	
 		/* Initialize BDB */
 		u8 repower = drv_pm_deepSleep_flag_get() ? 0 : 1;
-		bdb_init((af_simple_descriptor_t *)&main_endpoint.simple_description, &g_bdbCommissionSetting, &g_deviceBdbCb, repower);
+		bdb_init((af_simple_descriptor_t *)&endpoints[0].simple_description, &g_bdbCommissionSetting, &g_deviceBdbCb, repower);
 	} else {
 		/* Re-config phy when system recovery from deep sleep with retention */
 		mac_phyReconfig();

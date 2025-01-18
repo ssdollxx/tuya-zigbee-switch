@@ -5,7 +5,7 @@
 #include "ota.h"
 #include "device.h"
 
-#include "boards/common_peripherals.h"
+#include "device_config/device_config.h"
 
 void device_bdbInitCb(u8 status, u8 joinedNetwork);
 void device_bdbCommissioningCb(u8 status, void *arg);
@@ -107,7 +107,7 @@ void device_bdbInitCb(u8 status, u8 joinedNetwork){
 void device_bdbCommissioningCb(u8 status, void *arg){
 	switch(status){
 		case BDB_COMMISSION_STA_SUCCESS:
-			led_blink(&led, 500, 500, 7);
+			led_blink(&status_led, 500, 500, 7);
 
 			if(steerTimerEvt){
 				TL_ZB_TIMER_CANCEL(&steerTimerEvt);

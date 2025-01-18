@@ -106,7 +106,8 @@ startup_state_e drv_platform_init(void)
 	sysTimerPerUs = sys_tick_per_us;
 	if(state == SYSTEM_BOOT)
 		tuya_zigbee_ota();
-	gpio_init(TRUE);
+	
+	// gpio_init(TRUE);
 
 	DEBUG_TX_PIN_INIT();
 

@@ -1,7 +1,7 @@
 PROJECT_NAME = tlc_switch
 
-BOARD ?= TS0001
-VERSION = 5
+BOARD ?= TS0012
+VERSION = 6
 
 SDK_DIR := sdk
 TOOLCHAIN_DIR := toolchain
@@ -11,95 +11,28 @@ BIN_DIR := bin
 MAKEFILES_DIR := makefiles
 HELPERS_DIR := helper_scripts
 
-
-# Chip configuration
-
-TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
-
-LIBS := -ldrivers_8258 -lzb_router
+DEVICE_DB_FILE := device_db.yaml
 
 # Board and version defines
 
+DEVICE_TYPE := $(shell yq -r .$(BOARD).device_type $(DEVICE_DB_FILE))
+CONFIG_STR := $(shell yq .$(BOARD).config_str $(DEVICE_DB_FILE))
+FROM_TUYA_MANUFACTURER_ID := $(shell yq .$(BOARD).tuya_manufacturer_id $(DEVICE_DB_FILE))
+FROM_TUYA_IMAGE_TYPE := $(shell yq .$(BOARD).tuya_image_type $(DEVICE_DB_FILE))
+FIRMWARE_IMAGE_TYPE := $(shell yq .$(BOARD).firmware_image_type $(DEVICE_DB_FILE))
 
-ifeq ($(BOARD), TS0011)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
+ifeq ($(DEVICE_TYPE), router)
+	TEL_CHIP := -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
 	LIBS := -ldrivers_8258 -lzb_router
-
-	DEVICE_TYPE := router
-
-	BOARD_DEF := -DBOARD=0x04
-
-	FROM_TUYA_MANUFACTURER_ID := 4417
-	FROM_TUYA_IMAGE_TYPE := 54179
-	FIRMWARE_IMAGE_TYPE := 43524
 endif
 
-ifeq ($(BOARD), TS0011_END_DEVICE)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1
+ifeq ($(DEVICE_TYPE), end_device)
+	TEL_CHIP := -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1
 	LIBS := -ldrivers_8258 -lzb_ed
-
-	DEVICE_TYPE := end_device
-
-	BOARD_DEF := -DBOARD=0x04
-
-	FROM_TUYA_MANUFACTURER_ID := 4417
-	FROM_TUYA_IMAGE_TYPE := 54179
-	FIRMWARE_IMAGE_TYPE := 43524
 endif
 
-ifeq ($(BOARD), TS0012)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
-	LIBS := -ldrivers_8258 -lzb_router
 
-	DEVICE_TYPE := router
-
-	BOARD_DEF := -DBOARD=0x01
-
-	FROM_TUYA_MANUFACTURER_ID := 4417
-	FROM_TUYA_IMAGE_TYPE := 54179
-	FIRMWARE_IMAGE_TYPE := 43521
-endif
-
-ifeq ($(BOARD), TS0012_END_DEVICE)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1
-	LIBS := -ldrivers_8258 -lzb_ed
-
-	DEVICE_TYPE := end_device
-
-	BOARD_DEF := -DBOARD=0x01
-
-	FROM_TUYA_MANUFACTURER_ID := 4417
-	FROM_TUYA_IMAGE_TYPE := 54179
-	FIRMWARE_IMAGE_TYPE := 43521
-endif
-
-ifeq ($(BOARD), TS0001)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
-	LIBS := -ldrivers_8258 -lzb_router
-
-	DEVICE_TYPE := router
-
-	BOARD_DEF := -DBOARD=0x02
-
-	FROM_TUYA_MANUFACTURER_ID := 4107
-	FROM_TUYA_IMAGE_TYPE := 524
-	FIRMWARE_IMAGE_TYPE := 43522
-endif
-
-ifeq ($(BOARD), TS0002)
-	TEL_CHIP := $(POJECT_DEF) -DMCU_CORE_8258=1 -DROUTER=1 -DMCU_STARTUP_8258=1
-	LIBS := -ldrivers_8258 -lzb_router
-
-	DEVICE_TYPE := router
-
-	BOARD_DEF := -DBOARD=0x03
-
-	FROM_TUYA_MANUFACTURER_ID := 4417
-	FROM_TUYA_IMAGE_TYPE := 54179
-	FIRMWARE_IMAGE_TYPE := 43523
-endif
-
-VERSION_DEF := -DSTACK_BUILD=$(VERSION)
+DEVICE_DEFS := -DSTACK_BUILD=$(VERSION) -DDEFAULT_CONFIG=$(CONFIG_STR) -DIMAGE_TYPE=$(FIRMWARE_IMAGE_TYPE)
 
 # Make vars
 
@@ -177,7 +110,7 @@ INCLUDE_PATHS := -I$(SRC_PATH) -I$(SRC_PATH)/includes -I$(SRC_PATH)/common  -I$(
 -I$(SDK_PATH)/zigbee/zcl \
 -I$(SDK_PATH)/zigbee/zdo
 
-GCC_FLAGS += $(TEL_CHIP) $(BOARD_DEF) $(VERSION_DEF)
+GCC_FLAGS += $(TEL_CHIP) $(DEVICE_DEFS)
 
 LS_INCLUDE := -L$(SDK_PATH)/platform/lib -L$(SDK_PATH)/zigbee/lib/tc32 -L$(SDK_PATH)/proj -L$(SDK_PATH)/platform -L$(BUILD_PATH)
 
@@ -255,9 +188,9 @@ z2m_index: $(FROM_TUYA_OTA_FILE) $(OTA_FILE)
 	@echo 'Updating z2m index'
 	@echo ' '
 	@$(eval OTA_REAL_FILE := $(shell find $(BIN_PATH) -maxdepth 1 -type f -regex ".*$(PROJECT_NAME).zigbee"))
-	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_REAL_FILE) $(Z2M_INDEX_FILE)
+	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py --db_file device_db.yaml $(OTA_REAL_FILE) $(Z2M_INDEX_FILE) --board $(BOARD)
 	@$(eval OTA_FROM_TUYA_REAL_FILE := $(shell find $(BIN_PATH) -maxdepth 1 -type f -regex ".*$(PROJECT_NAME)-from_tuya.zigbee"))
-	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_FROM_TUYA_REAL_FILE) $(Z2M_INDEX_FILE) --board $(BOARD)
+	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py --db_file device_db.yaml $(OTA_FROM_TUYA_REAL_FILE) $(Z2M_INDEX_FILE) --board $(BOARD)
 	@echo ' '
 
 
@@ -265,7 +198,7 @@ z2m_index_force: $(FORCE_OTA_FILE)
 	@echo 'Updating z2m force index'
 	@echo ' '
 	@$(eval OTA_FORCE_FILE := $(shell find $(BIN_PATH) -maxdepth 1 -type f -regex ".*$(PROJECT_NAME)-forced.zigbee"))
-	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py $(OTA_FORCE_FILE) $(Z2M_FORCE_INDEX_FILE) --board $(BOARD)
+	$(PYTHON) $(HELPERS_PATH)/make_z2m_ota_index.py --db_file device_db.yaml $(OTA_FORCE_FILE) $(Z2M_FORCE_INDEX_FILE) --board $(BOARD)
 	@echo ' '
 
 sizedummy: $(ELF_FILE)
@@ -291,6 +224,22 @@ clean:
 clean_z2m_index:
 	@$(RM) zigbee2mqtt/ota/*
 
+
+update_converters:
+	python3 helper_scripts/make_z2m_tuya_converters.py \
+		$(shell yq -r '.[] | .tuya_converter_model' device_db.yaml) \
+		> zigbee2mqtt/converters/tuya_with_ota.js 
+	python3 helper_scripts/make_z2m_tuya_converters.py --z2m-v1 \
+		$(shell yq -r '.[] | .tuya_converter_model' device_db.yaml) \
+		> zigbee2mqtt/converters_v1/tuya_with_ota.js 
+	python3 helper_scripts/make_z2m_custom_converters.py device_db.yaml \
+		> zigbee2mqtt/converters/switch_custom.js 
+	python3 helper_scripts/make_z2m_custom_converters.py --z2m-v1 device_db.yaml \
+		> zigbee2mqtt/converters_v1/switch_custom.js 
+
+
+debug:
+	@echo $(GCC_FLAGS)
 
 
 secondary-outputs: $(BIN_FILE) $(OTA_FILE) $(LST_FILE) z2m_index z2m_index_force sizedummy 

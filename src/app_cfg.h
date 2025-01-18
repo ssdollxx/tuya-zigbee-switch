@@ -51,23 +51,12 @@ extern "C" {
 
 #define CLOCK_SYS_CLOCK_HZ  		24000000 //48000000
 
-#define SENSOR_SHTC3_4X	1
-#define SENSOR_CHT8305	2
-#define SENSOR_SHT30	3
 
-#if BOARD == BOARD_TS0001
-	#include "boards/ts0001/board_cfg.h"
-#elif BOARD == BOARD_TS0012
-	#include "boards/ts0012/board_cfg.h"
-#elif BOARD == BOARD_TS0011
-	#include "boards/ts0011/board_cfg.h"
-#elif BOARD == BOARD_TS0002
-	#include "boards/ts0002/board_cfg.h"
-#endif
+#define RF_TX_POWER_DEF RF_POWER_P10p46dBm
+#define ZIGBEE_TUYA_OTA 	1
 
-#ifndef ZIGBEE_TUYA_OTA
-#define ZIGBEE_TUYA_OTA 	0
-#endif
+#define BAUDRATE            115200
+#define	DEBUG_INFO_TX_PIN	GPIO_PB1 //print
 
 
 /* Watch dog module */

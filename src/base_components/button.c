@@ -2,8 +2,19 @@
 #include "tl_common.h"
 #include "millis.h"
 
+void btn_update_debounced(button_t *button, u8 is_pressed);
 
-void btn_update(button_t *button, u8 is_pressed) {
+void btn_update(button_t *button) {
+    u8 state = drv_gpio_read(button->pin);
+    // printf("button update %d, state %d, prev_state %d\r\n", button, state, button->gpio_last_state);
+    if (state == button->gpio_last_state) {
+        btn_update_debounced(button, !state);
+    }
+    button->gpio_last_state = state;
+}
+
+
+void btn_update_debounced(button_t *button, u8 is_pressed) {
     u32 now = millis();
     if (!button->pressed && is_pressed) {
         printf("Press detected\r\n");

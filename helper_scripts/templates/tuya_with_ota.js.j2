@@ -1,10 +1,12 @@
 const tuyaDefinitions = require("zigbee-herdsman-converters/devices/tuya");
+{% if z2m_v1 %}
+const ota = require("zigbee-herdsman-converters/lib/ota");
+{% endif%}
 
 const tuyaModels = [
-    "TS0011_switch_module",
-    "TS0002_basic",
-    "TS0012_switch_module",
-    "WHD02",
+{% for item in models %}
+    "{{ item }}",
+{% endfor %}
 ];
 
 const definitions = [];
@@ -15,7 +17,11 @@ for (let definition of tuyaDefinitions) {
         definitions.push(
             {
                 ...definition,
+                {% if z2m_v1 %}
+                ota: ota.zigbeeeOTA,
+                {% else %}
                 ota: true,
+                {% endif%}
             }
         )
     }

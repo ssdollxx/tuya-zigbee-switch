@@ -1,7 +1,6 @@
 #!/bin/sh
-BOARD=TS0001 make clean && BOARD=TS0001 make
-BOARD=TS0002 make clean && BOARD=TS0002 make
-BOARD=TS0012 make clean && BOARD=TS0012 make
-BOARD=TS0012_END_DEVICE make clean && BOARD=TS0012_END_DEVICE make
-BOARD=TS0011 make clean && BOARD=TS0011 make
-BOARD=TS0011_END_DEVICE make clean && BOARD=TS0011_END_DEVICE make
+
+yq -r '(keys)[]' device_db.yaml  | while read ITER; do
+    BOARD=$ITER make clean && BOARD=$ITER make
+done
+make update_converters

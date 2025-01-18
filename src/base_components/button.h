@@ -7,6 +7,8 @@ typedef void (*ev_button_callback_t)(void*);
 typedef void (*ev_button_multi_press_callback_t)(void*, u8);
 
 typedef struct{
+    u32 pin;
+    u8 gpio_last_state;
     u8 pressed;
     u8 long_pressed;
 	u32 pressed_at_ms;
@@ -22,7 +24,7 @@ typedef struct{
 }button_t;
 
 
-void btn_update(button_t *button, u8 is_pressed);
+void btn_update(button_t *button);
 
 #endif
 

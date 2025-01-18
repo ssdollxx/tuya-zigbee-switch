@@ -22,7 +22,7 @@ const u16 multistate_num_of_states = 3;
 #define MUTLISTATE_LONG_PRESS  2
 
 
-extern zigbee_relay_cluster *relay_clusters[2];
+extern zigbee_relay_cluster relay_clusters[];
 
 
 void switch_cluster_on_button_press(zigbee_switch_cluster *cluster);
@@ -105,7 +105,7 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
 
 void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {		
 
-    zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
+    zigbee_relay_cluster *relay_cluster = &relay_clusters[cluster->relay_index - 1];
 
 
     cluster->multistate_state = MUTLISTATE_PRESS;
@@ -153,7 +153,7 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {
 }
 
 void switch_cluster_on_button_release(zigbee_switch_cluster *cluster) {		
-    zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
+    zigbee_relay_cluster *relay_cluster = &relay_clusters[cluster->relay_index - 1];
 
     cluster->multistate_state = MUTLISTATE_NOT_PRESSED;
     switch_cluster_report_action(cluster);
@@ -210,14 +210,12 @@ void switch_cluster_on_button_long_press(zigbee_switch_cluster *cluster) {
         return;
     }
 
-    zigbee_relay_cluster *relay_cluster = relay_clusters[cluster->relay_index - 1];
+    zigbee_relay_cluster *relay_cluster = &relay_clusters[cluster->relay_index - 1];
 
     if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_LONG) {
         relay_toggle(relay_cluster->relay);
         relay_cluster_report(relay_cluster);
     }
-
-    // TODO: support reporting
 }
 
 void switch_cluster_on_button_multi_press(zigbee_switch_cluster *cluster, u8 press_count) {		

@@ -1,0 +1,88 @@
+TS0012:
+  name: TS0012-custom
+  config_str: Tuya-TS0012-custom;TS0012-custom;BA0f;LD7;SC2f;SC3f;RC0;RB4;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43521
+  old_zb_models:
+    - TS0042-CUSTOM
+  tuya_converter_model: TS0012_switch_module
+  tuya_manufacturer_names:
+      - _TZ3000_jl7qyupf
+      - _TZ3000_nPGIPl5D
+      - _TZ3000_kpatq5pq
+      - _TZ3000_ljhbw1c9
+      - _TZ3000_4zf0crgo
+TS0012_END_DEVICE:
+  name: TS0012-custom-end-device
+  config_str: Tuya-TS0012-custom;TS0012-custom-end-device;BA0f;LD7;SC2f;SC3f;RC0;RB4;
+  device_type: end_device
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43521
+  old_zb_models:
+    - TS0042-CUSTOM
+  tuya_converter_model: TS0012_switch_module
+  tuya_manufacturer_names:
+    - _TZ3000_jl7qyupf
+    - _TZ3000_nPGIPl5D
+    - _TZ3000_kpatq5pq
+    - _TZ3000_ljhbw1c9
+    - _TZ3000_4zf0crgo
+WHD02:
+  name: WHD02-custom
+  config_str: Tuya-WHD02-custom;WHD02-custom;BB4u;LD3;SB5u;RB1;
+  device_type: router
+  tuya_manufacturer_id: 4407
+  tuya_image_type: 524
+  firmware_image_type: 43522
+  tuya_converter_model:  WHD02
+  tuya_manufacturer_names:
+    - _TZ3000_skueekg3
+TS0002:
+  name: TS0002-custom
+  config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC2;SB5u;SB4u;RC4;RC3;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43523
+  tuya_converter_model: TS0002_basic
+  tuya_manufacturer_names:
+    - _TZ3000_01gpyda5
+    - _TZ3000_bvrlqyj7
+    - _TZ3000_7ed9cqgi
+    - _TZ3000_zmy4lslw
+    - _TZ3000_ruxexjfz
+    - _TZ3000_4xfqlgqo
+    - _TZ3000_hojntt34
+    - _TZ3000_eei0ubpy
+    - _TZ3000_qaa59zqd
+    - _TZ3000_lmlsduws
+    - _TZ3000_lugaswf8
+    - _TZ3000_fbjdkph9
+TS0011:
+  name: TS0011-custom
+  config_str: Tuya-TS0011-custom;TS0011-custom;BA0f;LD7;SC2f;RC0;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43524
+  tuya_converter_model: TS0011_switch_module
+  tuya_manufacturer_names:
+    - _TZ3000_qmi1cfuq
+    - _TZ3000_txpirhfq
+    - _TZ3000_ji4araar
+TS0011_END_DEVICE:
+  name: TS0011-custom
+  config_str: Tuya-TS0011-custom;TS0011-custom;BA0f;LD7;SC2f;RC0;
+  device_type: end_device
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43524
+  tuya_converter_model: TS0011_switch_module
+  tuya_manufacturer_names:
+    - _TZ3000_qmi1cfuq
+    - _TZ3000_txpirhfq
+    - _TZ3000_ji4araar
+

@@ -6,9 +6,15 @@
 #include "base_components/relay.h"
 #include "zigbee/endpoint.h"
 
-extern zigbee_endpoint main_endpoint;
+#include "config_nv.h"
 
-void init_zcl_endpoints();
+extern led_t status_led;
+
+extern zigbee_endpoint endpoints[10];
+
+
+void periferals_update();
+void parse_config();
 void init_reporting();
 
 #endif
