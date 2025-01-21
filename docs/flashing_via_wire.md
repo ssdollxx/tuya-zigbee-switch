@@ -1,4 +1,4 @@
-# How to Flash TS0012 via Wire
+# How to Flash via Wire
 
 ### What You'll Need
 
@@ -10,7 +10,7 @@
 
 Unplug the device from the mains. **Never attempt to disassemble it while it is plugged in!**  
 
-Start by removing the back cover. Use any flat object to pop it off.  
+Start by removing the back cover. Use any flat object to pop it off.  Here is a picture for TS0012, other devices can be opened in a similar way:
 
 ![Back cover disassembly](ts0012_back_cover.jpg)  
 
@@ -18,9 +18,26 @@ Next, remove the board from the case by pushing on the screws; it should come ou
 
 ### Step 2: Solder the Wires
 
-You’ll need to solder four wires as shown in the photo:  
+You’ll need to solder four wires as shown in the photo: 
 
-![Wiring](ts0012_wires.jpg)  
+<details>
+  <summary>TS0012</summary>
+  
+ ![Wiring](ts0012_wires.jpg)  
+  
+</details>
+
+
+<details>
+  <summary>TS0011 (or any ZT3L module)</summary>
+
+ ![Wiring](ts0011_wires.jpg)  
+  
+  Note that I desoldered capacitors for easier access to SWS pin. It is OK to flash device without them, but you need to reinstall them if you plan to use the device. Alternatevely, you can try to solder SWS pin without this manipulation.
+
+</details>
+
+
 
 The RESET wire is optional if your UART programmer lacks an RTS pin. It may work without it, but having it is preferable.  
 
@@ -32,7 +49,7 @@ Attach the wires to your UART as follows:
 
 ### Step 3: Flash the Firmware
 
-Download the [full firmware](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/tlc_switch-TS0012.bin).  
+Download the full firmware for your device [from here](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin).  
 
 Plug the UART into your PC, then open pvvx's [web flasher](https://pvvx.github.io/ATC_MiThermometer/USBCOMFlashTx.html).  
 
