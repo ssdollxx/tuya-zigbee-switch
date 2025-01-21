@@ -14,6 +14,7 @@ TS0012:
       - _TZ3000_kpatq5pq
       - _TZ3000_ljhbw1c9
       - _TZ3000_4zf0crgo
+      - Tuya-CUSTOM   # Old name from early firmware
 TS0012_END_DEVICE:
   name: TS0012-custom-end-device
   config_str: Tuya-TS0012-custom;TS0012-custom-end-device;BA0f;LD7;SC2f;SC3f;RC0;RB4;
@@ -30,6 +31,7 @@ TS0012_END_DEVICE:
     - _TZ3000_kpatq5pq
     - _TZ3000_ljhbw1c9
     - _TZ3000_4zf0crgo
+    - Tuya-CUSTOM   # Old name from early firmware
 WHD02:
   name: WHD02-custom
   config_str: Tuya-WHD02-custom;WHD02-custom;BB4u;LD3;SB5u;RB1;
