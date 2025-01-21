@@ -31,9 +31,9 @@ You’ll need to solder four wires as shown in the photo:
 <details>
   <summary>TS0011 (or any ZT3L module)</summary>
 
- ![Wiring](ts0011_wires.jpg)  
-  
-  Note that I desoldered capacitors for easier access to SWS pin. It is OK to flash device without them, but you need to reinstall them if you plan to use the device. Alternatevely, you can try to solder SWS pin without this manipulation.
+   Note that I desoldered capacitors for easier access to SWS pin. It is OK to flash device without them, but you need to reinstall them if you plan to use the device. Alternatevely, you can try to solder SWS pin without this manipulation.
+
+  ![Wiring](ts0011_wires.jpg)  
 
 </details>
 
