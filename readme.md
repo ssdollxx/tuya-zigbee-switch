@@ -1,3 +1,7 @@
+[![GitHub stars](https://img.shields.io/github/stars/romasku/tuya-zigbee-switch.svg)](https://github.com/romasku/tuya-zigbee-switch/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/romasku/tuya-zigbee-switche.svg)](https://github.com/romasku/tuya-zigbee-switch/issues)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+
 # Custom firmware for Tuya switch
 
 A custom firmware for Tuya telink based switch module. Code is based on pvvx's [ZigbeeTLc](https://github.com/pvvx/ZigbeeTLc) firmware, huge thanks!
@@ -21,10 +25,12 @@ The main driver for this project was the following factory firmware bug: if one 
 ## Features
 
 - Detached mode, e.g. switch doesn't trigger relay but only generates events via Zigbee
-- Long press for momentary switches
-- Router mode (TS0012 is no neutral switch so factory firmware works as end device)
+- Long press for momentary switches with configurable duration
+- Router/EndDevice modes for no-neutral devices
 - Super fast reaction time (compared to the factory firmware)
 - 5 quick presses to reset the device
+- Power-on behavior 
+- Switch modes ON_OFF/OFF_ON/TOGGLE allowing to synchonize switch position with relay state
 
 ## Building
 
@@ -44,6 +50,10 @@ To switch between End Device and Router follow [this guide](./docs/change_device
 To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 ## Changelog
+
+### v1.0.7
+
+- Add SUSPEND-based sleep to EndDevice firmware to decrease power usage ~10x
 
 ### v1.0.6
 
