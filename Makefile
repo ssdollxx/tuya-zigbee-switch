@@ -238,6 +238,10 @@ update_converters:
 		> zigbee2mqtt/converters_v1/switch_custom.js 
 
 
+freeze_ota_links:
+	sed -i "s/refs\/heads\/main/$(shell git rev-parse HEAD)/g" zigbee2mqtt/ota/*.json 
+
+
 debug:
 	@echo $(GCC_FLAGS)
 
