@@ -137,6 +137,11 @@ void app_task(void)
 				led_blink(&status_led, 500, 500, LED_BLINK_FOREVER);
 			}
 		}
+		#if PM_ENABLE
+		if(!tl_stackBusy() && zb_isTaskDone()){
+			drv_pm_sleep(PM_SLEEP_MODE_SUSPEND, PM_WAKEUP_SRC_TIMER, PM_SLEEP_DURATION_MS);
+		}
+		#endif
 	}	
 }
 

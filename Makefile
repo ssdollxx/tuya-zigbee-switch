@@ -27,7 +27,7 @@ ifeq ($(DEVICE_TYPE), router)
 endif
 
 ifeq ($(DEVICE_TYPE), end_device)
-	TEL_CHIP := -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1
+	TEL_CHIP := -DMCU_CORE_8258=1 -DEND_DEVICE=1 -DMCU_STARTUP_8258=1 -DPM_ENABLE
 	LIBS := -ldrivers_8258 -lzb_ed
 endif
 

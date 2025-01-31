@@ -41,13 +41,17 @@ extern "C" {
 #define	DEBUG_ENABLE					0 // lcd = DeviceSysException
 
 #ifndef UART_PRINTF_MODE
-#define	UART_PRINTF_MODE				0      
+#define	UART_PRINTF_MODE				0
 #endif
 #define USB_PRINTF_MODE      			0       		
 
 
 /* PM */
+
+#ifndef PM_ENABLE
 #define PM_ENABLE						0
+#endif
+#define PM_SLEEP_DURATION_MS            50
 
 /* PA */
 #define PA_ENABLE						0
