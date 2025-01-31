@@ -1,5 +1,5 @@
 [![GitHub stars](https://img.shields.io/github/stars/romasku/tuya-zigbee-switch.svg)](https://github.com/romasku/tuya-zigbee-switch/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/romasku/tuya-zigbee-switche.svg)](https://github.com/romasku/tuya-zigbee-switch/issues)
+[![GitHub issues](https://img.shields.io/github/issues/romasku/tuya-zigbee-switch.svg)](https://github.com/romasku/tuya-zigbee-switch/issues)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 # Custom firmware for Tuya switch
