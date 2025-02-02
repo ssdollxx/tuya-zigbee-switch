@@ -158,7 +158,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -202,7 +202,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -232,7 +232,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -275,7 +275,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -305,7 +305,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -335,7 +335,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -365,7 +365,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
     {
         zigbeeModel: [
@@ -408,7 +408,7 @@ const definitions = [
                 change: 1,
             });
         },
-        ota: ota.zigbeeeOTA,
+        ota: ota.zigbeeOTA,
     },
 ];
 

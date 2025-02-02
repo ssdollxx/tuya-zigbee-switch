@@ -17,7 +17,7 @@ for (let definition of tuyaDefinitions) {
         definitions.push(
             {
                 ...definition,
-                ota: ota.zigbeeeOTA,
+                ota: ota.zigbeeOTA,
             }
         )
     }
