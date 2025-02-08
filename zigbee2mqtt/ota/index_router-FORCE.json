@@ -99,5 +99,47 @@
       "_TZ3000_skueekg3",
       "Tuya-WHD02-custom"
     ]
+  },
+  {
+    "fileName": "1141-aa07-ffffffff-tlc_switch-forced.zigbee",
+    "fileVersion": 4294967295,
+    "fileSize": 159874,
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0001_AVATTO/1141-aa07-ffffffff-tlc_switch-forced.zigbee",
+    "imageType": 43527,
+    "manufacturerCode": 4417,
+    "sha512": "e9715812fccc65ef5448c05eae3b0dac65e68ca460821baa5df4ba86eaac1915f610f26493cdaf339902b74b7a7a2147bea7b9b3eeed44d73be3ec978a8392d6",
+    "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "manufacturerName": [
+      "_TZ3000_4rbqgcuv",
+      "Tuya-TS0001-Avatto-custom"
+    ]
+  },
+  {
+    "fileName": "1141-aa08-ffffffff-tlc_switch-forced.zigbee",
+    "fileVersion": 4294967295,
+    "fileSize": 159874,
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0002_AVATTO/1141-aa08-ffffffff-tlc_switch-forced.zigbee",
+    "imageType": 43528,
+    "manufacturerCode": 4417,
+    "sha512": "d3d71672c316548494d90226fd7fdc7f9b30c484add47c7c8889a741173f8b5221a5a281392aa034fc99458738d250b30acbbc67cebc81cbf814df5d333fe1ab",
+    "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "manufacturerName": [
+      "_TZ3000_mtnpt6ws",
+      "Tuya-TS0002-Avatto-custom"
+    ]
+  },
+  {
+    "fileName": "1141-aa09-ffffffff-tlc_switch-forced.zigbee",
+    "fileVersion": 4294967295,
+    "fileSize": 159906,
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0004_AVATTO/1141-aa09-ffffffff-tlc_switch-forced.zigbee",
+    "imageType": 43529,
+    "manufacturerCode": 4417,
+    "sha512": "fe4f6631c4bbdd7953609c6db8170da106bdf023a25b956d0e1900cef14f32387f240235843b6cab066d999595948aa2d5db1e0542bfdc7e56ed6fc418bf7db9",
+    "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "manufacturerName": [
+      "_TZ3000_5ajpkyq6",
+      "Tuya-TS0004-Avatto-custom"
+    ]
   }
 ]

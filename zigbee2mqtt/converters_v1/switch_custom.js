@@ -410,6 +410,148 @@ const definitions = [
         },
         ota: ota.zigbeeOTA,
     },
+    {
+        zigbeeModel: [
+            "TS0001-Avatto-custom",
+        ],
+        model: "TS0001-Avatto-custom",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, "relay": 2, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["relay"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1"),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint2 = device.getEndpoint(2);
+            await reporting.onOff(endpoint2, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
+    {
+        zigbeeModel: [
+            "TS0002-Avatto-custom",
+        ],
+        model: "TS0002-Avatto-custom",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, 2: 2, "left": 3, "right": 4, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["left", "right"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1"),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.pressAction("switch_2_press_action", "2"),
+            romasku.switchMode("switch_2_mode", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
+            romasku.relayMode("switch_2_relay_mode", "2"),
+            romasku.relayIndex("switch_2_relay_index", "2"),
+            romasku.longPressDuration("switch_2_long_press_duration", "2"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint3 = device.getEndpoint(3);
+            await reporting.onOff(endpoint3, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint4 = device.getEndpoint(4);
+            await reporting.onOff(endpoint4, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
+    {
+        zigbeeModel: [
+            "TS0004-Avatto-custom",
+        ],
+        model: "TS0004-Avatto-custom",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, 2: 2, 3: 3, 4: 4, "relay_0": 5, "relay_1": 6, "relay_2": 7, "relay_3": 8, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["relay_0", "relay_1", "relay_2", "relay_3"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1"),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.pressAction("switch_2_press_action", "2"),
+            romasku.switchMode("switch_2_mode", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
+            romasku.relayMode("switch_2_relay_mode", "2"),
+            romasku.relayIndex("switch_2_relay_index", "2"),
+            romasku.longPressDuration("switch_2_long_press_duration", "2"),
+            romasku.pressAction("switch_3_press_action", "3"),
+            romasku.switchMode("switch_3_mode", "3"),
+            romasku.switchAction("switch_3_action_mode", "3"),
+            romasku.relayMode("switch_3_relay_mode", "3"),
+            romasku.relayIndex("switch_3_relay_index", "3"),
+            romasku.longPressDuration("switch_3_long_press_duration", "3"),
+            romasku.pressAction("switch_4_press_action", "4"),
+            romasku.switchMode("switch_4_mode", "4"),
+            romasku.switchAction("switch_4_action_mode", "4"),
+            romasku.relayMode("switch_4_relay_mode", "4"),
+            romasku.relayIndex("switch_4_relay_index", "4"),
+            romasku.longPressDuration("switch_4_long_press_duration", "4"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(3), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(4), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint5 = device.getEndpoint(5);
+            await reporting.onOff(endpoint5, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint6 = device.getEndpoint(6);
+            await reporting.onOff(endpoint6, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint7 = device.getEndpoint(7);
+            await reporting.onOff(endpoint7, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint8 = device.getEndpoint(8);
+            await reporting.onOff(endpoint8, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
 ];
 
 module.exports = definitions;
