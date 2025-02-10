@@ -131,15 +131,16 @@
   {
     "fileName": "1141-aa09-ffffffff-tlc_switch-forced.zigbee",
     "fileVersion": 4294967295,
-    "fileSize": 159906,
+    "fileSize": 159858,
     "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0004_AVATTO/1141-aa09-ffffffff-tlc_switch-forced.zigbee",
     "imageType": 43529,
     "manufacturerCode": 4417,
-    "sha512": "fe4f6631c4bbdd7953609c6db8170da106bdf023a25b956d0e1900cef14f32387f240235843b6cab066d999595948aa2d5db1e0542bfdc7e56ed6fc418bf7db9",
+    "sha512": "cb38ff2289af576ef4b8cdff6189bd1ca9883588457037fa14a46b6ae651b46158ed63765d6336015aa9d3546a41dbf4e5e5c666fd54eca02df558352bf5eee5",
     "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
     "manufacturerName": [
       "_TZ3000_5ajpkyq6",
-      "Tuya-TS0004-Avatto-custom"
+      "Tuya-TS0004-Avatto-custom",
+      "TS0004-AV-CUS"
     ]
   }
 ]

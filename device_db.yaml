@@ -128,7 +128,7 @@ TS0002_AVATTO:
       - _TZ3000_mtnpt6ws
 TS0004_AVATTO:
   name: TS0004-Avatto-custom
-  config_str: Tuya-TS0004-Avatto-custom;TS0004-Avatto-custom;BC2u;LD2;SD7u;RB6;SC0u;RD4;SA0u;RC1;SA1u;RC4;
+  config_str: TS0004-AV-CUS;TS0004-AV-CUS;BC2u;LD2;SD7u;RB6;SC0u;RD4;SA0u;RC1;SA1u;RC4;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
@@ -136,3 +136,6 @@ TS0004_AVATTO:
   tuya_converter_model: TS0004_switch_module_2
   tuya_manufacturer_names:
       - _TZ3000_5ajpkyq6
+      - Tuya-TS0004-Avatto-custom
+  old_zb_models:
+    - TS0004-Avatto-custom
