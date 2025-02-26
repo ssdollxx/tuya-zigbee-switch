@@ -12,7 +12,6 @@ TS0012:
       - _TZ3000_jl7qyupf
       - _TZ3000_nPGIPl5D
       - _TZ3000_kpatq5pq
-      - _TZ3000_ljhbw1c9
       - _TZ3000_4zf0crgo
       - Tuya-CUSTOM   # Old name from early firmware
 TS0012_END_DEVICE:
@@ -29,7 +28,6 @@ TS0012_END_DEVICE:
     - _TZ3000_jl7qyupf
     - _TZ3000_nPGIPl5D
     - _TZ3000_kpatq5pq
-    - _TZ3000_ljhbw1c9
     - _TZ3000_4zf0crgo
     - Tuya-CUSTOM   # Old name from early firmware
 WHD02:
