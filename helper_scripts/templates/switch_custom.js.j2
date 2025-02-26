@@ -4,6 +4,7 @@ const {
     deviceEndpoints,
     onOff,
     text,
+    binary,
 } = require("zigbee-herdsman-converters/lib/modernExtend");
 const {assertString} = require("zigbee-herdsman-converters/lib/utils");
 const reporting = require("zigbee-herdsman-converters/lib/reporting");
@@ -74,7 +75,27 @@ const romasku = {
             attribute: "presentValue",
             description: "Action of the switch: 'released' or 'press' or 'long_press'",
         }),
-     deviceConfig: (name, endpointName) =>
+    relayIndicatorMode: (name, endpointName) =>
+        enumLookup({
+            name,
+            endpointName,
+            lookup: { same: 0, opposite: 1, manual: 2 },
+            cluster: "genOnOff",
+            attribute: { ID: 0xff01, type: 0x30 }, // Enum8
+            description: "Mode for relay indicator LED",
+        }),
+    relayIndicator: (name, endpointName) =>
+        binary({
+            name,
+            endpointName,
+            valueOn: ["ON", 1],
+            valueOff: ["OFF", 0],
+            cluster: "genOnOff",
+            attribute: {ID: 0xff02, type: 0x10},  // Boolean
+            description: "State of relay indicator LED",
+            access: "ALL",
+        }),
+    deviceConfig: (name, endpointName) =>
         text({
             name,
             endpointName,
@@ -148,6 +169,10 @@ const definitions = [
             romasku.relayMode("switch_{{switchName}}_relay_mode", "{{switchName}}"),
             romasku.relayIndex("switch_{{switchName}}_relay_index", "{{switchName}}", {{device.relayNames | length}}),
             romasku.longPressDuration("switch_{{switchName}}_long_press_duration", "{{switchName}}"),
+            {% endfor %}
+            {% for relayName in device.relayIndicatorNames %}
+            romasku.relayIndicatorMode("relay_{{relayName}}_indicator_mode", "{{relayName}}"),
+            romasku.relayIndicator("relay_{{relayName}}_indicator", "{{relayName}}"),
             {% endfor %}
         ],
         meta: { multiEndpoint: true },

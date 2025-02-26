@@ -4,6 +4,7 @@
 #include "relay_cluster.h"
 #include "cluster_common.h"
 #include "configs/nv_slots_cfg.h"
+#include "custom_zcl/zcl_onoff_indicator.h"
 
 
 
@@ -11,7 +12,7 @@ status_t relay_cluster_callback(zigbee_relay_cluster *cluster, zclIncomingAddrIn
 status_t relay_cluster_callback_trampoline(zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload);
 
 void relay_cluster_on_relay_change(zigbee_relay_cluster *cluster, u8 state);
-void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster);
+void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster, zclWriteCmd_t *pWriteReqCmd);
 
 void relay_cluster_store_attrs_to_nv(zigbee_relay_cluster *cluster);
 void relay_cluster_load_attrs_from_nv(zigbee_relay_cluster *cluster);
@@ -19,8 +20,8 @@ void relay_cluster_handle_startup_mode(zigbee_relay_cluster *cluster);
 
 zigbee_relay_cluster *relay_cluster_by_endpoint[10];
 
-void relay_cluster_callback_attr_write_trampoline(u8 clusterId) {	
-    relay_cluster_on_write_attr(relay_cluster_by_endpoint[clusterId]);
+void relay_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd) {	
+    relay_cluster_on_write_attr(relay_cluster_by_endpoint[clusterId], pWriteReqCmd);
 }
 
 void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoint *endpoint) {
@@ -35,12 +36,16 @@ void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoin
 
     SETUP_ATTR(0, ZCL_ATTRID_ONOFF, ZCL_DATA_TYPE_BOOLEAN, ACCESS_CONTROL_READ | ACCESS_CONTROL_REPORTABLE, cluster->relay->on);
     SETUP_ATTR(1, ZCL_ATTRID_START_UP_ONOFF, ZCL_DATA_TYPE_ENUM8, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, cluster->startup_mode);
+    if (cluster->indicator_led != NULL) {
+        SETUP_ATTR(2, ZCL_ATTRID_ONOFF_INDICATOR_MODE, ZCL_DATA_TYPE_ENUM8, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, cluster->indicator_led_mode);
+        SETUP_ATTR(3, ZCL_ATTRID_ONOFF_INDICATOR_STATE, ZCL_DATA_TYPE_BOOLEAN, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, cluster->indicator_led->on);
+    }
 
     zigbee_endpoint_add_cluster(endpoint, 1, ZCL_CLUSTER_GEN_ON_OFF);
     zcl_specClusterInfo_t *info = zigbee_endpoint_reserve_info(endpoint);
     info->clusterId = ZCL_CLUSTER_GEN_ON_OFF;
     info->manuCode = MANUFACTURER_CODE_NONE;
-    info->attrNum = 2;
+    info->attrNum = cluster->indicator_led != NULL ? 4 : 2;
     info->attrTbl = cluster->attr_infos;
     info->clusterRegisterFunc = zcl_onOff_register;
     info->clusterAppCb = relay_cluster_callback_trampoline;
@@ -54,17 +59,57 @@ status_t relay_cluster_callback_trampoline(zclIncomingAddrInfo_t *pAddrInfo, u8 
 status_t relay_cluster_callback(zigbee_relay_cluster *cluster, zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload)
 {	
     if(cmdId == ZCL_CMD_ONOFF_ON){
-		relay_on(cluster->relay);
+		relay_cluster_on(cluster);
 	} else if(cmdId == ZCL_CMD_ONOFF_OFF){
-		relay_off(cluster->relay);
+		relay_cluster_off(cluster);
 	} else if(cmdId == ZCL_CMD_ONOFF_TOGGLE){
-		relay_toggle(cluster->relay);
+		relay_cluster_toggle(cluster);
 	} else {
 		printf("Unknown command: %d\r\n", cmdId);
 	}
 
 	return ZCL_STA_SUCCESS;
 }
+
+void sync_indicator_led(zigbee_relay_cluster *cluster) {
+    printf("sync_indicator_led\r\n");
+    if (cluster->indicator_led_mode == ZCL_ONOFF_INDICATOR_MODE_MANUAL) {
+        return;
+    }
+    if (cluster->indicator_led != NULL) {
+        printf("Not null\r\n");
+        u8 turn_on_led = cluster->relay->on;
+        if (cluster->indicator_led_mode == ZCL_ONOFF_INDICATOR_MODE_OPPOSITE) {
+            turn_on_led = !turn_on_led;
+        }
+        if (turn_on_led) {
+            printf("On\r\n");
+            led_on(cluster->indicator_led);
+        } else {
+            printf("Off\r\n");
+            led_off(cluster->indicator_led);
+        }
+    }
+}
+
+void relay_cluster_on(zigbee_relay_cluster *cluster) {
+    relay_on(cluster->relay);
+    sync_indicator_led(cluster);
+    relay_cluster_report(cluster);
+}
+
+void relay_cluster_off(zigbee_relay_cluster *cluster) {
+    relay_off(cluster->relay);
+    sync_indicator_led(cluster);
+    relay_cluster_report(cluster);
+}
+
+void relay_cluster_toggle(zigbee_relay_cluster *cluster) {
+    relay_toggle(cluster->relay);
+    sync_indicator_led(cluster);
+    relay_cluster_report(cluster);
+}
+
 
 
 void relay_cluster_report(zigbee_relay_cluster *cluster)
@@ -90,7 +135,20 @@ void relay_cluster_on_relay_change(zigbee_relay_cluster *cluster, u8 state) {
     }		
 }
 
-void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster) {		
+void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster, zclWriteCmd_t *pWriteReqCmd) {		
+    for (int index = 0; index < pWriteReqCmd->numAttr; index++) {
+        if (pWriteReqCmd->attrList[index].attrID == ZCL_ATTRID_ONOFF_INDICATOR_STATE) {
+            if (cluster->indicator_led->on) {
+                led_on(cluster->indicator_led);
+            } else {
+                led_off(cluster->indicator_led);
+            }
+        }
+    } 
+    if (cluster->indicator_led_mode != ZCL_ONOFF_INDICATOR_MODE_MANUAL) {
+        sync_indicator_led(cluster);
+    }
+
     relay_cluster_store_attrs_to_nv(cluster);
 }
 
@@ -128,23 +186,23 @@ void relay_cluster_handle_startup_mode(zigbee_relay_cluster *cluster) {
 
     u8 prev_on = nv_config_buffer.on_off;
     if (cluster->startup_mode == ZCL_START_UP_ONOFF_SET_ONOFF_TO_OFF) {
-        relay_off(cluster->relay);
+        relay_cluster_off(cluster);
     }
     if (cluster->startup_mode == ZCL_START_UP_ONOFF_SET_ONOFF_TO_ON) {
-        relay_on(cluster->relay);
+        relay_cluster_on(cluster);
     }
     if (cluster->startup_mode == ZCL_START_UP_ONOFF_SET_ONOFF_TOGGLE) {
         if (prev_on) {
-            relay_off(cluster->relay);
+            relay_cluster_off(cluster);
         } else {
-            relay_on(cluster->relay);
+            relay_cluster_on(cluster);
         }
     }
     if (cluster->startup_mode == ZCL_START_UP_ONOFF_SET_ONOFF_TO_PREVIOUS) {
         if (prev_on) {
-            relay_on(cluster->relay);
+            relay_cluster_on(cluster);
         } else {
-            relay_off(cluster->relay);
+            relay_cluster_off(cluster);
         }
     }
 }

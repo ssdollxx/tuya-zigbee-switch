@@ -36,11 +36,14 @@ if __name__ == "__main__":
 
         relay_cnt = 0
         switch_cnt = 0
+        indicators_cnt = 0
         for peripheral in peripherals:
             if peripheral[0] == "R":
                 relay_cnt += 1
             if peripheral[0] == 'S':
                 switch_cnt += 1
+            if peripheral[0] == 'I':
+                indicators_cnt += 1
             
         if relay_cnt == 1:
             relay_names = ["relay"]
@@ -56,6 +59,7 @@ if __name__ == "__main__":
             "model": device["name"],
             "switchNames": [str(index + 1) for index in range(switch_cnt)],
             "relayNames": relay_names,
+            "relayIndicatorNames": relay_names[:indicators_cnt],
         })
 
     template = env.get_template("switch_custom.js.j2")

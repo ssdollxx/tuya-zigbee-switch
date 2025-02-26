@@ -21,6 +21,6 @@ if __name__ == "__main__":
 
     template = env.get_template("tuya_with_ota.js.j2")
 
-    print(template.render(models=list(set(args.models)), z2m_v1=args.z2m_v1))
+    print(template.render(models=sorted(list(set(args.models))), z2m_v1=args.z2m_v1))
    
     exit(0)

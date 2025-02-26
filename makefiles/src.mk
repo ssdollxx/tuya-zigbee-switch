@@ -37,6 +37,7 @@ $(BUILD_PATH)/$(SRC_DIR)/base_components/button.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/led.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/millis.o \
 $(BUILD_PATH)/$(SRC_DIR)/base_components/relay.o \
+$(BUILD_PATH)/$(SRC_DIR)/base_components/network_indicator.o \
 $(BUILD_PATH)/$(SRC_DIR)/device_config/config_parser.o \
 $(BUILD_PATH)/$(SRC_DIR)/device_config/config_nv.o
 

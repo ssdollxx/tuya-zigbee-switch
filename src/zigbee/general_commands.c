@@ -27,7 +27,7 @@ void device_zclWriteReqCmd(u8 endpoint, u16 clusterId, zclWriteCmd_t *pWriteReqC
 		switch_cluster_callback_attr_write_trampoline(endpoint);
 	}
 	if (clusterId == ZCL_CLUSTER_GEN_ON_OFF) {
-		relay_cluster_callback_attr_write_trampoline(endpoint);
+		relay_cluster_callback_attr_write_trampoline(endpoint, pWriteReqCmd);
 	}
 	if (clusterId == ZCL_CLUSTER_GEN_BASIC) {
 		basic_cluster_callback_attr_write_trampoline(endpoint);

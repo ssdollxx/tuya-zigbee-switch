@@ -6,14 +6,19 @@
 #include "ota.h"
 
 #include "base_components/led.h"
+#include "base_components/network_indicator.h"
 #include "chip_8258/gpio.h"
 #include "config_nv.h"
 
 extern ota_preamble_t baseEndpoint_otaInfo;
 
-led_t status_led = {
-    .on_high = 1
+network_indicator_t network_indicator = {
+    .leds = {NULL, NULL, NULL, NULL},
+    .keep_on_after_connect = 0,
 };
+
+led_t leds[5];
+u8 leds_cnt = 0;
 
 button_t buttons[5];
 u8 buttons_cnt = 0;
@@ -71,6 +76,7 @@ void parse_config() {
     }
     memcpy(basic_cluster.modelId + 1, zb_model,  basic_cluster.modelId[0]);
     
+    bool has_dedicated_status_led = false;
     char* entry;
     for( entry = extractNextEntry(&cursor); *entry != '\0'; entry = extractNextEntry(&cursor)) {
  
@@ -88,8 +94,41 @@ void parse_config() {
         if (entry[0] == 'L') {
             GPIO_PinTypeDef pin = parsePin(entry + 1);
             init_gpio_output(pin);
-            status_led.pin = pin;
-	        led_init(&status_led);
+            leds[leds_cnt].pin = pin;
+            leds[leds_cnt].on_high = entry[3] != 'i';
+
+            led_init(&leds[leds_cnt]);
+
+            network_indicator.leds[0] = &leds[leds_cnt];
+            network_indicator.leds[1] = NULL;
+            network_indicator.keep_on_after_connect = true;
+            
+            has_dedicated_status_led = true;
+            leds_cnt++;
+        }
+        if (entry[0] == 'I') {
+            GPIO_PinTypeDef pin = parsePin(entry + 1);
+            init_gpio_output(pin);
+            leds[leds_cnt].pin = pin;
+            leds[leds_cnt].on_high = entry[3] != 'i';
+            led_init(&leds[leds_cnt]);
+            
+            for (int index = 0; index < 4; index++) {
+                if (relay_clusters[index].indicator_led == NULL) {
+                    relay_clusters[index].indicator_led = &leds[leds_cnt];
+                    break;
+                }
+            }
+            
+            if (!has_dedicated_status_led) {
+                for (int index = 0; index < 4; index++) {
+                    if (network_indicator.leds[index] == NULL) {
+                        network_indicator.leds[index] = &leds[leds_cnt];
+                        break;
+                    }
+                }
+            }
+            leds_cnt++;
         }
         if (entry[0] == 'S') {
             GPIO_PinTypeDef pin = parsePin(entry + 1);
@@ -156,8 +195,9 @@ void parse_config() {
 
 
 void periferals_update() {
-    // printf("periferals_update\r\n");
-    led_update(&status_led);
+    for (int index = 0; index < leds_cnt; index++) {
+        led_update(&leds[index]);
+    }
     for (int index = 0; index < buttons_cnt; index++) {
         btn_update(&buttons[index]);
     }

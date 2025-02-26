@@ -118,16 +118,15 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster) {
 		if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_RISE) {
             switch(cluster->action){
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_ONOFF:
-                    relay_on(relay_cluster->relay);
+                    relay_cluster_on(relay_cluster);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_OFFON:
-                    relay_off(relay_cluster->relay);
+                    relay_cluster_off(relay_cluster);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_TOGGLE:
-                    relay_toggle(relay_cluster->relay);
+                    relay_cluster_toggle(relay_cluster);
                     break;
             }
-            relay_cluster_report(relay_cluster);
 		}
 	}
 
@@ -164,16 +163,15 @@ void switch_cluster_on_button_release(zigbee_switch_cluster *cluster) {
 		if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_RISE) {
             switch(cluster->action){
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_ONOFF:
-                    relay_off(relay_cluster->relay);
+                    relay_cluster_off(relay_cluster);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_OFFON:
-                    relay_on(relay_cluster->relay);
+                    relay_cluster_on(relay_cluster);
                     break;
                 case ZCL_ONOFF_CONFIGURATION_SWITCH_ACTION_TOGGLE:
-                    relay_toggle(relay_cluster->relay);
+                    relay_cluster_toggle(relay_cluster);
                     break;
             }
-            relay_cluster_report(relay_cluster);
 		}
 	}
 
@@ -213,8 +211,7 @@ void switch_cluster_on_button_long_press(zigbee_switch_cluster *cluster) {
     zigbee_relay_cluster *relay_cluster = &relay_clusters[cluster->relay_index - 1];
 
     if (cluster->relay_mode == ZCL_ONOFF_CONFIGURATION_RELAY_MODE_LONG) {
-        relay_toggle(relay_cluster->relay);
-        relay_cluster_report(relay_cluster);
+        relay_cluster_toggle(relay_cluster);
     }
 }
 

@@ -107,7 +107,7 @@ void device_bdbInitCb(u8 status, u8 joinedNetwork){
 void device_bdbCommissioningCb(u8 status, void *arg){
 	switch(status){
 		case BDB_COMMISSION_STA_SUCCESS:
-			led_blink(&status_led, 500, 500, 7);
+			network_indicator_commission_success(&network_indicator);
 
 			if(steerTimerEvt){
 				TL_ZB_TIMER_CANCEL(&steerTimerEvt);

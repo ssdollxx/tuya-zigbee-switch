@@ -122,7 +122,7 @@ void app_task(void)
 	periferals_update();
 	if(bdb_isIdle()) {
 		if(zb_isDeviceJoinedNwk()) {
-			led_on(&status_led);
+			network_indicator_connected(&network_indicator);
 			if (zb_isDeviceFactoryNew()) {
 				zb_deviceFactoryNewSet(false);
 			}
@@ -133,9 +133,7 @@ void app_task(void)
 				g_baseAppCtx.lastReportCheckSec = seconds();
 			}
 		} else { // Device not Joined
-			if (status_led.blink_times_left != LED_BLINK_FOREVER) {
-				led_blink(&status_led, 500, 500, LED_BLINK_FOREVER);
-			}
+			network_indicator_not_connected(&network_indicator);
 		}
 		#if PM_ENABLE
 		if(!tl_stackBusy() && zb_isTaskDone()){
