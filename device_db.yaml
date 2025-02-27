@@ -142,7 +142,7 @@ MOES_2_GANG_SWITCH:
   config_str: Moes-2-gang;Moes-2-gang;SB6u;SC1u;SC4u;RD2;RB4;RB5;ID3;ID7;IC0
   device_type: router
   tuya_manufacturer_id: 4417
-  tuya_image_type: 65535
+  tuya_image_type: 54179
   firmware_image_type: 43510
   tuya_converter_model: TS0012
   tuya_manufacturer_names:
@@ -152,7 +152,7 @@ MOES_2_GANG_SWITCH_END_DEVICE:
   config_str: Moes-2-gang;Moes-2-gang-ED;SB6u;SC1u;SC4u;RD2;RB4;RB5;ID3;ID7;IC0
   device_type: end_device
   tuya_manufacturer_id: 4417
-  tuya_image_type: 65535
+  tuya_image_type: 54179
   firmware_image_type: 43510
   tuya_converter_model: TS0012
   tuya_manufacturer_names:
