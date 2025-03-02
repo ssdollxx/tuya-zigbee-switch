@@ -181,7 +181,7 @@ WHD02_AUBESS:
   name: WHD02-AUBESS-custom
   config_str: WHD02-Aubess;WHD02-Aubess;BC4u;LD2;SB4u;RB5;
   device_type: router
-  tuya_manufacturer_id: 4407
+  tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43531
   tuya_converter_model:  WHD02
