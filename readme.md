@@ -51,6 +51,11 @@ To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 ## Changelog
 
+### v1.0.8
+
+- Add support for indicator leds
+- Add way to force momentary mode as default via config
+
 ### v1.0.7
 
 - Add SUSPEND-based sleep to EndDevice firmware to decrease power usage ~10x

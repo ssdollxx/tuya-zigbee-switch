@@ -160,9 +160,14 @@ void parse_config() {
             relays_cnt++;
             relay_clusters_cnt++;
         }
-        if (entry[0] == 'I') {
+        if (entry[0] == 'i') {
             u32 image_type = parseInt(entry + 1);
             baseEndpoint_otaInfo.imageType = image_type;
+        }
+        if (entry[0] == 'M') {
+            for (int index = 0; index < switch_clusters_cnt; index++) {
+                switch_clusters[index].mode = ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_MOMENTARY;
+            }
         }
     }
 

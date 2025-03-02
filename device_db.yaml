@@ -139,7 +139,7 @@ TS0004_AVATTO:
     - TS0004-Avatto-custom
 MOES_2_GANG_SWITCH:
   name: Moes-2-gang
-  config_str: Moes-2-gang;Moes-2-gang;SB6u;SC1u;SC4u;RD2;RB4;RB5;ID3;ID7;IC0
+  config_str: Moes-2-gang;Moes-2-gang;SB6u;SC4u;RB5;RB4;ID3;IC0;M;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
@@ -149,7 +149,7 @@ MOES_2_GANG_SWITCH:
       - _TZ3000_18ejxno0
 MOES_2_GANG_SWITCH_END_DEVICE:
   name: Moes-2-gang
-  config_str: Moes-2-gang;Moes-2-gang-ED;SB6u;SC1u;SC4u;RD2;RB4;RB5;ID3;ID7;IC0
+  config_str: Moes-2-gang;Moes-2-gang-ED;SB6u;SC4u;RB5;RB4;ID3;IC0;M;
   device_type: end_device
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
