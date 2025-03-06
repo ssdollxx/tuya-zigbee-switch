@@ -35,6 +35,13 @@ jobs:
       run: |
         make install
 
+    - name: Clear out index files
+      run: |
+        echo [] > zigbee2mqtt/ota/index_router.json 
+        echo [] > zigbee2mqtt/ota/index_end_device.json 
+        echo [] > zigbee2mqtt/ota/index_router-FORCE.json 
+        echo [] > zigbee2mqtt/ota/index_end_device-FORCE.json 
+
     - name: Build for all boards
       run: |
         yq -r '(keys)[]' device_db.yaml | while read ITER; do
