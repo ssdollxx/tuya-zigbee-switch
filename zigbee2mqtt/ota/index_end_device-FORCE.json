@@ -3,7 +3,7 @@
     "fileName": "1141-a9f6-ffffffff-tlc_switch-forced.zigbee",
     "fileVersion": 4294967295,
     "fileSize": 126338,
-    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/9d9017fac1a7084bb0a29164feabd0a4734b02f8/bin/MOES_2_GANG_SWITCH_END_DEVICE/1141-a9f6-ffffffff-tlc_switch-forced.zigbee",
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/MOES_2_GANG_SWITCH_END_DEVICE/1141-a9f6-ffffffff-tlc_switch-forced.zigbee",
     "imageType": 43510,
     "manufacturerCode": 4417,
     "sha512": "f2ebd39d9b441674a34880a52abf2787d62e113c72219537caf291b4757e5938c6810365d02e410db5a9f7c47fae4eb77fc3243db218140297b0d8b072ff881b",
@@ -17,7 +17,7 @@
     "fileName": "1141-aa04-ffffffff-tlc_switch-forced.zigbee",
     "fileVersion": 4294967295,
     "fileSize": 126322,
-    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/9d9017fac1a7084bb0a29164feabd0a4734b02f8/bin/TS0011_END_DEVICE/1141-aa04-ffffffff-tlc_switch-forced.zigbee",
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0011_END_DEVICE/1141-aa04-ffffffff-tlc_switch-forced.zigbee",
     "imageType": 43524,
     "manufacturerCode": 4417,
     "sha512": "66b59e513e1bcff75ab6ceb1814e45300cc6a22341c1b326510455e83e99aa67e712525680aaec74916d0b9f5ff960c7cd1e7b55d5bb44f61b8691daf3f3039d",
@@ -33,7 +33,7 @@
     "fileName": "1141-aa0a-ffffffff-tlc_switch-forced.zigbee",
     "fileVersion": 4294967295,
     "fileSize": 126338,
-    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/9d9017fac1a7084bb0a29164feabd0a4734b02f8/bin/TS0012_AVATTO_END_DEVICE/1141-aa0a-ffffffff-tlc_switch-forced.zigbee",
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0012_AVATTO_END_DEVICE/1141-aa0a-ffffffff-tlc_switch-forced.zigbee",
     "imageType": 43530,
     "manufacturerCode": 4417,
     "sha512": "b341a590fae1eb5449b116e1aa2eb49d8a4e9f67e145b7a96f0b501a9b6c9a4a31e96c68fa5a2992e628e6fd2a7d60f5e455eaaf4042a43f9fe593f32818dd64",
@@ -47,7 +47,7 @@
     "fileName": "1141-aa01-ffffffff-tlc_switch-forced.zigbee",
     "fileVersion": 4294967295,
     "fileSize": 126354,
-    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/9d9017fac1a7084bb0a29164feabd0a4734b02f8/bin/TS0012_END_DEVICE/1141-aa01-ffffffff-tlc_switch-forced.zigbee",
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/TS0012_END_DEVICE/1141-aa01-ffffffff-tlc_switch-forced.zigbee",
     "imageType": 43521,
     "manufacturerCode": 4417,
     "sha512": "16fa61c661871592a8ab9cb9446d5a10840495624550a9197b69f10645dda5c69f0b94319004f30e99fd2d85ebe1e619793dbdbc692b0481fbce664b0984861d",
@@ -59,6 +59,20 @@
       "_TZ3000_4zf0crgo",
       "Tuya-CUSTOM",
       "Tuya-TS0012-custom"
+    ]
+  },
+  {
+    "fileName": "1141-aa0b-ffffffff-tlc_switch-forced.zigbee",
+    "fileVersion": 4294967295,
+    "fileSize": 126322,
+    "url": "https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/bin/WHD02_AUBESS_END_DEVICE/1141-aa0b-ffffffff-tlc_switch-forced.zigbee",
+    "imageType": 43531,
+    "manufacturerCode": 4417,
+    "sha512": "85cfb8086b4697a7b29f3e317225d8685ffa43f66b1cbb8eb96345967bd43df9d150dfcbcc009fd89767cb605530295b05cb9178e03d3dcfa29b7175da0dc8a8",
+    "otaHeaderString": "Telink Zigbee OTA\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "manufacturerName": [
+      "_TZ3000_46t1rvdu",
+      "WHD02-Aubess"
     ]
   }
 ]
