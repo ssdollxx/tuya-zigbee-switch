@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    template = env.get_template("tuya_with_ota.js.j2")
+    template = env.get_template("tuya_with_ota.js.jinja")
 
     print(template.render(models=sorted(list(set(args.models))), z2m_v1=args.z2m_v1))
    

@@ -244,6 +244,10 @@ update_converters:
 		> zigbee2mqtt/converters_v1/switch_custom.js 
 
 
+update_readme:
+	python3 helper_scripts/make_readme.py device_db.yaml > readme.md 
+
+
 freeze_ota_links:
 	sed -i "s/refs\/heads\/main/$(shell git rev-parse HEAD)/g" zigbee2mqtt/ota/*.json 
 

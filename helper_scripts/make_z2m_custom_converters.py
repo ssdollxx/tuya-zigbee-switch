@@ -62,7 +62,7 @@ if __name__ == "__main__":
             "relayIndicatorNames": relay_names[:indicators_cnt],
         })
 
-    template = env.get_template("switch_custom.js.j2")
+    template = env.get_template("switch_custom.js.jinja")
 
     print(template.render(devices=devices, z2m_v1=args.z2m_v1))
 

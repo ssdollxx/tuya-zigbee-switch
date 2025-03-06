@@ -9,11 +9,10 @@ TS0012:
     - TS0042-CUSTOM
   tuya_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
-      - _TZ3000_jl7qyupf
-      - _TZ3000_nPGIPl5D
-      - _TZ3000_kpatq5pq
-      - _TZ3000_4zf0crgo
+      - _TZ3000_jl7qyupf  # Initial device
       - Tuya-CUSTOM   # Old name from early firmware
+  human_name: GIRIER TS0012, OXT
+  status: Supported
 TS0012_END_DEVICE:
   name: TS0012-custom-end-device
   config_str: Tuya-TS0012-custom;TS0012-custom-end-device;BA0f;LD7;SC2f;SC3f;RC0;RB4;
@@ -26,10 +25,9 @@ TS0012_END_DEVICE:
   tuya_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
     - _TZ3000_jl7qyupf
-    - _TZ3000_nPGIPl5D
-    - _TZ3000_kpatq5pq
-    - _TZ3000_4zf0crgo
     - Tuya-CUSTOM   # Old name from early firmware
+  human_name: GIRIER TS0012, OXT
+  status: Supported
 WHD02:
   name: WHD02-custom
   config_str: Tuya-WHD02-custom;WHD02-custom;BB4u;LD3;SB5u;RB1;
@@ -40,6 +38,8 @@ WHD02:
   tuya_converter_model:  WHD02
   tuya_manufacturer_names:
     - _TZ3000_skueekg3
+  human_name: No-name 1 gang switch
+  status: Supported
 TS0002:
   name: TS0002-custom
   config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC2;SB5u;SB4u;RC4;RC3;
@@ -50,16 +50,9 @@ TS0002:
   tuya_converter_model: TS0002_basic
   tuya_manufacturer_names:
     - _TZ3000_01gpyda5
-    - _TZ3000_bvrlqyj7
-    - _TZ3000_7ed9cqgi
-    - _TZ3000_ruxexjfz
-    - _TZ3000_4xfqlgqo
-    - _TZ3000_hojntt34
-    - _TZ3000_eei0ubpy
-    - _TZ3000_qaa59zqd
-    - _TZ3000_lmlsduws
-    - _TZ3000_lugaswf8
-    - _TZ3000_fbjdkph9
+  human_name: OXT TS0001, probably other rebrands
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/6
 TS0011:
   name: TS0011-custom
   config_str: Tuya-TS0011-custom;TS0011-custom;BA0f;LD7;SC2f;RC0;
@@ -69,9 +62,10 @@ TS0011:
   firmware_image_type: 43524
   tuya_converter_model: TS0011_switch_module
   tuya_manufacturer_names:
-    - _TZ3000_qmi1cfuq
-    - _TZ3000_txpirhfq
     - _TZ3000_ji4araar
+  human_name: GIRIER TS0011, OXT TS0011
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/4
 TS0011_END_DEVICE:
   name: TS0011-custom
   config_str: Tuya-TS0011-custom;TS0011-custom;BA0f;LD7;SC2f;RC0;
@@ -81,9 +75,10 @@ TS0011_END_DEVICE:
   firmware_image_type: 43524
   tuya_converter_model: TS0011_switch_module
   tuya_manufacturer_names:
-    - _TZ3000_qmi1cfuq
-    - _TZ3000_txpirhfq
     - _TZ3000_ji4araar
+  human_name: GIRIER TS0011, OXT TS0011
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/4
 TS0001:
   name: TS0001-custom
   config_str: Tuya-TS0001-custom;TS0001-custom;BD2u;LC0;SB4u;RC2;
@@ -93,7 +88,10 @@ TS0001:
   firmware_image_type: 43525
   tuya_converter_model: TS0001_switch_module
   tuya_manufacturer_names:
-      - _TZ3000_tqlv4ug4
+      - _TZ3000_tqlv4ug4  # Ok 
+  human_name: OXT TS0001, probably other rebrands
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/6  
 TS0002_2:
   name: TS0002-custom
   config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC0;SB4u;RC2;SB5u;RC3;
@@ -103,7 +101,10 @@ TS0002_2:
   firmware_image_type: 43526
   tuya_converter_model: TS0002_basic
   tuya_manufacturer_names:
-      - _TZ3000_zmy4lslw
+      - _TZ3000_zmy4lslw 
+  human_name: No name TS0002
+  status: Supported, but manufacturer name needs confirmation
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/6  
 TS0001_AVATTO:
   name: TS0001-Avatto-custom
   config_str: Tuya-TS0001-Avatto-custom;TS0001-Avatto-custom;BC2u;LD2;SD3u;RC0;
@@ -114,6 +115,9 @@ TS0001_AVATTO:
   tuya_converter_model: TS0001_switch_module
   tuya_manufacturer_names:
       - _TZ3000_4rbqgcuv
+  human_name: Avatto TS0001
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/9
 TS0002_AVATTO:
   name: TS0002-Avatto-custom
   config_str: Tuya-TS0002-Avatto-custom;TS0002-Avatto-custom;BC2u;LD2;SD3u;RC0;SD7u;RD4;
@@ -124,6 +128,9 @@ TS0002_AVATTO:
   tuya_converter_model: TS0002_limited
   tuya_manufacturer_names:
       - _TZ3000_mtnpt6ws
+  human_name: Avatto TS0002
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/9
 TS0004_AVATTO:
   name: TS0004-Avatto-custom
   config_str: TS0004-AV-CUS;TS0004-AV-CUS;BC2u;LD2;SD7u;RB6;SC0u;RD4;SA0u;RC1;SA1u;RC4;
@@ -133,10 +140,13 @@ TS0004_AVATTO:
   firmware_image_type: 43529
   tuya_converter_model: TS0004_switch_module_2
   tuya_manufacturer_names:
-      - _TZ3000_5ajpkyq6
+      - _TZ3000_5ajpkyq6 
       - Tuya-TS0004-Avatto-custom
   old_zb_models:
     - TS0004-Avatto-custom
+  human_name: Avatto TS0004
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/9
 MOES_2_GANG_SWITCH:
   name: Moes-2-gang
   config_str: Moes-2-gang;Moes-2-gang;SB6u;SC4u;RB5;RB4;ID3;IC0;M;
@@ -147,6 +157,9 @@ MOES_2_GANG_SWITCH:
   tuya_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
+  human_name: Moes TS0012 (2 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 MOES_2_GANG_SWITCH_END_DEVICE:
   name: Moes-2-gang
   config_str: Moes-2-gang;Moes-2-gang-ED;SB6u;SC4u;RB5;RB4;ID3;IC0;M;
@@ -157,6 +170,9 @@ MOES_2_GANG_SWITCH_END_DEVICE:
   tuya_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
+  human_name: Moes TS0012 (2 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 TS0012_AVATTO:
   name: TS0012-custom
   config_str: TS0012-Avatto;TS0012-avatto;BB4f;LB5;SC0f;SC3f;RC2;RC4;
@@ -166,7 +182,10 @@ TS0012_AVATTO:
   firmware_image_type: 43530
   tuya_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
-      - _TZ3000_ljhbw1c9
+      - _TZ3000_ljhbw1c9 
+  human_name: Avatto TS0012
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/16
 TS0012_AVATTO_END_DEVICE:
   name: TS0012-custom
   config_str: TS0012-Avatto;TS0012-avatto-ED;BB4f;LB5;SC0f;SC3f;RC2;RC4;
@@ -177,6 +196,9 @@ TS0012_AVATTO_END_DEVICE:
   tuya_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
       - _TZ3000_ljhbw1c9
+  human_name: Avatto TS0012
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/16
 WHD02_AUBESS:
   name: WHD02-AUBESS-custom
   config_str: WHD02-Aubess;WHD02-Aubess;BC4u;LD2;SB4u;RB5;
@@ -187,6 +209,9 @@ WHD02_AUBESS:
   tuya_converter_model:  WHD02
   tuya_manufacturer_names:
     - _TZ3000_46t1rvdu
+  human_name: Aubess WHD02
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/18
 WHD02_AUBESS_END_DEVICE:
   name: WHD02-AUBESS-custom
   config_str: WHD02-Aubess;WHD02-Aubess-ED;BC4u;LD2;SB4u;RB5;
@@ -196,4 +221,7 @@ WHD02_AUBESS_END_DEVICE:
   firmware_image_type: 43531
   tuya_converter_model:  WHD02
   tuya_manufacturer_names:
-    - _TZ3000_46t1rvdu
+    - _TZ3000_46t1rvdu  
+  human_name: Aubess WHD02
+  status: Supported
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/18
