@@ -1,4 +1,10 @@
-const tuyaDefinitions = require("zigbee-herdsman-converters/devices/tuya");
+let tuyaDefinitions = require("zigbee-herdsman-converters/devices/tuya");
+
+// Support Z2M 2.1.3-1
+if (tuyaDefinitions.definitions !== undefined) {
+    tuyaDefinitions = tuyaDefinitions.definitions;
+}
+
 
 const tuyaModels = [
     "TS0001_switch_module",
