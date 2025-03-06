@@ -9,24 +9,28 @@ To follow these instructions, you need **zigbee2mqtt** installed. If you're usin
 - [Converter for the original device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/converters/tuya_with_ota.js)  
 - [Converter for custom firmware](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/converters/switch_custom.js)  
 
-- Custom index of OTA updates:
-  * [If you want device to be Router](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_router.json)  
-  * [If you want device to be End Device](https://github.com/romasku/tuya-zigbee-switch/raw/refs/heads/main/zigbee2mqtt/ota/index_end_device.json)  
-
-Router device responds faster to requests, can increase Zigbee network strengs, but can be unstable as no neutral device and router firwmare consumes more power. You can try both options, but it requires [special OTA update](./change_device_type.md) to change type. 
-
-Place index file in your zigbee2mqtt data folder, and converters into `external_converters` subfolder. If `external_converters` folder doesn't exists, create it.
+Place these files into `external_converters` subfolder of zigbee2mqtt data folder. If `external_converters` folder doesn't exists, create it.
 
 ### Step 2: Update the Configuration  
 
-Add the following code to the `configuration.yaml` file of zigbee2mqtt:  
+Choose if you want to use Router of EndDevice version of the firmware. Router device responds faster to requests, can increase Zigbee network strength, but can be unstable on no neutral device as it consumes more power. You can try both options, but it requires [a special OTA update](./change_device_type.md) to change the type. 
+
+Add the following code to the `configuration.yaml` file of zigbee2mqtt for Router firmware:  
 
 ```yaml
 ota:
-  zigbee_ota_override_index_location: !NAME_OF_DOWNLOADED_INDEX_FILE!
+  zigbee_ota_override_index_location: >-
+    https://raw.githubusercontent.com/romasku/tuya-zigbee-switch/refs/heads/main/zigbee2mqtt/ota/index_router.json
 ```
 
-Replace `!NAME_OF_DOWNLOADED_INDEX_FILE!` with the name of the index file you downloaded (either `index_router.json` or `index_end_device.json`).
+Or the following code to the `configuration.yaml` file of zigbee2mqtt for EndDevice firmware:  
+
+```yaml
+ota:
+  zigbee_ota_override_index_location: >-
+    https://raw.githubusercontent.com/romasku/tuya-zigbee-switch/refs/heads/main/zigbee2mqtt/ota/index_end_device.json
+```
+
 
 ### Step 3: Verify the Configuration  
 
@@ -41,7 +45,9 @@ Restart zigbee2mqtt. Now device should appear in the OTA tab. Click "Check for n
 
 ### Step 5: Rejoin the Device  
 
-Once the device is flashed, force delete the old device from zigbee2mqtt and open your network by pressing "Permit join". Then reset the device it by pressing any switch 5 times in a row fast. The device should automatically rejoin.  
+Once the device is flashed, it should re-connect automatically. After it connected, please re-interview (press small "i" button on the device page) and reconfigure it (small "arrows loop" button next to re-interview button). This allows Z2M to adapt to change of device capabilites.
+
+If device doesn't rejoin, please force delete the old device from zigbee2mqtt and open your network by pressing "Permit join". Then reset the device by pressing any switch 5 times in a row fast. The device should join your network.  
 
 ---
 
