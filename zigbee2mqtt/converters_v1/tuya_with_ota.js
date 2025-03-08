@@ -1,9 +1,10 @@
 let tuyaDefinitions = require("zigbee-herdsman-converters/devices/tuya");
 
+let moesDefinitions = require("zigbee-herdsman-converters/devices/moes");
+
 // Support Z2M 2.1.3-1
-if (tuyaDefinitions.definitions !== undefined) {
-    tuyaDefinitions = tuyaDefinitions.definitions;
-}
+tuyaDefinitions = tuyaDefinitions.definitions ?? tuyaDefinitions;
+moesDefinitions = moesDefinitions.definitions ?? moesDefinitions;
 
 const ota = require("zigbee-herdsman-converters/lib/ota");
 
@@ -15,6 +16,7 @@ const tuyaModels = [
     "TS0011_switch_module",
     "TS0012",
     "TS0012_switch_module",
+    "TS0013",
     "WHD02",
 ];
 
@@ -23,6 +25,21 @@ const definitions = [];
 
 for (let definition of tuyaDefinitions) {
     if (tuyaModels.includes(definition.model)) {
+        definitions.push(
+            {
+                ...definition,
+                ota: ota.zigbeeOTA,
+            }
+        )
+    }
+}
+
+const moesModels = [
+    "ZS-EUB_1gang",
+];
+
+for (let definition of moesDefinitions) {
+    if (moesModels.includes(definition.model)) {
         definitions.push(
             {
                 ...definition,

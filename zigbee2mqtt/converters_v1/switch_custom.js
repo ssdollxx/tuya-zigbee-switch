@@ -818,6 +818,194 @@ const definitions = [
         },
         ota: ota.zigbeeOTA,
     },
+    {
+        zigbeeModel: [
+            "Moes-1-gang",
+        ],
+        model: "Moes-1-gang",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, "relay": 2, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["relay"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1", 1),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.relayIndicatorMode("relay_relay_indicator_mode", "relay"),
+            romasku.relayIndicator("relay_relay_indicator", "relay"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint2 = device.getEndpoint(2);
+            await reporting.onOff(endpoint2, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
+    {
+        zigbeeModel: [
+            "Moes-1-gang-ED",
+        ],
+        model: "Moes-1-gang",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, "relay": 2, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["relay"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1", 1),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.relayIndicatorMode("relay_relay_indicator_mode", "relay"),
+            romasku.relayIndicator("relay_relay_indicator", "relay"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint2 = device.getEndpoint(2);
+            await reporting.onOff(endpoint2, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
+    {
+        zigbeeModel: [
+            "Moes-3-gang",
+        ],
+        model: "Moes-3-gang",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, 2: 2, 3: 3, "left": 4, "middle": 5, "right": 6, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["left", "middle", "right"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1", 3),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.pressAction("switch_2_press_action", "2"),
+            romasku.switchMode("switch_2_mode", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
+            romasku.relayMode("switch_2_relay_mode", "2"),
+            romasku.relayIndex("switch_2_relay_index", "2", 3),
+            romasku.longPressDuration("switch_2_long_press_duration", "2"),
+            romasku.pressAction("switch_3_press_action", "3"),
+            romasku.switchMode("switch_3_mode", "3"),
+            romasku.switchAction("switch_3_action_mode", "3"),
+            romasku.relayMode("switch_3_relay_mode", "3"),
+            romasku.relayIndex("switch_3_relay_index", "3", 3),
+            romasku.longPressDuration("switch_3_long_press_duration", "3"),
+            romasku.relayIndicatorMode("relay_left_indicator_mode", "left"),
+            romasku.relayIndicator("relay_left_indicator", "left"),
+            romasku.relayIndicatorMode("relay_middle_indicator_mode", "middle"),
+            romasku.relayIndicator("relay_middle_indicator", "middle"),
+            romasku.relayIndicatorMode("relay_right_indicator_mode", "right"),
+            romasku.relayIndicator("relay_right_indicator", "right"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(3), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint4 = device.getEndpoint(4);
+            await reporting.onOff(endpoint4, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint5 = device.getEndpoint(5);
+            await reporting.onOff(endpoint5, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint6 = device.getEndpoint(6);
+            await reporting.onOff(endpoint6, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
+    {
+        zigbeeModel: [
+            "Moes-3-gang-ED",
+        ],
+        model: "Moes-3-gang",
+        vendor: "Tuya-custom",
+        description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
+        extend: [
+            deviceEndpoints({ endpoints: {1: 1, 2: 2, 3: 3, "left": 4, "middle": 5, "right": 6, } }),
+            romasku.deviceConfig("device_config", "1"),
+            onOff({ endpointNames: ["left", "middle", "right"] }),
+            romasku.pressAction("switch_1_press_action", "1"),
+            romasku.switchMode("switch_1_mode", "1"),
+            romasku.switchAction("switch_1_action_mode", "1"),
+            romasku.relayMode("switch_1_relay_mode", "1"),
+            romasku.relayIndex("switch_1_relay_index", "1", 3),
+            romasku.longPressDuration("switch_1_long_press_duration", "1"),
+            romasku.pressAction("switch_2_press_action", "2"),
+            romasku.switchMode("switch_2_mode", "2"),
+            romasku.switchAction("switch_2_action_mode", "2"),
+            romasku.relayMode("switch_2_relay_mode", "2"),
+            romasku.relayIndex("switch_2_relay_index", "2", 3),
+            romasku.longPressDuration("switch_2_long_press_duration", "2"),
+            romasku.pressAction("switch_3_press_action", "3"),
+            romasku.switchMode("switch_3_mode", "3"),
+            romasku.switchAction("switch_3_action_mode", "3"),
+            romasku.relayMode("switch_3_relay_mode", "3"),
+            romasku.relayIndex("switch_3_relay_index", "3", 3),
+            romasku.longPressDuration("switch_3_long_press_duration", "3"),
+            romasku.relayIndicatorMode("relay_left_indicator_mode", "left"),
+            romasku.relayIndicator("relay_left_indicator", "left"),
+            romasku.relayIndicatorMode("relay_middle_indicator_mode", "middle"),
+            romasku.relayIndicator("relay_middle_indicator", "middle"),
+            romasku.relayIndicatorMode("relay_right_indicator_mode", "right"),
+            romasku.relayIndicator("relay_right_indicator", "right"),
+        ],
+        meta: { multiEndpoint: true },
+        configure: async (device, coordinatorEndpoint, logger) => {
+            await reporting.bind(device.getEndpoint(1), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(2), coordinatorEndpoint, ["genMultistateInput"]);
+            await reporting.bind(device.getEndpoint(3), coordinatorEndpoint, ["genMultistateInput"]);
+            const endpoint4 = device.getEndpoint(4);
+            await reporting.onOff(endpoint4, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint5 = device.getEndpoint(5);
+            await reporting.onOff(endpoint5, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+            const endpoint6 = device.getEndpoint(6);
+            await reporting.onOff(endpoint6, {
+                min: 0,
+                max: constants.repInterval.MINUTE,
+                change: 1,
+            });
+        },
+        ota: ota.zigbeeOTA,
+    },
 ];
 
 module.exports = definitions;
