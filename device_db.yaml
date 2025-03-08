@@ -180,7 +180,7 @@ BSEED_2_GANG_SWITCH:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43534
-  tuya_converter_model: TS0012
+  stock_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_f2slq5pj
   human_name: Bseed TS0012 (2 gang switch)
@@ -193,7 +193,7 @@ BSEED_2_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43534
-  tuya_converter_model: TS0012
+  stock_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_f2slq5pj
   human_name: Bseed TS0012 (2 gang switch)
