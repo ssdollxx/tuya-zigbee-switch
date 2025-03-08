@@ -24,6 +24,8 @@ Note that rebranded versions may have different internals and may not work. "Zig
 | [TS0012](https://www.zigbee2mqtt.io/devices/TS0012.html) | Moes TS0012 (2 gang switch)  | _TZ3000_18ejxno0 | router / end_device | In progress |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/14)  | 
 | [TS0012_switch_module](https://www.zigbee2mqtt.io/devices/TS0012_switch_module.html) | Avatto TS0012  | _TZ3000_ljhbw1c9 | router / end_device | Supported |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/16)  | 
 | [WHD02](https://www.zigbee2mqtt.io/devices/WHD02.html) | Aubess WHD02  | _TZ3000_46t1rvdu | router / end_device | Supported |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/18)  | 
+| [ZS-EUB_1gang](https://www.zigbee2mqtt.io/devices/ZS-EUB_1gang.html) | Moes TS0011 (1 gang switch)  | _TZ3000_hhiodade | router / end_device | In progress |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/14)  | 
+| [TS0013](https://www.zigbee2mqtt.io/devices/TS0013.html) | Moes TS0013 (3 gang switch)  | _TZ3000_qewo8dlz | router / end_device | In progress |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/14)  | 
 
 If you device is not supported, but it is some Tuya switch module, please check [the porting guide](./docs/porting_to_new_device.md).
 
@@ -59,6 +61,10 @@ To switch between End Device and Router follow [this guide](./docs/change_device
 To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 ## Changelog
+
+### v1.0.9
+
+- Fix reporting of indicator led status
 
 ### v1.0.8
 

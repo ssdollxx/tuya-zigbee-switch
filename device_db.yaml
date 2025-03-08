@@ -7,7 +7,7 @@ TS0012:
   firmware_image_type: 43521
   old_zb_models:
     - TS0042-CUSTOM
-  tuya_converter_model: TS0012_switch_module
+  stock_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
       - _TZ3000_jl7qyupf  # Initial device
       - Tuya-CUSTOM   # Old name from early firmware
@@ -22,7 +22,7 @@ TS0012_END_DEVICE:
   firmware_image_type: 43521
   old_zb_models:
     - TS0042-CUSTOM
-  tuya_converter_model: TS0012_switch_module
+  stock_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
     - _TZ3000_jl7qyupf
     - Tuya-CUSTOM   # Old name from early firmware
@@ -35,7 +35,7 @@ WHD02:
   tuya_manufacturer_id: 4407
   tuya_image_type: 524
   firmware_image_type: 43522
-  tuya_converter_model:  WHD02
+  stock_converter_model:  WHD02
   tuya_manufacturer_names:
     - _TZ3000_skueekg3
   human_name: No-name 1 gang switch
@@ -47,7 +47,7 @@ TS0002:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43523
-  tuya_converter_model: TS0002_basic
+  stock_converter_model: TS0002_basic
   tuya_manufacturer_names:
     - _TZ3000_01gpyda5
   human_name: OXT TS0001, probably other rebrands
@@ -60,7 +60,7 @@ TS0011:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43524
-  tuya_converter_model: TS0011_switch_module
+  stock_converter_model: TS0011_switch_module
   tuya_manufacturer_names:
     - _TZ3000_ji4araar
   human_name: GIRIER TS0011, OXT TS0011
@@ -73,7 +73,7 @@ TS0011_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43524
-  tuya_converter_model: TS0011_switch_module
+  stock_converter_model: TS0011_switch_module
   tuya_manufacturer_names:
     - _TZ3000_ji4araar
   human_name: GIRIER TS0011, OXT TS0011
@@ -86,7 +86,7 @@ TS0001:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43525
-  tuya_converter_model: TS0001_switch_module
+  stock_converter_model: TS0001_switch_module
   tuya_manufacturer_names:
       - _TZ3000_tqlv4ug4  # Ok 
   human_name: OXT TS0001, probably other rebrands
@@ -99,7 +99,7 @@ TS0002_2:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43526
-  tuya_converter_model: TS0002_basic
+  stock_converter_model: TS0002_basic
   tuya_manufacturer_names:
       - _TZ3000_zmy4lslw 
   human_name: No name TS0002
@@ -112,7 +112,7 @@ TS0001_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43527
-  tuya_converter_model: TS0001_switch_module
+  stock_converter_model: TS0001_switch_module
   tuya_manufacturer_names:
       - _TZ3000_4rbqgcuv
   human_name: Avatto TS0001
@@ -125,7 +125,7 @@ TS0002_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43528
-  tuya_converter_model: TS0002_limited
+  stock_converter_model: TS0002_limited
   tuya_manufacturer_names:
       - _TZ3000_mtnpt6ws
   human_name: Avatto TS0002
@@ -138,7 +138,7 @@ TS0004_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43529
-  tuya_converter_model: TS0004_switch_module_2
+  stock_converter_model: TS0004_switch_module_2
   tuya_manufacturer_names:
       - _TZ3000_5ajpkyq6 
       - Tuya-TS0004-Avatto-custom
@@ -154,7 +154,7 @@ MOES_2_GANG_SWITCH:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43510
-  tuya_converter_model: TS0012
+  stock_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
   human_name: Moes TS0012 (2 gang switch)
@@ -167,7 +167,7 @@ MOES_2_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43510
-  tuya_converter_model: TS0012
+  stock_converter_model: TS0012
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
   human_name: Moes TS0012 (2 gang switch)
@@ -180,7 +180,7 @@ TS0012_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43530
-  tuya_converter_model: TS0012_switch_module
+  stock_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
       - _TZ3000_ljhbw1c9 
   human_name: Avatto TS0012
@@ -193,7 +193,7 @@ TS0012_AVATTO_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43530
-  tuya_converter_model: TS0012_switch_module
+  stock_converter_model: TS0012_switch_module
   tuya_manufacturer_names:
       - _TZ3000_ljhbw1c9
   human_name: Avatto TS0012
@@ -206,7 +206,7 @@ WHD02_AUBESS:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43531
-  tuya_converter_model:  WHD02
+  stock_converter_model:  WHD02
   tuya_manufacturer_names:
     - _TZ3000_46t1rvdu
   human_name: Aubess WHD02
@@ -219,7 +219,7 @@ WHD02_AUBESS_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43531
-  tuya_converter_model:  WHD02
+  stock_converter_model:  WHD02
   tuya_manufacturer_names:
     - _TZ3000_46t1rvdu  
   human_name: Aubess WHD02
@@ -232,7 +232,8 @@ MOES_1_GANG_SWITCH:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43532
-  tuya_converter_model: TS0011
+  stock_converter_model: ZS-EUB_1gang
+  stock_converter_manufacturer: moes
   tuya_manufacturer_names:
       - _TZ3000_hhiodade
   human_name: Moes TS0011 (1 gang switch)
@@ -245,7 +246,8 @@ MOES_1_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43532
-  tuya_converter_model: TS0011
+  stock_converter_model: ZS-EUB_1gang
+  stock_converter_manufacturer: moes
   tuya_manufacturer_names:
       - _TZ3000_hhiodade
   human_name: Moes TS0011 (1 gang switch)
@@ -258,7 +260,7 @@ MOES_3_GANG_SWITCH:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43533
-  tuya_converter_model: TS0013
+  stock_converter_model: TS0013
   tuya_manufacturer_names:
       - _TZ3000_qewo8dlz
   human_name: Moes TS0013 (3 gang switch)
@@ -271,7 +273,7 @@ MOES_3_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43533
-  tuya_converter_model: TS0013
+  stock_converter_model: TS0013
   tuya_manufacturer_names:
       - _TZ3000_qewo8dlz
   human_name: Moes TS0013 (3 gang switch)

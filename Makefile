@@ -232,11 +232,9 @@ clean_z2m_index:
 
 
 update_converters:
-	python3 helper_scripts/make_z2m_tuya_converters.py \
-		$(shell yq -r '.[] | .tuya_converter_model' device_db.yaml) \
+	python3 helper_scripts/make_z2m_tuya_converters.py device_db.yaml \
 		> zigbee2mqtt/converters/tuya_with_ota.js 
-	python3 helper_scripts/make_z2m_tuya_converters.py --z2m-v1 \
-		$(shell yq -r '.[] | .tuya_converter_model' device_db.yaml) \
+	python3 helper_scripts/make_z2m_tuya_converters.py --z2m-v1 device_db.yaml \
 		> zigbee2mqtt/converters_v1/tuya_with_ota.js 
 	python3 helper_scripts/make_z2m_custom_converters.py device_db.yaml \
 		> zigbee2mqtt/converters/switch_custom.js 
