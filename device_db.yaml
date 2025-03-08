@@ -225,3 +225,55 @@ WHD02_AUBESS_END_DEVICE:
   human_name: Aubess WHD02
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/18
+MOES_1_GANG_SWITCH:
+  name: Moes-1-gang
+  config_str: Moes-1-gang;Moes-1-gang;SC1u;RB5;ID7;M;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43532
+  tuya_converter_model: TS0011
+  tuya_manufacturer_names:
+      - _TZ3000_hhiodade
+  human_name: Moes TS0011 (1 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
+MOES_1_GANG_SWITCH_END_DEVICE:
+  name: Moes-1-gang
+  config_str: Moes-1-gang;Moes-1-gang-ED;SC1u;RB5;ID7;M;
+  device_type: end_device
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43532
+  tuya_converter_model: TS0011
+  tuya_manufacturer_names:
+      - _TZ3000_hhiodade
+  human_name: Moes TS0011 (1 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
+MOES_3_GANG_SWITCH:
+  name: Moes-3-gang
+  config_str: Moes-3-gang;Moes-3-gang;SB6u;RB5;ID3;SC1u;RB4;ID7;SC4u;RD2;IC0;M;
+  device_type: router
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43533
+  tuya_converter_model: TS0013
+  tuya_manufacturer_names:
+      - _TZ3000_qewo8dlz
+  human_name: Moes TS0013 (3 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
+MOES_3_GANG_SWITCH_END_DEVICE:
+  name: Moes-3-gang
+  config_str: Moes-3-gang;Moes-3-gang-ED;SB6u;RB5;ID3;SC1u;RB4;ID7;SC4u;RD2;IC0;M;
+  device_type: end_device
+  tuya_manufacturer_id: 4417
+  tuya_image_type: 54179
+  firmware_image_type: 43533
+  tuya_converter_model: TS0013
+  tuya_manufacturer_names:
+      - _TZ3000_qewo8dlz
+  human_name: Moes TS0013 (3 gang switch)
+  status: In progress
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
