@@ -8,6 +8,7 @@ typedef void (*ev_relay_callback_t)(void*, u8);
 
 typedef struct{
     u32 pin;
+    u32 off_pin;
     u8 on_high;
     u8 on;
     ev_relay_callback_t on_change;

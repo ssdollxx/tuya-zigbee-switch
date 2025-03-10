@@ -155,6 +155,12 @@ void parse_config() {
             relays[relays_cnt].pin = pin;
             relays[relays_cnt].on_high = 1;
 
+            if (entry[3] != '\0') {
+                pin = parsePin(entry + 3);
+                init_gpio_output(pin);
+                relays[relays_cnt].off_pin = pin;
+            }
+
             relay_clusters[relay_clusters_cnt].relay = &relays[relays_cnt];
 
             relays_cnt++;

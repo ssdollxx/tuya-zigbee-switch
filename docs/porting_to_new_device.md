@@ -78,6 +78,8 @@ Pin setup entries start with one of the following characters:
 - `L`: Onboard LED  
 - `S`: Switch  
 - `R`: Relay  
+- `I`: Indicator LED (for switches that have per button led)
+- `i`: Change image_type for OTA (to migrate device to firmware for another device)  
 
 Next, two characters specify the pin name, e.g., `A4` or `C2`, as described in the [Tuya docs](https://developer.tuya.com/en/docs/iot/zt-series-module?id=Kaiuym8ctid7k).  
 
@@ -89,6 +91,9 @@ For buttons (`B`) and switches (`S`), the next character determines the pull-up/
 
 If unsure, use `u` or `U`. `f` may cause fake clicks, and the device can get stuck in a boot loop, so use it only if you are sure.  
 
+As some Relays are bi-stable and use two pins to control, where one pin turns it on and another one turns it of, it is possible to specify
+second pin like this: `RC2D2;`
+
 Here is an example config:  
 
 ```
@@ -96,6 +101,14 @@ Tuya-WHD02-custom;WHD02-custom;BB4u;LD3;SB5u;RB1;
 ```  
 
 The manufacturer is `"Tuya-WHD02-custom"`, the model is `"WHD02-custom"`, `BB4u` means a reset button on pin `B4` with a 10K pull-up (`u`), `LD3` specifies an onboard LED on pin `D3`, `SB5u` specifies a switch on pin `B5` with a 10K pull-up, and `RB1` specifies a relay on pin `B1`. This describes a device with a single switch and a single relay.  
+
+Here is an another example config:  
+
+```
+Example-switch;Example-switch;SB5u;RC2D2;ID3;
+```  
+
+In this example we have no on-board led and no on board reset button, only one switch on pin `B5`, with bi-stable relay controlled by pins `C2` and `D2`, and indicator led on pin `D3`.
 
 Try updating the config with different pins until the device works properly. You can either guess the pins (e.g., a 4-gang model may use the same pins as a 3-gang model plus two additional pins that are neighbors on the ZT module) or trace the pins using a multimeter.  
 
