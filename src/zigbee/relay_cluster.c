@@ -160,6 +160,7 @@ void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster, zclWriteCmd_t *p
 typedef struct {
     u8   on_off;
     u8 	 startup_mode;
+    u8   indicator_led_mode
 } zigbee_relay_cluster_config;
 
 
@@ -169,6 +170,7 @@ zigbee_relay_cluster_config nv_config_buffer;
 void relay_cluster_store_attrs_to_nv(zigbee_relay_cluster *cluster) {	
     nv_config_buffer.on_off = cluster->relay->on;
     nv_config_buffer.startup_mode = cluster->startup_mode;
+    nv_config_buffer.indicator_led_mode = cluster->indicator_led_mode;
 
     nv_flashWriteNew(1, NV_MODULE_ZCL,  NV_ITEM_ZCL_RELAY_CONFIG(cluster->endpoint), sizeof(zigbee_relay_cluster_config), (u8*)&nv_config_buffer);
 }
@@ -180,6 +182,7 @@ void relay_cluster_load_attrs_from_nv(zigbee_relay_cluster *cluster) {
         return;
     }
     cluster->startup_mode = nv_config_buffer.startup_mode;
+    cluster->indicator_led_mode = nv_config_buffer.indicator_led_mode;
 
 }
 
