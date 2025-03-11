@@ -52,8 +52,19 @@ if __name__ == "__main__":
         "16": "D7",
     }
 
-    for gang_index in range(4):
+    if "total_bt_pin" in config_dict:
+        pin = pin_map[config_dict["total_bt_pin"]]
+        custom_config += f"B{pin};"
+    if "netled1_pin" in config_dict:
+        pin = pin_map[config_dict["netled1_pin"]]
+        custom_config += f"L{pin};"
+
+    for gang_index in range(1, 5):
         btn_key = f"bt{gang_index}_pin"
+        if btn_key in config_dict:
+            pin = pin_map[config_dict[btn_key]]
+            custom_config += f"S{pin}u;"
+        btn_key = f"i_bt{gang_index}"
         if btn_key in config_dict:
             pin = pin_map[config_dict[btn_key]]
             custom_config += f"S{pin}u;"
@@ -65,9 +76,6 @@ if __name__ == "__main__":
         if led_key in config_dict:
             pin = pin_map[config_dict[led_key]]
             custom_config += f"I{pin};"
-    if "netled1_pin" in config_dict:
-        pin = pin_map[config_dict["netled1_pin"]]
-        custom_config += f"L{pin};"
     
     print(config_dict)
     print(custom_config)
