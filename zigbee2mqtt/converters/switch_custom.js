@@ -1154,6 +1154,8 @@ const definitions = [
             romasku.longPressDuration("switch_2_long_press_duration", "2"),
             romasku.relayIndicatorMode("relay_left_indicator_mode", "left"),
             romasku.relayIndicator("relay_left_indicator", "left"),
+            romasku.relayIndicatorMode("relay_right_indicator_mode", "right"),
+            romasku.relayIndicator("relay_right_indicator", "right"),
         ],
         meta: { multiEndpoint: true },
         configure: async (device, coordinatorEndpoint, logger) => {
@@ -1199,6 +1201,8 @@ const definitions = [
             romasku.longPressDuration("switch_2_long_press_duration", "2"),
             romasku.relayIndicatorMode("relay_left_indicator_mode", "left"),
             romasku.relayIndicator("relay_left_indicator", "left"),
+            romasku.relayIndicatorMode("relay_right_indicator_mode", "right"),
+            romasku.relayIndicator("relay_right_indicator", "right"),
         ],
         meta: { multiEndpoint: true },
         configure: async (device, coordinatorEndpoint, logger) => {
