@@ -320,7 +320,7 @@ WHD02_2:
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/24
 ZEMISMART_2_GANG:
   name: Zemismart-2-gang
-  config_str: Zemi-2-gang;Zemi-2-gang;SC3U;SD2U;RC2D4;RB5C2;ID7;
+  config_str: Zemi-2-gang;Zemi-2-gang;SC3U;SD2U;IB7;ID7;RB5C4;RC2D4;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
@@ -333,7 +333,7 @@ ZEMISMART_2_GANG:
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/19
 ZEMISMART_2_GANG_END_DEVICE:
   name: Zemismart-2-gang
-  config_str: Zemi-2-gang;Zemi-2-gang-ED;SC3U;SD2U;RC2D4;RB5C2;ID7;
+  config_str: Zemi-2-gang;Zemi-2-gang-ED;SC3U;SD2U;IB7;ID7;RB5C4;RC2D4;
   device_type: end_device
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
