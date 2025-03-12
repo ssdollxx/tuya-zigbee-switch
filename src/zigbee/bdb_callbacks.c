@@ -29,9 +29,6 @@ ota_callBack_t baseEndpoint_otaCb =
 
 
 ev_timer_event_t *steerTimerEvt = NULL;
-#if REJOIN_FAILURE_TIMER
-ev_timer_event_t *deviceRejoinBackoffTimerEvt = NULL;
-#endif
 /**********************************************************************
  * FUNCTIONS
  */
@@ -42,21 +39,6 @@ s32 device_bdbNetworkSteerStart(void *arg){
 	steerTimerEvt = NULL;
 	return -1;
 }
-
-#if REJOIN_FAILURE_TIMER
-
-s32 device_rejoinBackoff(void *arg){
-
-	if(zb_isDeviceFactoryNew()){
-		deviceRejoinBackoffTimerEvt = NULL;
-		return -1;
-	}
-
-    zb_rejoinReqWithBackOff(zb_apsChannelMaskGet(), g_bdbAttrs.scanDuration);
-    return 0;
-}
-
-#endif
 
 
 void device_bdbInitCb(u8 status, u8 joinedNetwork){
@@ -83,14 +65,11 @@ void device_bdbInitCb(u8 status, u8 joinedNetwork){
 			///time_soff = 0;
 			steerTimerEvt = TL_ZB_TIMER_SCHEDULE(device_bdbNetworkSteerStart, NULL, jitter);
 		}
-	}
-#if REJOIN_FAILURE_TIMER
-	else{
+	} else {
 		if(joinedNetwork){
 		 	zb_rejoinReqWithBackOff(zb_apsChannelMaskGet(), g_bdbAttrs.scanDuration);
 		}
 	}
-#endif
 }
 
 /*********************************************************************
@@ -112,9 +91,6 @@ void device_bdbCommissioningCb(u8 status, void *arg){
 			if(steerTimerEvt){
 				TL_ZB_TIMER_CANCEL(&steerTimerEvt);
 			}
-			if(deviceRejoinBackoffTimerEvt){
-				TL_ZB_TIMER_CANCEL(&deviceRejoinBackoffTimerEvt);
-			}
 			ota_queryStart(OTA_PERIODIC_QUERY_INTERVAL);
 			break;
 		case BDB_COMMISSION_STA_IN_PROGRESS:
@@ -133,11 +109,7 @@ void device_bdbCommissioningCb(u8 status, void *arg){
 				if(steerTimerEvt){
 					TL_ZB_TIMER_CANCEL(&steerTimerEvt);
 				}
-#if REJOIN_FAILURE_TIMER
-				steerTimerEvt = TL_ZB_TIMER_SCHEDULE(device_bdbNetworkSteerStart, NULL, jitter + 60000);
-#else
 				steerTimerEvt = TL_ZB_TIMER_SCHEDULE(device_bdbNetworkSteerStart, NULL, jitter);
-#endif
 			}
 			break;
 		case BDB_COMMISSION_STA_FORMATION_FAILURE:
@@ -150,20 +122,11 @@ void device_bdbCommissioningCb(u8 status, void *arg){
 			break;
 		case BDB_COMMISSION_STA_NO_SCAN_RESPONSE:
 		case BDB_COMMISSION_STA_PARENT_LOST:
-#if REJOIN_FAILURE_TIMER
-			device_rejoinBackoff(NULL);
-#else
 			zb_rejoinReqWithBackOff(zb_apsChannelMaskGet(), g_bdbAttrs.scanDuration);
-#endif
 			break;
 		case BDB_COMMISSION_STA_REJOIN_FAILURE:
 			if(!zb_isDeviceFactoryNew()){
-#if REJOIN_FAILURE_TIMER
-                // sleep for 3 minutes before reconnect if rejoin failed
-                deviceRejoinBackoffTimerEvt = TL_ZB_TIMER_SCHEDULE(device_rejoinBackoff, NULL, 360 * 1000);
-#else
 				zb_rejoinReqWithBackOff(zb_apsChannelMaskGet(), g_bdbAttrs.scanDuration);
-#endif
 			}
 			break;
 		default:
@@ -178,7 +141,6 @@ void device_bdbIdentifyCb(u8 endpoint, u16 srcAddr, u16 identifyTime){
 
 void device_otaProcessMsgHandler(u8 evt, u8 status)
 {
-	printf("OTA message %d %d\r\n", evt, status);
 	if(evt == OTA_EVT_COMPLETE){
 		if(status == ZCL_STA_SUCCESS){
 			ota_mcuReboot();
@@ -200,10 +162,7 @@ void device_otaProcessMsgHandler(u8 evt, u8 status)
  */
 void device_leaveCnfHandler(nlme_leave_cnf_t *pLeaveCnf)
 {
-    if(pLeaveCnf->status == SUCCESS){
-		if(deviceRejoinBackoffTimerEvt){
-			TL_ZB_TIMER_CANCEL(&deviceRejoinBackoffTimerEvt);
-		}
+    if(pLeaveCnf->status == SUCCESS) {
 		SYSTEM_RESET();
     }
 }

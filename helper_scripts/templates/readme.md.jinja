@@ -41,7 +41,7 @@ make install
 make
 ```
 
-## Flashing device
+## Flashing
 
 Firmware can be [flashed via OTA](./docs/ota_flash.md). If you still use zigbee2mqtt 1.x, use [this guide](./docs/ota_flash_z2m_v1.md)
 
@@ -50,6 +50,12 @@ To switch between End Device and Router follow [this guide](./docs/change_device
 To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 ## Changelog
+
+### v1.0.11
+
+- Improve join behaviour by decreasing timeout between tries to join
+- Fix leave network: now device will send LeaveNetwork command properly
+- Display firmware version in a human-readable form
 
 ### v1.0.10
 
@@ -98,4 +104,4 @@ To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 - https://github.com/pvvx/ZigbeeTLc (firmware for telink based ATC) as this was base for this project
 - https://github.com/doctor64/tuyaZigbee (firmware for some other Tuya Zigbee devices) for some helpful examples
-- https://medium.com/@omaslyuchenko for **Hello Zigbee World** series, that contain very usefull reference on how to implement own Zigbee device 
+- https://medium.com/@omaslyuchenko for **Hello Zigbee World** series, that contain very usefull reference on how to implement a Zigbee device 

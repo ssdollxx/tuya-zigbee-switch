@@ -13,14 +13,12 @@ const u8 stackVersion   = 0x02;
 const u8 hwVersion      = 0x00;
 
 const u8 powerSource    = POWER_SOURCE_MAINS_1_PHASE;
-DEF_STR_NON_CONST("0000-0000", swBuildId);
+DEF_STR_NON_CONST("1.0." STRINGIFY(STACK_BUILD), swBuildId);
 DEF_STR_NON_CONST("00000000", dateCode);
 
 
 const u8 longStr[] = {5, 0, 'H', 'e', 'l', 'l', 'o'};
 
-
-void populate_sw_build();
 void populate_date_code();
 
 
@@ -40,7 +38,6 @@ void basic_cluster_callback_attr_write_trampoline(u8 clusterId) {
 }
 
 void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoint *endpoint) {
-    populate_sw_build();
     populate_date_code();
 
     // Fill Attrs
@@ -65,24 +62,6 @@ void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoin
     info->attrTbl = cluster->attr_infos;
     info->clusterRegisterFunc = zcl_basic_register;
     info->clusterAppCb = basic_cluster_callback_trampoline;
-}
-
-
-char int_to_hex(u8 num) {
-	const char * hex_ascii = {"0123456789ABCDEF"};
-	if (num > 15) return hex_ascii[0];
-	return hex_ascii[num];
-}
-
-void populate_sw_build() {
-	swBuildId.str[0] = int_to_hex(STACK_RELEASE>>4);
-	swBuildId.str[1] = int_to_hex(STACK_RELEASE & 0xf);
-	swBuildId.str[2] = int_to_hex(STACK_BUILD>>4);
-	swBuildId.str[3] = int_to_hex(STACK_BUILD & 0xf);
-	swBuildId.str[4] = int_to_hex(APP_RELEASE>>4);
-	swBuildId.str[5] = int_to_hex(APP_RELEASE & 0xf);
-	swBuildId.str[6] = int_to_hex(APP_BUILD>>4);
-	swBuildId.str[7] = int_to_hex(APP_BUILD & 0xf);
 }
 
 void populate_date_code() {

@@ -6,6 +6,4 @@
 
 void factoryReset() {
     zb_factoryReset();
-	tl_bdbReset2FN();
-	zb_resetDevice();
 }
