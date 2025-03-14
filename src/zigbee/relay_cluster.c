@@ -18,6 +18,8 @@ void relay_cluster_store_attrs_to_nv(zigbee_relay_cluster *cluster);
 void relay_cluster_load_attrs_from_nv(zigbee_relay_cluster *cluster);
 void relay_cluster_handle_startup_mode(zigbee_relay_cluster *cluster);
 
+void sync_indicator_led(zigbee_relay_cluster *cluster) ;
+
 zigbee_relay_cluster *relay_cluster_by_endpoint[10];
 
 void relay_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd) {	
@@ -33,6 +35,7 @@ void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoin
     cluster->relay->on_change = (ev_relay_callback_t)relay_cluster_on_relay_change;
  
     relay_cluster_handle_startup_mode(cluster);
+    sync_indicator_led(cluster);
 
     SETUP_ATTR(0, ZCL_ATTRID_ONOFF, ZCL_DATA_TYPE_BOOLEAN, ACCESS_CONTROL_READ | ACCESS_CONTROL_REPORTABLE, cluster->relay->on);
     SETUP_ATTR(1, ZCL_ATTRID_START_UP_ONOFF, ZCL_DATA_TYPE_ENUM8, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, cluster->startup_mode);
@@ -160,7 +163,8 @@ void relay_cluster_on_write_attr(zigbee_relay_cluster *cluster, zclWriteCmd_t *p
 typedef struct {
     u8   on_off;
     u8 	 startup_mode;
-    u8   indicator_led_mode
+    u8   indicator_led_mode;
+    u8   indicator_led_on;
 } zigbee_relay_cluster_config;
 
 
@@ -171,6 +175,7 @@ void relay_cluster_store_attrs_to_nv(zigbee_relay_cluster *cluster) {
     nv_config_buffer.on_off = cluster->relay->on;
     nv_config_buffer.startup_mode = cluster->startup_mode;
     nv_config_buffer.indicator_led_mode = cluster->indicator_led_mode;
+    nv_config_buffer.indicator_led_on = cluster->indicator_led->on;
 
     nv_flashWriteNew(1, NV_MODULE_ZCL,  NV_ITEM_ZCL_RELAY_CONFIG(cluster->endpoint), sizeof(zigbee_relay_cluster_config), (u8*)&nv_config_buffer);
 }
@@ -211,6 +216,17 @@ void relay_cluster_handle_startup_mode(zigbee_relay_cluster *cluster) {
             relay_cluster_on(cluster);
         } else {
             relay_cluster_off(cluster);
+        }
+    }
+
+    // Restore indicator led
+    if (cluster->indicator_led != NULL) {
+        if (cluster->indicator_led_mode == ZCL_ONOFF_INDICATOR_MODE_MANUAL) {
+            if (nv_config_buffer.indicator_led_on) {
+                led_on(cluster->indicator_led);
+            } else {
+                led_off(cluster->indicator_led);
+            }
         }
     }
 }
