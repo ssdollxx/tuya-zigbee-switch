@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
         devices.append({
             "zb_models": [zb_model, *device.get("old_zb_models", [])],
-            "model": device["name"],
+            "model": device["stock_converter_model"],
             "switchNames": [str(index + 1) for index in range(switch_cnt)],
             "relayNames": relay_names,
             "relayIndicatorNames": relay_names[:indicators_cnt],
