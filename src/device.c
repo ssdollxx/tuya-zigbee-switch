@@ -116,6 +116,8 @@ void user_app_init(void)
     ota_init(OTA_TYPE_CLIENT, (af_simple_descriptor_t *)&endpoints[0].simple_description, &baseEndpoint_otaInfo, &baseEndpoint_otaCb);
 }
 
+bool boot_announce_sent = false;
+
 void app_task(void)
 {
 	millis_update();
@@ -125,6 +127,12 @@ void app_task(void)
 			network_indicator_connected(&network_indicator);
 			if (zb_isDeviceFactoryNew()) {
 				zb_deviceFactoryNewSet(false);
+			}
+
+			if (!boot_announce_sent) {
+				// Send announcement to notify that device is up
+				zb_zdoSendDevAnnance();
+				boot_announce_sent = true;
 			}
 
 			// report handler
