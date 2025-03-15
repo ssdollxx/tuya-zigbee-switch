@@ -75,6 +75,26 @@ const romasku = {
             attribute: "presentValue",
             description: "Action of the switch: 'released' or 'press' or 'long_press'",
         }),
+    relayState: (name, endpointName) =>
+        binary({
+            name,
+            endpointName,
+            valueOn: ["ON", 1],
+            valueOff: ["OFF", 0],
+            cluster: "genOnOff",
+            attribute: "onOff", 
+            description: "State of the relay",
+            access: "ALL",
+        }),
+    relayPowerOnBehavior: (name, endpointName) =>
+         enumLookup({
+            name,
+            endpointName,
+            lookup: { off: 0, on: 1, toggle: 2, previous: 3 },
+            cluster: "genOnOff",
+            attribute: "startUpOnOff", // Enum8
+            description: "Select the type of switch connected to the device",
+        }),
     relayIndicatorMode: (name, endpointName) =>
         enumLookup({
             name,
@@ -82,7 +102,7 @@ const romasku = {
             lookup: { same: 0, opposite: 1, manual: 2 },
             cluster: "genOnOff",
             attribute: { ID: 0xff01, type: 0x30 }, // Enum8
-            description: "Mode for relay indicator LED",
+            description: "Mode for the relay indicator LED",
         }),
     relayIndicator: (name, endpointName) =>
         binary({
@@ -92,7 +112,7 @@ const romasku = {
             valueOff: ["OFF", 0],
             cluster: "genOnOff",
             attribute: {ID: 0xff02, type: 0x10},  // Boolean
-            description: "State of relay indicator LED",
+            description: "State of the relay indicator LED",
             access: "ALL",
         }),
     deviceConfig: (name, endpointName) =>
@@ -156,25 +176,25 @@ const definitions = [
         extend: [
             deviceEndpoints({ endpoints: {
                 {%- for switchName in device.switchNames -%}
-                    {{switchName}}: {{loop.index}},{{" "}}
+                    "{{switchName}}": {{loop.index}},{{" "}}
                 {%- endfor -%}
                 {%- for relayName in device.relayNames -%}
                     "{{relayName}}": {{loop.index  + (device.switchNames | length)}},{{" "}}
                 {%- endfor -%}
             } }),
-            romasku.deviceConfig("device_config", "1"),
+            romasku.deviceConfig("device_config", "switch_1"),       
             onOff({ endpointNames: {{device.relayNames | tojson }} }),
             {% for switchName in device.switchNames %}
-            romasku.pressAction("switch_{{switchName}}_press_action", "{{switchName}}"),
-            romasku.switchMode("switch_{{switchName}}_mode", "{{switchName}}"),
-            romasku.switchAction("switch_{{switchName}}_action_mode", "{{switchName}}"),
-            romasku.relayMode("switch_{{switchName}}_relay_mode", "{{switchName}}"),
-            romasku.relayIndex("switch_{{switchName}}_relay_index", "{{switchName}}", {{device.relayNames | length}}),
-            romasku.longPressDuration("switch_{{switchName}}_long_press_duration", "{{switchName}}"),
+            romasku.pressAction("{{switchName}}_press_action", "{{switchName}}"),
+            romasku.switchMode("{{switchName}}_mode", "{{switchName}}"),
+            romasku.switchAction("{{switchName}}_action_mode", "{{switchName}}"),
+            romasku.relayMode("{{switchName}}_relay_mode", "{{switchName}}"),
+            romasku.relayIndex("{{switchName}}_relay_index", "{{switchName}}", {{device.relayNames | length}}),
+            romasku.longPressDuration("{{switchName}}_long_press_duration", "{{switchName}}"),
             {% endfor %}
             {% for relayName in device.relayIndicatorNames %}
-            romasku.relayIndicatorMode("relay_{{relayName}}_indicator_mode", "{{relayName}}"),
-            romasku.relayIndicator("relay_{{relayName}}_indicator", "{{relayName}}"),
+            romasku.relayIndicatorMode("{{relayName}}_indicator_mode", "{{relayName}}"),
+            romasku.relayIndicator("{{relayName}}_indicator", "{{relayName}}"),
             {% endfor %}
         ],
         meta: { multiEndpoint: true },

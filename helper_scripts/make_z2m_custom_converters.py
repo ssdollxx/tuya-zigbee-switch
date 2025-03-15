@@ -44,20 +44,29 @@ if __name__ == "__main__":
                 switch_cnt += 1
             if peripheral[0] == 'I':
                 indicators_cnt += 1
-            
+        
+        if switch_cnt == 1:
+            switch_names = ["switch"]
+        elif switch_cnt == 2:
+            switch_names = ["switch_left", "switch_right"]
+        elif switch_cnt == 3:
+            switch_names = ["switch_left", "switch_middle", "switch_right"]
+        else:
+            switch_names = [f"switch_{index}" for index in range(relay_cnt)]
+
         if relay_cnt == 1:
             relay_names = ["relay"]
         elif relay_cnt == 2:
-            relay_names = ["left", "right"]
+            relay_names = ["relay_left", "relay_right"]
         elif relay_cnt == 3:
-            relay_names = ["left", "middle", "right"]
+            relay_names = ["relay_left", "relay_middle", "relay_right"]
         else:
             relay_names = [f"relay_{index}" for index in range(relay_cnt)]
 
         devices.append({
             "zb_models": [zb_model, *device.get("old_zb_models", [])],
             "model": device["stock_converter_model"],
-            "switchNames": [str(index + 1) for index in range(switch_cnt)],
+            "switchNames": switch_names,
             "relayNames": relay_names,
             "relayIndicatorNames": relay_names[:indicators_cnt],
         })
