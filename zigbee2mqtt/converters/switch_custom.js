@@ -72,26 +72,6 @@ const romasku = {
             attribute: "presentValue",
             description: "Action of the switch: 'released' or 'press' or 'long_press'",
         }),
-    relayState: (name, endpointName) =>
-        binary({
-            name,
-            endpointName,
-            valueOn: ["ON", 1],
-            valueOff: ["OFF", 0],
-            cluster: "genOnOff",
-            attribute: "onOff", 
-            description: "State of the relay",
-            access: "ALL",
-        }),
-    relayPowerOnBehavior: (name, endpointName) =>
-         enumLookup({
-            name,
-            endpointName,
-            lookup: { off: 0, on: 1, toggle: 2, previous: 3 },
-            cluster: "genOnOff",
-            attribute: "startUpOnOff", // Enum8
-            description: "Select the type of switch connected to the device",
-        }),
     relayIndicatorMode: (name, endpointName) =>
         enumLookup({
             name,
