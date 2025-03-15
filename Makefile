@@ -241,6 +241,9 @@ update_converters:
 	python3 helper_scripts/make_z2m_custom_converters.py --z2m-v1 device_db.yaml \
 		> zigbee2mqtt/converters_v1/switch_custom.js 
 
+update_zha_quirk:
+	python3 helper_scripts/make_zha_quirk.py device_db.yaml > zha/switch_quirk.py
+
 
 update_readme:
 	python3 helper_scripts/make_readme.py device_db.yaml > readme.md 
