@@ -39,6 +39,8 @@ if __name__ == "__main__":
         else:
              by_manufacturer_names[manufacturer_name]["device_types"].append(device["device_type"])
 
+    for device in by_manufacturer_names.values():
+        device["device_types"] = list(set(device["device_types"]))
 
     template = env.get_template("readme.md.jinja")
 

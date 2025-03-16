@@ -158,7 +158,7 @@ MOES_2_GANG_SWITCH:
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
   human_name: Moes TS0012 (2 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 MOES_2_GANG_SWITCH_END_DEVICE:
   name: Moes-2-gang
@@ -171,7 +171,7 @@ MOES_2_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_names:
       - _TZ3000_18ejxno0
   human_name: Moes TS0012 (2 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 BSEED_2_GANG_SWITCH:
   name: Bseed-2-gang
@@ -263,7 +263,7 @@ MOES_1_GANG_SWITCH:
   tuya_manufacturer_names:
       - _TZ3000_hhiodade
   human_name: Moes TS0011 (1 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 MOES_1_GANG_SWITCH_END_DEVICE:
   name: Moes-1-gang
@@ -277,7 +277,7 @@ MOES_1_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_names:
       - _TZ3000_hhiodade
   human_name: Moes TS0011 (1 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 MOES_3_GANG_SWITCH:
   name: Moes-3-gang
@@ -290,7 +290,7 @@ MOES_3_GANG_SWITCH:
   tuya_manufacturer_names:
       - _TZ3000_qewo8dlz
   human_name: Moes TS0013 (3 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 MOES_3_GANG_SWITCH_END_DEVICE:
   name: Moes-3-gang
@@ -303,7 +303,7 @@ MOES_3_GANG_SWITCH_END_DEVICE:
   tuya_manufacturer_names:
       - _TZ3000_qewo8dlz
   human_name: Moes TS0013 (3 gang switch)
-  status: In progress
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
 WHD02_2:
   name: WHD02-custom
