@@ -162,7 +162,7 @@ const definitions = [
                     "{{relayName}}": {{loop.index  + (device.switchNames | length)}},{{" "}}
                 {%- endfor -%}
             } }),
-            romasku.deviceConfig("device_config", "switch_1"),       
+            romasku.deviceConfig("device_config", "{{device.switchNames[0]}}"),
             onOff({ endpointNames: {{device.relayNames | tojson }} }),
             {% for switchName in device.switchNames %}
             romasku.pressAction("{{switchName}}_press_action", "{{switchName}}"),
