@@ -8,11 +8,12 @@
 #include "endpoint.h"
 #include "base_components/relay.h"
 
-typedef struct {
-	u8	deviceEnable;
-    char manuName[32];
-    char modelId[32];
-    zclAttrInfo_t attr_infos[12];
+typedef struct
+{
+  u8            deviceEnable;
+  char          manuName[32];
+  char          modelId[32];
+  zclAttrInfo_t attr_infos[12];
 } zigbee_basic_cluster;
 
 void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoint *endpoint);
@@ -20,4 +21,3 @@ void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoin
 void basic_cluster_callback_attr_write_trampoline(u8 clusterId);
 
 #endif
-

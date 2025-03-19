@@ -4,9 +4,10 @@
 #include "types.h"
 #include "base_components/led.h"
 
-typedef struct{
-    led_t *leds[4];
-    bool keep_on_after_connect;
+typedef struct
+{
+  led_t *leds[4];
+  bool   keep_on_after_connect;
 } network_indicator_t;
 
 

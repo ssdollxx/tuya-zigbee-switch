@@ -9,24 +9,26 @@
 #include "base_components/button.h"
 #include "custom_zcl/zcl_onoff_configuration.h"
 
-typedef struct {
-    u8 	 mode;
-	u8 	 action;
-	u8 	 relay_mode;
-	u8   relay_index;
-    u16  button_long_press_duration;
+typedef struct
+{
+  u8  mode;
+  u8  action;
+  u8  relay_mode;
+  u8  relay_index;
+  u16 button_long_press_duration;
 } zigbee_switch_cluster_config;
 
-typedef struct {
-    u8 endpoint;
-    u8 	 mode;
-	u8 	 action;
-	u8 	 relay_mode;
-	u8   relay_index;
-    button_t *button;
-    zclAttrInfo_t attr_infos[6];
-    u16 multistate_state;
-    zclAttrInfo_t multistate_attr_infos[4];
+typedef struct
+{
+  u8            endpoint;
+  u8            mode;
+  u8            action;
+  u8            relay_mode;
+  u8            relay_index;
+  button_t *    button;
+  zclAttrInfo_t attr_infos[6];
+  u16           multistate_state;
+  zclAttrInfo_t multistate_attr_infos[4];
 } zigbee_switch_cluster;
 
 void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpoint *endpoint);
@@ -34,4 +36,3 @@ void switch_cluster_add_to_endpoint(zigbee_switch_cluster *cluster, zigbee_endpo
 void switch_cluster_callback_attr_write_trampoline(u8 clusterId);
 
 #endif
-

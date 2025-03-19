@@ -4,6 +4,7 @@
 
 
 
-void factoryReset() {
-    zb_factoryReset();
+void factoryReset()
+{
+  zb_factoryReset();
 }

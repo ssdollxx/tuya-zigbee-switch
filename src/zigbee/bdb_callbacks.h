@@ -1,5 +1,3 @@
-
-
 #ifndef _BDB_CALLBACKS_H_
 #define _BDB_CALLBACKS_H_
 
@@ -19,4 +17,3 @@ void device_leaveIndHandler(nlme_leave_ind_t *pLeaveInd);
 
 
 #endif
-

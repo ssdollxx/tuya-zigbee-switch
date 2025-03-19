@@ -38,64 +38,64 @@ extern "C" {
  * Product Information
  */
 /* Debug mode config */
-#define	DEBUG_ENABLE					0 // lcd = DeviceSysException
+#define DEBUG_ENABLE        0           // lcd = DeviceSysException
 
 #ifndef UART_PRINTF_MODE
-#define	UART_PRINTF_MODE				0
+#define UART_PRINTF_MODE    0
 #endif
-#define USB_PRINTF_MODE      			0       		
+#define USB_PRINTF_MODE     0
 
 
 /* PM */
 
 #ifndef PM_ENABLE
-#define PM_ENABLE						0
+#define PM_ENABLE               0
 #endif
-#define PM_SLEEP_DURATION_MS            50
+#define PM_SLEEP_DURATION_MS    50
 
 /* PA */
-#define PA_ENABLE						0
+#define PA_ENABLE               0
 
-#define CLOCK_SYS_CLOCK_HZ  		24000000 //48000000
+#define CLOCK_SYS_CLOCK_HZ      24000000         //48000000
 
 
-#define RF_TX_POWER_DEF RF_POWER_P10p46dBm
-#define ZIGBEE_TUYA_OTA 	1
+#define RF_TX_POWER_DEF         RF_POWER_P10p46dBm
+#define ZIGBEE_TUYA_OTA         1
 
-#define BAUDRATE            115200
-#define	DEBUG_INFO_TX_PIN	GPIO_PB1 //print
+#define BAUDRATE                115200
+#define DEBUG_INFO_TX_PIN       GPIO_PB1 //print
 
 
 /* Watch dog module */
-#define MODULE_WATCHDOG_ENABLE						0
+#define MODULE_WATCHDOG_ENABLE    0
 
 /* UART module */
-#define	MODULE_UART_ENABLE							0
+#define MODULE_UART_ENABLE        0
 
 #if (ZBHCI_USB_PRINT || ZBHCI_USB_CDC || ZBHCI_USB_HID || ZBHCI_UART)
-	#define ZBHCI_EN								1
+        #define ZBHCI_EN          1
 #endif
 
 
 /**********************************************************************
  * ZCL cluster support setting
  */
-#define ZCL_POWER_CFG_SUPPORT						0
-#define ZCL_ON_OFF_SUPPORT							1
-#define ZCL_ONOFF_CONFIGUATION					    1
-//#define ZCL_IAS_ZONE_SUPPORT						1
-#define ZCL_POLL_CTRL_SUPPORT						0
-#define ZCL_GROUP_SUPPORT							0
-#define ZCL_OTA_SUPPORT								1
-#define TOUCHLINK_SUPPORT							0
-#define FIND_AND_BIND_SUPPORT						0
-#define REJOIN_FAILURE_TIMER						1
+#define ZCL_POWER_CFG_SUPPORT     0
+#define ZCL_ON_OFF_SUPPORT        1
+#define ZCL_ONOFF_CONFIGUATION    1
+//#define ZCL_IAS_ZONE_SUPPORT			    1
+#define ZCL_POLL_CTRL_SUPPORT     0
+#define ZCL_GROUP_SUPPORT         0
+#define ZCL_OTA_SUPPORT           1
+#define TOUCHLINK_SUPPORT         0
+#define FIND_AND_BIND_SUPPORT     0
+#define REJOIN_FAILURE_TIMER      1
 
-#define GP_SUPPORT_ENABLE				            1
+#define GP_SUPPORT_ENABLE         1
 
 
 
-#define VOLTAGE_DETECT_ADC_PIN          0
+#define VOLTAGE_DETECT_ADC_PIN    0
 
 /**********************************************************************
  * Stack configuration
@@ -107,11 +107,12 @@ extern "C" {
 /**********************************************************************
  * EV configuration
  */
-typedef enum{
-	EV_POLL_ED_DETECT,
-	EV_POLL_HCI,
-    EV_POLL_IDLE,
-	EV_POLL_MAX,
+typedef enum
+{
+  EV_POLL_ED_DETECT,
+  EV_POLL_HCI,
+  EV_POLL_IDLE,
+  EV_POLL_MAX,
 }ev_poll_e;
 
 

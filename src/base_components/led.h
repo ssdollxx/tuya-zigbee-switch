@@ -3,15 +3,16 @@
 
 #include "types.h"
 
-typedef struct{
-    u32 pin;
-    u8 on_high;
-    u8 on;
-    u16 blink_times_left;
-    u16 blink_time_on;
-    u16 blink_time_off;
-    u32 blink_switch_counter;
-    u32 last_update;
+typedef struct
+{
+  u32 pin;
+  u8  on_high;
+  u8  on;
+  u16 blink_times_left;
+  u16 blink_time_on;
+  u16 blink_time_off;
+  u32 blink_switch_counter;
+  u32 last_update;
 } led_t;
 
 
@@ -44,10 +45,10 @@ void led_on(led_t *led);
 void led_off(led_t *led);
 
 
-#define LED_BLINK_FOREVER 0xFFFF
+#define LED_BLINK_FOREVER    0xFFFF
 
 /**
- * @brief      Start led blinking, will go to off when finished 
+ * @brief      Start led blinking, will go to off when finished
  * @param	   *led - Led to use
  *             on_time_ms - Time led should be on in milliseconds
  *             off_time_ms - Time led should be off in milliseconds

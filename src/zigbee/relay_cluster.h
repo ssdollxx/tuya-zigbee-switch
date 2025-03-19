@@ -9,13 +9,14 @@
 #include "base_components/relay.h"
 #include "base_components/led.h"
 
-typedef struct {
-    u8 endpoint;
-    u8 startup_mode;
-    u8 indicator_led_mode;
-    zclAttrInfo_t attr_infos[4];
-    relay_t *relay;
-    led_t *indicator_led;
+typedef struct
+{
+  u8            endpoint;
+  u8            startup_mode;
+  u8            indicator_led_mode;
+  zclAttrInfo_t attr_infos[4];
+  relay_t *     relay;
+  led_t *       indicator_led;
 } zigbee_relay_cluster;
 
 void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoint *endpoint);
@@ -30,4 +31,3 @@ void relay_cluster_report(zigbee_relay_cluster *cluster);
 void relay_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd);
 
 #endif
-
