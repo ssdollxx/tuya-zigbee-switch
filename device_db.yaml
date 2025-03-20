@@ -103,8 +103,8 @@ TS0002_2:
   tuya_manufacturer_names:
       - _TZ3000_zmy4lslw 
   human_name: No name TS0002
-  status: Supported, but manufacturer name needs confirmation
-  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/6  
+  status: Not working, pinout is not correct
+  github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/29 
 TS0001_AVATTO:
   name: TS0001-Avatto-custom
   config_str: Tuya-TS0001-Avatto-custom;TS0001-Avatto-custom;BC2u;LD2;SD3u;RC0;
