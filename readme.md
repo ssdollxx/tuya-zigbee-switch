@@ -66,6 +66,11 @@ To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 
 ## Changelog
 
+### v1.0.13
+
+- Fix power on behavior = OFF not working if toggle in pressed state during boot
+- Add way to control network state led state
+
 ### v1.0.12
 
 - Fix led indicator state in manual mode not preserved after reboot
