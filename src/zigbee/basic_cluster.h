@@ -13,11 +13,11 @@ typedef struct
   u8            deviceEnable;
   char          manuName[32];
   char          modelId[32];
-  zclAttrInfo_t attr_infos[12];
+  zclAttrInfo_t attr_infos[13];
 } zigbee_basic_cluster;
 
 void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoint *endpoint);
 
-void basic_cluster_callback_attr_write_trampoline(u8 clusterId);
+void basic_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd);
 
 #endif

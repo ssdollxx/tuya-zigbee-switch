@@ -15,7 +15,8 @@ extern ota_preamble_t baseEndpoint_otaInfo;
 network_indicator_t network_indicator =
 {
   .leds                  = { NULL, NULL, NULL, NULL },
-  .keep_on_after_connect = 0,
+  .has_dedicated_led = 0,
+  .manual_state_when_connected = 1,
 };
 
 led_t leds[5];
@@ -108,7 +109,7 @@ void parse_config()
 
       network_indicator.leds[0] = &leds[leds_cnt];
       network_indicator.leds[1] = NULL;
-      network_indicator.keep_on_after_connect = true;
+      network_indicator.has_dedicated_led = true;
 
       has_dedicated_status_led = true;
       leds_cnt++;
@@ -195,6 +196,8 @@ void parse_config()
       }
     }
   }
+
+  periferals_update();
 
   u8 total_endpoints = switch_clusters_cnt + relay_clusters_cnt;
 

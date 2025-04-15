@@ -7,12 +7,12 @@
 typedef struct
 {
   led_t *leds[4];
-  bool   keep_on_after_connect;
+  bool   has_dedicated_led;
+  bool   manual_state_when_connected;
 } network_indicator_t;
 
 
 void network_indicator_connected(network_indicator_t *indicator);
-
 
 void network_indicator_commission_success(network_indicator_t *indicator);
 

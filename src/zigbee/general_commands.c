@@ -34,7 +34,7 @@ void device_zclWriteReqCmd(u8 endpoint, u16 clusterId, zclWriteCmd_t *pWriteReqC
   }
   if (clusterId == ZCL_CLUSTER_GEN_BASIC)
   {
-    basic_cluster_callback_attr_write_trampoline(endpoint);
+    basic_cluster_callback_attr_write_trampoline(endpoint, pWriteReqCmd);
   }
 }
 

@@ -5,6 +5,8 @@
 #include "cluster_common.h"
 #include "device_config/device_config.h"
 #include "custom_zcl/zcl_basic_config.h"
+#include "base_components/network_indicator.h"
+#include "configs/nv_slots_cfg.h"
 
 
 const u8 zclVersion   = 0x03;
@@ -15,6 +17,12 @@ const u8 hwVersion    = 0x00;
 const u8 powerSource = POWER_SOURCE_MAINS_1_PHASE;
 DEF_STR_NON_CONST("1.0." STRINGIFY(STACK_BUILD), swBuildId);
 DEF_STR_NON_CONST("00000000", dateCode);
+
+extern network_indicator_t network_indicator;
+
+
+void basic_cluster_store_attrs_to_nv();
+void basic_cluster_load_attrs_from_nv();
 
 
 const u8 longStr[] = { 5, 0, 'H', 'e', 'l', 'l', 'o' };
@@ -33,10 +41,16 @@ s32 basic_cluster_reset_callback(void *arg)
   return(-1);
 }
 
-void basic_cluster_callback_attr_write_trampoline(u8 clusterId)
+void basic_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd)
 {
-  device_config_write_to_nv();
-  TL_ZB_TIMER_SCHEDULE(basic_cluster_reset_callback, NULL, 300);
+  for (int index = 0; index < pWriteReqCmd->numAttr; index++)
+  {
+    basic_cluster_store_attrs_to_nv();
+    if (pWriteReqCmd->attrList[index].attrID == ZCL_ATTRID_BASIC_DEVICE_CONFIG) {
+      device_config_write_to_nv();
+      TL_ZB_TIMER_SCHEDULE(basic_cluster_reset_callback, NULL, 300);
+    }
+  }
 }
 
 void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoint *endpoint)
@@ -56,15 +70,20 @@ void basic_cluster_add_to_endpoint(zigbee_basic_cluster *cluster, zigbee_endpoin
   SETUP_ATTR(9, ZCL_ATTRID_BASIC_DATE_CODE, ZCL_DATA_TYPE_CHAR_STR, ACCESS_CONTROL_READ, dateCode);
   SETUP_ATTR(10, ZCL_ATTRID_GLOBAL_CLUSTER_REVISION, ZCL_DATA_TYPE_UINT16, ACCESS_CONTROL_READ, zcl_attr_global_clusterRevision);
   SETUP_ATTR(11, ZCL_ATTRID_BASIC_DEVICE_CONFIG, ZCL_DATA_TYPE_LONG_CHAR_STR, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, config);
+  if (network_indicator.has_dedicated_led) {
+    SETUP_ATTR(12, ZCL_ATTRID_STATUS_LED_STATE, ZCL_DATA_TYPE_BOOLEAN, ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE, network_indicator.manual_state_when_connected);
+  }
 
   zigbee_endpoint_add_cluster(endpoint, 1, ZCL_CLUSTER_GEN_BASIC);
   zcl_specClusterInfo_t *info = zigbee_endpoint_reserve_info(endpoint);
   info->clusterId           = ZCL_CLUSTER_GEN_BASIC;
   info->manuCode            = MANUFACTURER_CODE_NONE;
-  info->attrNum             = 12;
+  info->attrNum             = network_indicator.has_dedicated_led ? 13 : 12;
   info->attrTbl             = cluster->attr_infos;
   info->clusterRegisterFunc = zcl_basic_register;
   info->clusterAppCb        = basic_cluster_callback_trampoline;
+
+  basic_cluster_load_attrs_from_nv();
 }
 
 void populate_date_code()
@@ -128,4 +147,32 @@ void populate_date_code()
   dateCode.str[5] = '0' + month % 10;
   dateCode.str[6] = __DATE__[4] >= '0' ? (__DATE__[4]) : '0';
   dateCode.str[7] = __DATE__[5];
+}
+
+
+typedef struct
+{
+  u8 network_led_on;
+} zigbee_basic_cluster_config;
+
+
+zigbee_basic_cluster_config nv_config_buffer;
+
+
+void basic_cluster_store_attrs_to_nv()
+{
+  nv_config_buffer.network_led_on   = network_indicator.manual_state_when_connected;
+
+  nv_flashWriteNew(1, NV_MODULE_ZCL, NV_ITEM_ZCL_BASIC_CONFIG, sizeof(zigbee_basic_cluster_config), (u8 *)&nv_config_buffer);
+}
+
+void basic_cluster_load_attrs_from_nv()
+{
+  nv_sts_t st = nv_flashReadNew(1, NV_MODULE_ZCL, NV_ITEM_ZCL_BASIC_CONFIG, sizeof(zigbee_basic_cluster_config), (u8 *)&nv_config_buffer);
+
+  if (st != NV_SUCC)
+  {
+    return;
+  }
+  network_indicator.manual_state_when_connected = nv_config_buffer.network_led_on;
 }

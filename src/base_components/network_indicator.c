@@ -10,9 +10,13 @@ void network_indicator_connected(network_indicator_t *indicator)
   while (*led != NULL)
   {
     (*led)->blink_times_left = 0;
-    if (indicator->keep_on_after_connect)
+    if (indicator->has_dedicated_led)
     {
-      led_on(*led);
+      if (indicator->manual_state_when_connected) {
+        led_on(*led);
+      } else {
+        led_off(*led);
+      }
     }
     led++;
   }

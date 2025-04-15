@@ -95,6 +95,17 @@ const romasku = {
             description: "State of the relay indicator LED",
             access: "ALL",
         }),
+    networkIndicator: (name, endpointName) =>
+        binary({
+            name,
+            endpointName,
+            valueOn: ["ON", 1],
+            valueOff: ["OFF", 0],
+            cluster: "genBasic",
+            attribute: {ID: 0xff01, type: 0x10},  // Boolean
+            description: "State of the network indicator LED",
+            access: "ALL",
+        }),
     deviceConfig: (name, endpointName) =>
         text({
             name,
@@ -163,6 +174,9 @@ const definitions = [
                 {%- endfor -%}
             } }),
             romasku.deviceConfig("device_config", "{{device.switchNames[0]}}"),
+            {% if device.has_dedicated_net_led %}
+            romasku.networkIndicator("network_led", "{{device.switchNames[0]}}"),
+            {% endif%}
             onOff({ endpointNames: {{device.relayNames | tojson }} }),
             {% for switchName in device.switchNames %}
             romasku.pressAction("{{switchName}}_press_action", "{{switchName}}"),
