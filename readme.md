@@ -69,7 +69,7 @@ To flash via wire, follow [this guide](./docs/flashing_via_wire.md)
 ### v1.0.13
 
 - Fix power on behavior = OFF not working if toggle in pressed state during boot
-- Add way to control network state led state
+- Add way to control network state led state (requires re-download of `switch_custom.js`)
 
 ### v1.0.12
 
