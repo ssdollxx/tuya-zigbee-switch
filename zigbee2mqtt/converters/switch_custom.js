@@ -791,7 +791,7 @@ const definitions = [
         zigbeeModel: [
             "TS0012-avatto",
         ],
-        model: "TS0012_switch_module",
+        model: "LZWSM16-2",
         vendor: "Tuya-custom",
         description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
         extend: [
@@ -835,7 +835,7 @@ const definitions = [
         zigbeeModel: [
             "TS0012-avatto-ED",
         ],
-        model: "TS0012_switch_module",
+        model: "LZWSM16-2",
         vendor: "Tuya-custom",
         description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
         extend: [
