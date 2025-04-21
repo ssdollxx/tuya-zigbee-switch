@@ -92,9 +92,9 @@ TS0001:
   human_name: OXT TS0001, probably other rebrands
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/6  
-TS0002_2:
+TS0002_GIRIER:
   name: TS0002-custom
-  config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC0;SB4u;RC2;SB5u;RC3;
+  config_str: Tuya-TS0002-custom;TS0002-custom;BD2u;LC2;SB5u;RC4;SB4u;RC3;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
@@ -102,8 +102,8 @@ TS0002_2:
   stock_converter_model: TS0002_basic
   tuya_manufacturer_names:
       - _TZ3000_zmy4lslw 
-  human_name: No name TS0002
-  status: Not working, pinout is not correct
+  human_name: GIRIER 2 Gang
+  status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/29 
 TS0001_AVATTO:
   name: TS0001-Avatto-custom
