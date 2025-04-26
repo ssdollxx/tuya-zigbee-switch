@@ -13,7 +13,7 @@ Note that rebranded versions may have different internals and may not work. "Zig
 | Z2M device name | Vendor name | Zigbee Manufacturer | Type | Status | Issue |
 | --- | --- | --- | --- | --- | --- |
 {% for device in devices %}
-| [{{device.stock_converter_model}}](https://www.zigbee2mqtt.io/devices/{{device.stock_converter_model}}.html) | {{device.human_name}}  | {{device.tuya_manufacturer_name}} | {{ device.device_types | join(' / ') }} | {{device.status}} |  {% if device.github_issue %} [link]({{device.github_issue}}) {% else %}  - {% endif%} | 
+| [{{device.z2m_device}}](https://www.zigbee2mqtt.io/devices/{{device.z2m_device}}.html) | {{device.human_name}}  | {{device.tuya_manufacturer_name}} | {{ device.device_types | join(' / ') }} | {{device.status}} |  {% if device.github_issue %} [link]({{device.github_issue}}) {% else %}  - {% endif%} | 
 {% endfor %}
 
 If you device is not supported, but it is some Tuya switch module, please check [the porting guide](./docs/porting_to_new_device.md).

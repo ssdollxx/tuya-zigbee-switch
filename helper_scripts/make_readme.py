@@ -34,13 +34,14 @@ if __name__ == "__main__":
             by_manufacturer_names[manufacturer_name] = {
                 **device,
                 "tuya_manufacturer_name": manufacturer_name,
-                "device_types": [device["device_type"]]
+                "device_types": [device["device_type"]],
+                "z2m_device": device.get("override_z2m_device") or device["stock_converter_model"]
             }
         else:
              by_manufacturer_names[manufacturer_name]["device_types"].append(device["device_type"])
 
     for device in by_manufacturer_names.values():
-        device["device_types"] = list(set(device["device_types"]))
+        device["device_types"] = sorted(list(set(device["device_types"])), reverse=True)
 
     template = env.get_template("readme.md.jinja")
 

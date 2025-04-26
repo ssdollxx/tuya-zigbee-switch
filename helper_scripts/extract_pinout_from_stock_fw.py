@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     if "total_bt_pin" in config_dict:
         pin = pin_map[config_dict["total_bt_pin"]]
-        custom_config += f"B{pin};"
+        custom_config += f"B{pin}u;"
     if "netled1_pin" in config_dict:
         pin = pin_map[config_dict["netled1_pin"]]
         custom_config += f"L{pin};"
