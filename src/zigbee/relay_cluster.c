@@ -27,6 +27,14 @@ void relay_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *p
   relay_cluster_on_write_attr(relay_cluster_by_endpoint[clusterId], pWriteReqCmd);
 }
 
+void update_relay_clusters() {
+  for (int i =0; i < 10; i++) {
+    if (relay_cluster_by_endpoint[i] != NULL) {
+      sync_indicator_led(relay_cluster_by_endpoint[i]);
+    }
+  }
+}
+
 void relay_cluster_add_to_endpoint(zigbee_relay_cluster *cluster, zigbee_endpoint *endpoint)
 {
   relay_cluster_by_endpoint[endpoint->index] = cluster;
@@ -86,14 +94,12 @@ status_t relay_cluster_callback(zigbee_relay_cluster *cluster, zclIncomingAddrIn
 
 void sync_indicator_led(zigbee_relay_cluster *cluster)
 {
-  printf("sync_indicator_led\r\n");
   if (cluster->indicator_led_mode == ZCL_ONOFF_INDICATOR_MODE_MANUAL)
   {
     return;
   }
   if (cluster->indicator_led != NULL)
   {
-    printf("Not null\r\n");
     u8 turn_on_led = cluster->relay->on;
     if (cluster->indicator_led_mode == ZCL_ONOFF_INDICATOR_MODE_OPPOSITE)
     {
@@ -101,12 +107,10 @@ void sync_indicator_led(zigbee_relay_cluster *cluster)
     }
     if (turn_on_led)
     {
-      printf("On\r\n");
       led_on(cluster->indicator_led);
     }
     else
     {
-      printf("Off\r\n");
       led_off(cluster->indicator_led);
     }
   }

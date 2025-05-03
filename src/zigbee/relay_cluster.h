@@ -27,6 +27,7 @@ void relay_cluster_toggle(zigbee_relay_cluster *cluster);
 
 void relay_cluster_report(zigbee_relay_cluster *cluster);
 
+void update_relay_clusters();
 
 void relay_cluster_callback_attr_write_trampoline(u8 clusterId, zclWriteCmd_t *pWriteReqCmd);
 

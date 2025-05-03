@@ -147,6 +147,8 @@ void app_task(void)
         app_chk_report(seconds() - g_baseAppCtx.lastReportCheckSec);
         g_baseAppCtx.lastReportCheckSec = seconds();
       }
+
+      update_relay_clusters();
     }
     else                 // Device not Joined
     {
