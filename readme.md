@@ -31,6 +31,7 @@ Note that rebranded versions may have different internals and may not work. "Zig
 | [TS0011](https://www.zigbee2mqtt.io/devices/TS0011.html) | Avatto TS0011  | _TZ3000_hbxsdd6k | router / end_device | Supported |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/16)  | 
 | [TS0003](https://www.zigbee2mqtt.io/devices/TS0003.html) | Moes MS-104CZ  | _TZ3000_pfc7i3kt | router | Supported |    -  | 
 | [ZB08](https://www.zigbee2mqtt.io/devices/ZB08.html) | Girier-ZB08  | _TZ3000_ypgri8yz | router / end_device | Supported |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/37)  | 
+| [TS0004_switch_module](https://www.zigbee2mqtt.io/devices/TS0004_switch_module.html) | Avatto 4 gang switch module with N  | _TZ3000_ltt60asa | router | WIP, SUPPORT NOT CONFIRMED YET! |   [link](https://github.com/romasku/tuya-zigbee-switch/issues/42)  | 
 
 If you device is not supported, but it is some Tuya switch module, please check [the porting guide](./docs/porting_to_new_device.md).
 
