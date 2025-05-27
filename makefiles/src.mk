@@ -22,6 +22,7 @@ $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/adc_drv.o \
 $(BUILD_PATH)/$(SRC_DIR)/patch_sdk/random.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/general_commands.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/basic_cluster.o \
+$(BUILD_PATH)/$(SRC_DIR)/zigbee/group_cluster.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/switch_cluster.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/relay_cluster.o \
 $(BUILD_PATH)/$(SRC_DIR)/zigbee/endpoint.o \

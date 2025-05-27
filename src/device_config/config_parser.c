@@ -1,5 +1,6 @@
 #include "zigbee/endpoint.h"
 #include "zigbee/basic_cluster.h"
+#include "zigbee/group_cluster.h"
 #include "zigbee/relay_cluster.h"
 #include "zigbee/switch_cluster.h"
 #include "zigbee/general.h"
@@ -32,6 +33,8 @@ zigbee_basic_cluster basic_cluster =
 {
   .deviceEnable = 1,
 };
+
+zigbee_group_cluster group_cluster = {};
 
 zigbee_switch_cluster switch_clusters[4];
 u8 switch_clusters_cnt = 0;
@@ -217,6 +220,8 @@ void parse_config()
   for (int index = 0; index < relay_clusters_cnt; index++)
   {
     relay_cluster_add_to_endpoint(&relay_clusters[index], &endpoints[switch_clusters_cnt + index]);
+    // Group cluster is stateless, safe to add to multiple endpoints
+    group_cluster_add_to_endpoint(&group_cluster, &endpoints[switch_clusters_cnt + index]);
   }
 
   for (int index = 0; index < total_endpoints; index++)
