@@ -8,6 +8,7 @@ moesDefinitions = moesDefinitions.definitions ?? moesDefinitions;
 
 
 const tuyaModels = [
+    "LZWSM16-1",
     "LZWSM16-2",
     "TS0001_switch_module",
     "TS0002_basic",
@@ -15,7 +16,6 @@ const tuyaModels = [
     "TS0003",
     "TS0004_switch_module",
     "TS0004_switch_module_2",
-    "TS0011",
     "TS0011_switch_module",
     "TS0012",
     "TS0012_switch_module",
