@@ -426,7 +426,7 @@ TS0013_GIRIER_END_DEVICE:
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/37
 TS0014_AVATTO_NEUTRAL:
   name: TS0004-Avv
-  config_str: TS0004-Avv;TS0004-Avv;BB5u;LC1;SB4u;RD7;SD2u;RD4;SC3u;RC4;SC2u;RC0;
+  config_str: TS0004-Avv;TS0004-Avv;BB5u;LC1;SB4u;RD4;SD2u;RD7;SC3u;RC0;SC2u;RC4;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
@@ -435,5 +435,5 @@ TS0014_AVATTO_NEUTRAL:
   tuya_manufacturer_names:
     - _TZ3000_ltt60asa
   human_name: Avatto 4 gang switch module with N
-  status: WIP, SUPPORT NOT CONFIRMED YET!
+  status: WIP, check issue for current status.
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/42
