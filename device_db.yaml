@@ -364,7 +364,7 @@ TS0011_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43537
-  stock_converter_model: TS0011
+  stock_converter_model: LZWSM16-1
   tuya_manufacturer_names:
       - _TZ3000_hbxsdd6k 
   human_name: Avatto TS0011
@@ -377,7 +377,7 @@ TS0011_AVATTO_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43537
-  stock_converter_model: TS0011
+  stock_converter_model: LZWSM16-1
   tuya_manufacturer_names:
       - _TZ3000_hbxsdd6k
   human_name: Avatto TS0011
@@ -424,7 +424,7 @@ TS0013_GIRIER_END_DEVICE:
   human_name: Girier-ZB08
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/37
-TS0014_AVVATO_NEUTRAL:
+TS0014_AVATTO_NEUTRAL:
   name: TS0004-Avv
   config_str: TS0004-Avv;TS0004-Avv;BB5u;LC1;SB4u;RD7;SD2u;RD4;SC3u;RC4;SC2u;RC0;
   device_type: router
