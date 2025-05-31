@@ -424,7 +424,7 @@ TS0013_GIRIER_END_DEVICE:
   human_name: Girier-ZB08
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/37
-TS0014_AVATTO_NEUTRAL:
+TS0004_AVATTO_NEUTRAL:
   name: TS0004-Avv
   config_str: TS0004-Avv;TS0004-Avv;BB5u;LC1;SB4u;RD4;SD2u;RD7;SC3u;RC0;SC2u;RC4;
   device_type: router
