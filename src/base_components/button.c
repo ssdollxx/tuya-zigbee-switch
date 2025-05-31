@@ -28,7 +28,7 @@ void btn_update_debounced(button_t *button, u8 is_pressed)
   }
 
   // Ignore change state
-  if ((now - button->debounce_last_change) < 50) // 50ms debounce
+  if ((now - button->debounce_last_change) < DEBOUNCE_DELAY_MS)
   {
     return;
   }

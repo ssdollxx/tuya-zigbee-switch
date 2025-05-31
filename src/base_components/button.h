@@ -6,6 +6,9 @@
 typedef void (*ev_button_callback_t)(void *);
 typedef void (*ev_button_multi_press_callback_t)(void *, u8);
 
+
+#define DEBOUNCE_DELAY_MS 50
+
 typedef struct
 {
   u32                              pin;
