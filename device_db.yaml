@@ -461,7 +461,7 @@ AVATTO_3_GANG_TOUCH:
   firmware_image_type: 43542
   stock_converter_model: TS0003_switch_3_gang
   tuya_manufacturer_names:
-      - _TZ3000_qewo8dlz
+      - _TZ3000_avky2mvc
   human_name: Avatto Zigbee 3 Gang (ZTS02RD-US-W3)
   status: WIP, expiremntal, see issue.
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/41
