@@ -28,13 +28,18 @@ if __name__ == "__main__":
 
     tuyaModels = [
         entry["stock_converter_model"]
-        for entry in db.values() 
+        for entry in db.values()
         if entry.get("stock_converter_manufacturer", "tuya") == "tuya"
     ]
     moesModels = [
         entry["stock_converter_model"]
-        for entry in db.values()  
+        for entry in db.values()
         if entry.get("stock_converter_manufacturer", "tuya") == "moes"
+    ]
+    avattoModels = [
+        entry["stock_converter_model"]
+        for entry in db.values()
+        if entry.get("stock_converter_manufacturer", "tuya") == "avatto"
     ]
 
     template = env.get_template("tuya_with_ota.js.jinja")
@@ -42,6 +47,7 @@ if __name__ == "__main__":
     print(template.render(
         tuyaModels=sorted(list(set(tuyaModels))),
         moesModels=sorted(list(set(moesModels))),
+        avattoModels=sorted(list(set(avattoModels))),
          z2m_v1=args.z2m_v1)
     )
    

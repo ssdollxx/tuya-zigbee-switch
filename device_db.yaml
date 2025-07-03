@@ -366,6 +366,7 @@ TS0011_AVATTO:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43537
+  stock_converter_manufacturer: avatto
   stock_converter_model: LZWSM16-1
   tuya_manufacturer_names:
       - _TZ3000_hbxsdd6k 
@@ -379,6 +380,7 @@ TS0011_AVATTO_END_DEVICE:
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
   firmware_image_type: 43537
+  stock_converter_manufacturer: avatto
   stock_converter_model: LZWSM16-1
   tuya_manufacturer_names:
       - _TZ3000_hbxsdd6k
