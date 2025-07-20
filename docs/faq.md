@@ -38,8 +38,12 @@ Yes, the custom index you provide to Z2M does not replace the original index. It
 
 <details>
 <summary>
-Is it possible to revert to stock FW?
+Is it possible to revert to stock firmware?
 </summary>
 
-?
+Partially. Reverting to the stock firmware is only possible via wired flashing using UART.  
+Additionally, you will need a dump of the original stock firmware. Dumps are available for **some** devices in the `bin/` directory.
+
+To flash the stock firmware, follow the same steps outlined in the [flashing via wire guide](./docs/flashing_via_wire.md), just as you would for custom firmware.
+
 </details>
