@@ -8,8 +8,8 @@ TS0012:
   - TS0042-CUSTOM
   - TS0012-custom-end-device
   stock_converter_model: TS0012_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_jl7qyupf  # Initial device
+  tuya_manufacturer_name: _TZ3000_jl7qyupf  # Initial device
+  old_manufacturer_names:
   - Tuya-CUSTOM   # Old name from early firmware
   - Tuya-TS0012-custom
   human_name: GIRIER TS0012, OXT
@@ -21,8 +21,8 @@ WHD02:
   tuya_image_type: 524
   firmware_image_type: 43522
   stock_converter_model: WHD02
-  tuya_manufacturer_names:
-  - _TZ3000_skueekg3
+  tuya_manufacturer_name: _TZ3000_skueekg3
+  old_manufacturer_names:
   - Tuya-WHD02-custom
   human_name: No-name 1 gang switch
   status: Supported
@@ -33,8 +33,8 @@ TS0002:
   tuya_image_type: 54179
   firmware_image_type: 43523
   stock_converter_model: TS0002_basic
-  tuya_manufacturer_names:
-  - _TZ3000_01gpyda5
+  tuya_manufacturer_name: _TZ3000_01gpyda5
+  old_manufacturer_names:
   - Tuya-TS0002-custom
   human_name: OXT TS0001, probably other rebrands
   status: Supported
@@ -46,8 +46,8 @@ TS0002_OXT:
   tuya_image_type: 54179
   firmware_image_type: 43547
   stock_converter_model: TS0002_basic
-  tuya_manufacturer_names:
-  - _TZ3000_bvrlqyj7
+  tuya_manufacturer_name: _TZ3000_bvrlqyj7
+  old_manufacturer_names:
   - TS0002-OXT-CUS
   zb_module: ZT3L
   human_name: OXT 2-gang switch
@@ -60,8 +60,8 @@ TS0011:
   tuya_image_type: 54179
   firmware_image_type: 43524
   stock_converter_model: TS0011_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_ji4araar
+  tuya_manufacturer_name: _TZ3000_ji4araar
+  old_manufacturer_names:
   - Tuya-TS0011-custom
   human_name: GIRIER TS0011, OXT TS0011
   status: Supported
@@ -73,8 +73,8 @@ TS0001:
   tuya_image_type: 54179
   firmware_image_type: 43525
   stock_converter_model: TS0001_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_tqlv4ug4
+  tuya_manufacturer_name: _TZ3000_tqlv4ug4
+  old_manufacturer_names:
   - Tuya-TS0001-custom
   human_name: OXT TS0001, probably other rebrands
   status: Supported
@@ -86,8 +86,8 @@ TS0002_GIRIER:
   tuya_image_type: 54179
   firmware_image_type: 43526
   stock_converter_model: TS0002_basic
-  tuya_manufacturer_names:
-  - _TZ3000_zmy4lslw
+  tuya_manufacturer_name: _TZ3000_zmy4lslw
+  old_manufacturer_names:
   - Tuya-TS0002-custom
   zb_module: ZT2S
   human_name: GIRIER 2 Gang
@@ -100,8 +100,8 @@ TS0001_AVATTO:
   tuya_image_type: 54179
   firmware_image_type: 43527
   stock_converter_model: TS0001_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_4rbqgcuv
+  tuya_manufacturer_name: _TZ3000_4rbqgcuv
+  old_manufacturer_names:
   - Tuya-TS0001-Avatto-custom
   - TS0001-AV-CUS
   - TS0001-AVB
@@ -120,8 +120,8 @@ TS0002_AVATTO:
   tuya_image_type: 54179
   firmware_image_type: 43528
   stock_converter_model: TS0002_limited
-  tuya_manufacturer_names:
-  - _TZ3000_mtnpt6ws
+  tuya_manufacturer_name: _TZ3000_mtnpt6ws
+  old_manufacturer_names:
   - Tuya-TS0002-Avatto-custom
   - TS0002-AV-CUS
   - TS0002-AVB
@@ -140,8 +140,8 @@ TS0003_AVATTO:
   tuya_image_type: 54179
   firmware_image_type: 43543
   stock_converter_model: TS0003_switch_module_2
-  tuya_manufacturer_names:
-  - _TZ3000_hbic3ka3
+  tuya_manufacturer_name: _TZ3000_hbic3ka3
+  old_manufacturer_names:
   - Tuya-TS0003-Avatto-custom
   - TS0003-AV-CUS
   - TS0003-AVB
@@ -160,8 +160,8 @@ TS0004_AVATTO:
   tuya_image_type: 54179
   firmware_image_type: 43529
   stock_converter_model: TS0004_switch_module_2
-  tuya_manufacturer_names:
-  - _TZ3000_5ajpkyq6
+  tuya_manufacturer_name: _TZ3000_5ajpkyq6
+  old_manufacturer_names:
   - Tuya-TS0004-Avatto-custom
   - TS0004-AV-CUS
   - TS0004-AVB
@@ -182,8 +182,8 @@ MOES_2_GANG_SWITCH:
   stock_converter_model: TS0012
   old_zb_models:
   - Moes-2-gang-ED
-  tuya_manufacturer_names:
-  - _TZ3000_18ejxno0
+  tuya_manufacturer_name: _TZ3000_18ejxno0
+  old_manufacturer_names:
   - Moes-2-gang
   zb_module: ZTU
   override_z2m_device: ZS-EUB_2gang
@@ -199,8 +199,8 @@ BSEED_2_GANG_SWITCH:
   stock_converter_model: TS0012
   old_zb_models:
   - Bseed-2-gang-ED
-  tuya_manufacturer_names:
-  - _TZ3000_f2slq5pj
+  tuya_manufacturer_name: _TZ3000_f2slq5pj
+  old_manufacturer_names:
   - Bseed-2-gang
   zb_module: ZTU
   human_name: Bseed TS0012 (2 gang switch)
@@ -215,8 +215,8 @@ BSEED_2_GANG_SWITCH_2:
   stock_converter_model: TS0012
   old_zb_models:
   - Bseed-2-gang-2-ED
-  tuya_manufacturer_names:
-  - _TZ3000_xk5udnd6
+  tuya_manufacturer_name: _TZ3000_xk5udnd6
+  old_manufacturer_names:
   - Bseed-2-gang-2
   zb_module: ZTU
   human_name: Bseed TS0012 (2 gang switch)
@@ -231,8 +231,8 @@ TS0012_AVATTO:
   stock_converter_model: TS0012_switch_module
   old_zb_models:
   - TS0012-avatto-ED
-  tuya_manufacturer_names:
-  - _TZ3000_ljhbw1c9
+  tuya_manufacturer_name: _TZ3000_ljhbw1c9
+  old_manufacturer_names:
   - TS0012-Avatto
   zb_module: ZTU
   human_name: Avatto TS0012
@@ -248,8 +248,8 @@ WHD02_AUBESS:
   stock_converter_model: WHD02
   old_zb_models:
   - WHD02-Aubess-ED
-  tuya_manufacturer_names:
-  - _TZ3000_46t1rvdu
+  tuya_manufacturer_name: _TZ3000_46t1rvdu
+  old_manufacturer_names:
   - WHD02-Aubess
   zb_module: ZT2S
   human_name: Aubess WHD02
@@ -265,8 +265,8 @@ MOES_1_GANG_SWITCH:
   stock_converter_manufacturer: moes
   old_zb_models:
   - Moes-1-gang-ED
-  tuya_manufacturer_names:
-  - _TZ3000_hhiodade
+  tuya_manufacturer_name: _TZ3000_hhiodade
+  old_manufacturer_names:
   - Moes-1-gang
   zb_module: ZTU
   human_name: Moes TS0011 (1 gang switch)
@@ -281,8 +281,8 @@ MOES_3_GANG_SWITCH:
   stock_converter_model: TS0013
   old_zb_models:
   - Moes-3-gang-ED
-  tuya_manufacturer_names:
-  - _TZ3000_qewo8dlz
+  tuya_manufacturer_name: _TZ3000_qewo8dlz
+  old_manufacturer_names:
   - Moes-3-gang
   zb_module: ZTU
   human_name: Moes TS0013 (3 gang switch)
@@ -295,8 +295,8 @@ WHD02_2:
   tuya_image_type: 54179
   firmware_image_type: 43535
   stock_converter_model: WHD02
-  tuya_manufacturer_names:
-  - _TZ3000_skueekg3
+  tuya_manufacturer_name: _TZ3000_skueekg3
+  old_manufacturer_names:
   - Tuya-WHD02-custom
   zb_module: ZT2S
   human_name: No-name 1 gang switch with no rf shiled ZT2S
@@ -309,8 +309,8 @@ WHD02_3:
   tuya_image_type: 518
   firmware_image_type: 43541
   stock_converter_model: WHD02
-  tuya_manufacturer_names:
-  - _TZ3000_skueekg3
+  tuya_manufacturer_name: _TZ3000_skueekg3
+  old_manufacturer_names:
   - Tuya-WHD02-custom
   zb_module: ZT2S
   human_name: No-name 1 gang switch with no rf shiled ZT2S
@@ -325,8 +325,8 @@ ZEMISMART_2_GANG:
   stock_converter_model: TS0012
   old_zb_models:
   - Zemi-2-gang-ED
-  tuya_manufacturer_names:
-  - _TZ3000_zmlunnhy
+  tuya_manufacturer_name: _TZ3000_zmlunnhy
+  old_manufacturer_names:
   - Zemi-2-gang
   zb_module: ZT3L
   human_name: Internet search says this is Zemismart 2 gang switch, needs confirmation
@@ -342,8 +342,8 @@ TS0011_AVATTO:
   stock_converter_model: LZWSM16-1
   old_zb_models:
   - TS0011-avatto-ED
-  tuya_manufacturer_names:
-  - _TZ3000_hbxsdd6k
+  tuya_manufacturer_name: _TZ3000_hbxsdd6k
+  old_manufacturer_names:
   - TS0011-Avatto
   zb_module: ZTU
   human_name: Avatto TS0011
@@ -356,8 +356,8 @@ TS0003:
   tuya_image_type: 54179
   firmware_image_type: 43538
   stock_converter_model: TS0003
-  tuya_manufacturer_names:
-  - _TZ3000_pfc7i3kt
+  tuya_manufacturer_name: _TZ3000_pfc7i3kt
+  old_manufacturer_names:
   - Tuya-TS0003-custom
   human_name: Moes MS-104CZ
   status: Supported
@@ -369,8 +369,8 @@ TS0003_IHS:
   tuya_image_type: 54179
   firmware_image_type: 43546
   stock_converter_model: TS0003_switch_module_2
-  tuya_manufacturer_names:
-  - _TZ3000_mhhxxjrs
+  tuya_manufacturer_name: _TZ3000_mhhxxjrs
+  old_manufacturer_names:
   - TS0003-3CH-cus
   - TS0003-IHS
   old_zb_models:
@@ -386,8 +386,8 @@ TS0004_IHS:
   tuya_image_type: 54179
   firmware_image_type: 43548
   stock_converter_model: TS0004_switch_module_2
-  tuya_manufacturer_names:
-  - _TZ3000_knoj8lpk
+  tuya_manufacturer_name: _TZ3000_knoj8lpk
+  old_manufacturer_names:
   - TS0004-IHS
   zb_module: ZTU
   human_name: IHSENO 4-gang Neutral
@@ -403,8 +403,8 @@ TS0013_GIRIER:
   override_z2m_device: ZB08
   old_zb_models:
   - ZB08-custom-ED
-  tuya_manufacturer_names:
-  - _TZ3000_ypgri8yz
+  tuya_manufacturer_name: _TZ3000_ypgri8yz
+  old_manufacturer_names:
   - Girier-ZB08-custom
   - Girier-ZB08-custom-ED
   zb_module: ZTU # probably but not confirmed
@@ -418,8 +418,8 @@ TS0004_AVATTO_NEUTRAL:
   tuya_image_type: 54179
   firmware_image_type: 43540
   stock_converter_model: TS0004_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_ltt60asa
+  tuya_manufacturer_name: _TZ3000_ltt60asa
+  old_manufacturer_names:
   - TS0004-Avv
   zb_module: ZTU
   human_name: Avatto 4 gang switch module with N
@@ -432,8 +432,8 @@ TS0004:
   tuya_image_type: 54179
   firmware_image_type: 43545
   stock_converter_model: TS0004_switch_module
-  tuya_manufacturer_names:
-  - _TZ3000_mmkbptmx
+  tuya_manufacturer_name: _TZ3000_mmkbptmx
+  old_manufacturer_names:
   - Tuya-TS0004-custom
   zb_module: ZTU
   human_name: No-name 4 gang switch module with N
@@ -446,8 +446,8 @@ AVATTO_3_GANG_TOUCH:
   tuya_image_type: 54179
   firmware_image_type: 43542
   stock_converter_model: TS0003_switch_3_gang
-  tuya_manufacturer_names:
-  - _TZ3000_avky2mvc
+  tuya_manufacturer_name: _TZ3000_avky2mvc
+  old_manufacturer_names:
   - Avatto-3-touch
   # override_z2m_device: 37022474_2
   zb_module: ZTU

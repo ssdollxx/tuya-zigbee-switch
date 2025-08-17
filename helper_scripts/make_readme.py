@@ -29,7 +29,7 @@ if __name__ == "__main__":
     by_manufacturer_names = {}
 
     for device in devices:
-        manufacturer_name = next(name for name in device["tuya_manufacturer_names"] if name.startswith("_TZ3000"))
+        manufacturer_name = device["tuya_manufacturer_name"]
         if manufacturer_name not in by_manufacturer_names:
             by_manufacturer_names[manufacturer_name] = {
                 **device,
