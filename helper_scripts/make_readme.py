@@ -37,8 +37,8 @@ if __name__ == "__main__":
                 "device_types": [device["device_type"]],
                 "z2m_device": device.get("override_z2m_device") or device["stock_converter_model"]
             }
-        else:
-             by_manufacturer_names[manufacturer_name]["device_types"].append(device["device_type"])
+        if (device["device_type"] == "end_device"):
+             by_manufacturer_names[manufacturer_name]["device_types"].append("router")
 
     for device in by_manufacturer_names.values():
         device["device_types"] = sorted(list(set(device["device_types"])), reverse=True)
