@@ -49,6 +49,7 @@ TS0002_OXT:
   tuya_manufacturer_names:
   - _TZ3000_bvrlqyj7
   - TS0002-OXT-CUS
+  zb_module: ZT3L
   human_name: OXT 2-gang switch
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/49
@@ -88,6 +89,7 @@ TS0002_GIRIER:
   tuya_manufacturer_names:
   - _TZ3000_zmy4lslw
   - Tuya-TS0002-custom
+  zb_module: ZT2S
   human_name: GIRIER 2 Gang
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/29
@@ -106,6 +108,7 @@ TS0001_AVATTO:
   old_zb_models:
   - TS0001-Avatto-custom
   - TS0001-AV-CUS
+  zb_module: ZTU
   override_z2m_device: ZWSM16-1-Zigbee
   human_name: AVATTO ZWSM16-1-Zigbee (blue socket)
   status: Supported
@@ -125,6 +128,7 @@ TS0002_AVATTO:
   old_zb_models:
   - TS0002-Avatto-custom
   - TS0002-AV-CUS
+  zb_module: ZTU
   override_z2m_device: ZWSM16-2-Zigbee
   human_name: AVATTO ZWSM16-2-Zigbee (blue socket)
   status: Supported
@@ -144,6 +148,7 @@ TS0003_AVATTO:
   old_zb_models:
   - TS0003-Avatto-custom
   - TS0003-AV-CUS
+  zb_module: ZTU
   override_z2m_device: ZWSM16-3-Zigbee
   human_name: AVATTO ZWSM16-3-Zigbee (blue socket)
   status: Supported
@@ -163,6 +168,7 @@ TS0004_AVATTO:
   old_zb_models:
   - TS0004-Avatto-custom
   - TS0004-AV-CUS
+  zb_module: ZTU
   override_z2m_device: ZWSM16-4-Zigbee
   human_name: AVATTO ZWSM16-4-Zigbee (blue socket)
   status: Supported
@@ -179,6 +185,7 @@ MOES_2_GANG_SWITCH:
   tuya_manufacturer_names:
   - _TZ3000_18ejxno0
   - Moes-2-gang
+  zb_module: ZTU
   override_z2m_device: ZS-EUB_2gang
   human_name: Moes TS0012 (2 gang switch)
   status: Supported
@@ -195,6 +202,7 @@ BSEED_2_GANG_SWITCH:
   tuya_manufacturer_names:
   - _TZ3000_f2slq5pj
   - Bseed-2-gang
+  zb_module: ZTU
   human_name: Bseed TS0012 (2 gang switch)
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/pull/23
@@ -210,6 +218,7 @@ BSEED_2_GANG_SWITCH_2:
   tuya_manufacturer_names:
   - _TZ3000_xk5udnd6
   - Bseed-2-gang-2
+  zb_module: ZTU
   human_name: Bseed TS0012 (2 gang switch)
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/51
@@ -225,6 +234,7 @@ TS0012_AVATTO:
   tuya_manufacturer_names:
   - _TZ3000_ljhbw1c9
   - TS0012-Avatto
+  zb_module: ZTU
   human_name: Avatto TS0012
   override_z2m_device: LZWSM16-2
   status: Supported
@@ -241,6 +251,7 @@ WHD02_AUBESS:
   tuya_manufacturer_names:
   - _TZ3000_46t1rvdu
   - WHD02-Aubess
+  zb_module: ZT2S
   human_name: Aubess WHD02
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/18
@@ -257,6 +268,7 @@ MOES_1_GANG_SWITCH:
   tuya_manufacturer_names:
   - _TZ3000_hhiodade
   - Moes-1-gang
+  zb_module: ZTU
   human_name: Moes TS0011 (1 gang switch)
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
@@ -272,6 +284,7 @@ MOES_3_GANG_SWITCH:
   tuya_manufacturer_names:
   - _TZ3000_qewo8dlz
   - Moes-3-gang
+  zb_module: ZTU
   human_name: Moes TS0013 (3 gang switch)
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/14
@@ -285,6 +298,7 @@ WHD02_2:
   tuya_manufacturer_names:
   - _TZ3000_skueekg3
   - Tuya-WHD02-custom
+  zb_module: ZT2S
   human_name: No-name 1 gang switch with no rf shiled ZT2S
   status: In progress, tuya_manufacturer_name is not confirmed
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/24
@@ -298,6 +312,7 @@ WHD02_3:
   tuya_manufacturer_names:
   - _TZ3000_skueekg3
   - Tuya-WHD02-custom
+  zb_module: ZT2S
   human_name: No-name 1 gang switch with no rf shiled ZT2S
   status: In progress, tuya_manufacturer_name is not confirmed
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/44
@@ -313,6 +328,7 @@ ZEMISMART_2_GANG:
   tuya_manufacturer_names:
   - _TZ3000_zmlunnhy
   - Zemi-2-gang
+  zb_module: ZT3L
   human_name: Internet search says this is Zemismart 2 gang switch, needs confirmation
   status: In progress
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/19
@@ -329,6 +345,7 @@ TS0011_AVATTO:
   tuya_manufacturer_names:
   - _TZ3000_hbxsdd6k
   - TS0011-Avatto
+  zb_module: ZTU
   human_name: Avatto TS0011
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/16
@@ -358,6 +375,7 @@ TS0003_IHS:
   - TS0003-IHS
   old_zb_models:
   - TS0003-3CH-cus
+  zb_module: ZTU
   human_name: IHSENO 3-gang Neutral
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/85
@@ -371,6 +389,7 @@ TS0004_IHS:
   tuya_manufacturer_names:
   - _TZ3000_knoj8lpk
   - TS0004-IHS
+  zb_module: ZTU
   human_name: IHSENO 4-gang Neutral
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/105
@@ -388,6 +407,7 @@ TS0013_GIRIER:
   - _TZ3000_ypgri8yz
   - Girier-ZB08-custom
   - Girier-ZB08-custom-ED
+  zb_module: ZTU # probably but not confirmed
   human_name: Girier-ZB08
   status: Supported
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/37
@@ -401,6 +421,7 @@ TS0004_AVATTO_NEUTRAL:
   tuya_manufacturer_names:
   - _TZ3000_ltt60asa
   - TS0004-Avv
+  zb_module: ZTU
   human_name: Avatto 4 gang switch module with N
   status: WIP, check issue for current status.
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/42
@@ -414,6 +435,7 @@ TS0004:
   tuya_manufacturer_names:
   - _TZ3000_mmkbptmx
   - Tuya-TS0004-custom
+  zb_module: ZTU
   human_name: No-name 4 gang switch module with N
   status: Untested
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/66
@@ -428,6 +450,7 @@ AVATTO_3_GANG_TOUCH:
   - _TZ3000_avky2mvc
   - Avatto-3-touch
   # override_z2m_device: 37022474_2
+  zb_module: ZTU
   human_name: Avatto Zigbee 3 Gang (ZTS02RD-US-W3)
   status: WIP, expiremntal, see issue.
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/41
