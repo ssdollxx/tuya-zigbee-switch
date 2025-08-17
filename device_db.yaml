@@ -159,6 +159,8 @@ TS0003_AVATTO:
   store: https://www.aliexpress.com/item/1005007247647375.html
 TS0004_AVATTO:
   config_str: 5ajpkyq6;TS0004-AVB;BC2u;LD2i;SD3u;RC0;SD7u;RD4;SB6u;RC1;SA0u;RC4;
+  alt_config_str:
+  - 5ajpkyq6;TS0004-AVB;BC2u;LD2i;SD7u;RB6;SC0u;RD4;SA0u;RC1;SA1u;RC4;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 54179
