@@ -6,8 +6,7 @@
 
 # 🔓 Custom firmware for Telink Tuya switches
 
-Feature-rich custom firmware for Telink-based Tuya switches and switch-modules.  
-Code is based on pvvx's [ZigbeeTLc](https://github.com/pvvx/ZigbeeTLc) firmware, huge thanks!
+Feature-rich custom firmware for Telink-based Tuya Zigbee switches and switch-modules.  
 
 ## 🔌 Supported devices
 
