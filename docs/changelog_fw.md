@@ -4,6 +4,12 @@
 
 - 
 
+### 1.0.19:
+
+- Add support for the **levelCtrl** cluster. This enables brightness control of compatible Zigbee bulbs via Zigbee binding. The feature works only for momentary switches using long press: once a long press is detected, brightness will begin to slowly change. Each subsequent long press reverses the direction (increase/decrease).
+- Increase the number of presses required to reset the device to 10.
+- Technical: update manufacturer names to match the stock firmware.
+
 ### v1.0.18
 
 - Fix an issue where setting the config string could brick the device.  
