@@ -149,7 +149,7 @@ Meaning that if you have devices on different versions, you can safely use the l
 - If the device does not rejoin after the update:  
 Force-remove the old device and open your network.  
 If it's not already, put the device in pairing mode (blinking LED):  
-Long-press the on-board button or quickly press any switch 5 times in a row.
+Long-press the on-board button or quickly press any switch 10 times in a row.
 
 - If the device rejoins: Interview and Reconfigure it.
 
