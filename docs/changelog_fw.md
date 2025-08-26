@@ -1,8 +1,9 @@
 # Firmware Changelog
 
-### Upcoming:
+### 1.0.20:
 
-- 
+- Fix bug when changing device config string crashed 3 and 4 gang devices
+- Fix bug when detached mode doesn't work for Toggle switches
 
 ### 1.0.19:
 

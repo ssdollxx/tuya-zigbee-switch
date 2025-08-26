@@ -293,7 +293,9 @@ void switch_cluster_on_button_press(zigbee_switch_cluster *cluster)
 
   if (cluster->mode == ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_TOGGLE) {
     // Toggle does not support modes (RISE, SHORT, LONG)
-    switch_cluster_relay_action_on(cluster);
+    if (cluster->relay_mode != ZCL_ONOFF_CONFIGURATION_RELAY_MODE_DETACHED) {
+      switch_cluster_relay_action_on(cluster);
+    }
     switch_cluster_binding_action_on(cluster);
     return;
   }
@@ -316,7 +318,9 @@ void switch_cluster_on_button_release(zigbee_switch_cluster *cluster)
 
   if (cluster->mode == ZCL_ONOFF_CONFIGURATION_SWITCH_TYPE_TOGGLE) {
     // Toggle does not support modes (RISE, SHORT, LONG)
-    switch_cluster_relay_action_off(cluster);
+    if (cluster->relay_mode != ZCL_ONOFF_CONFIGURATION_RELAY_MODE_DETACHED) {
+       switch_cluster_relay_action_off(cluster);
+    }
     switch_cluster_binding_action_off(cluster);
     return;
   }
