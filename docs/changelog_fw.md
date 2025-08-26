@@ -2,8 +2,8 @@
 
 ### 1.0.20:
 
-- Fix bug when changing device config string crashed 3 and 4 gang devices
-- Fix bug when detached mode doesn't work for Toggle switches
+- Fix bug when changing device config string crashed 3 and 4 gang devices. Due to this change, device settings may reset after OTA update.
+- Fix bug when detached mode doesn't work for Toggle switches.
 
 ### 1.0.19:
 
