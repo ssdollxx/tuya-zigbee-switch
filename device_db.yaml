@@ -333,7 +333,7 @@ WHD02_2:
   info: tuya_manufacturer_name is not confirmed ?
   github_issue: https://github.com/romasku/tuya-zigbee-switch/issues/24
 WHD02_3:
-  config_str: skueekg3;WHD02-custom;BB1u;LB4;SD2u;RD3;
+  config_str: skueekg3;WHD02-custom;LC3;SD2u;RB4;
   device_type: router
   tuya_manufacturer_id: 4417
   tuya_image_type: 518
