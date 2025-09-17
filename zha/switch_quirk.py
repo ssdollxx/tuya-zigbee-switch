@@ -122,7 +122,7 @@ CONFIGS = [
     "hhiodade;Moes-1-gang;SC1u;RB5;ID7;M;",
     "qewo8dlz;Moes-3-gang;SB6u;RB5;ID3;SC1u;RB4;ID7;SC4u;RD2;IC0;M;",
     "skueekg3;WHD02-custom;BB1u;LB4;SD2u;RD3;",
-    "skueekg3;WHD02-custom;BB1u;LB4;SD2u;RD3;",
+    "skueekg3;WHD02-custom;LC3;SD2u;RB4;",
     "zmlunnhy;Zemi-2-gang;SC3U;SD2U;IB7;ID7;RB5C4;RC2D4;",
     "hbxsdd6k;TS0011-avatto;BB4u;LB5;SC0u;RC2;",
     "pfc7i3kt;TS0003-custom;BD3u;SC1u;SD7u;SC3u;RB5;RD4;RB4;",
